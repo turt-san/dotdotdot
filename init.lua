@@ -58,7 +58,7 @@ vim.keymap.set('n', '<leader>w', ':write<CR>')
 vim.keymap.set('n', '<leader>q', ':quit<CR>')
 vim.keymap.set('n', '<leader>x', ':bdelete<CR>', { silent = true })
 vim.keymap.set('n', '<leader>u', function() vim.pack.update() end)
-vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
+vim.keymap.set('n', '<leader>bf', vim.lsp.buf.format)
 
 -- nvim tree
 vim.keymap.set('n', '<C-N>', ':NvimTreeToggle<CR>', { silent = true })
@@ -76,14 +76,13 @@ vim.pack.add({
     { src = 'https://github.com/catppuccin/nvim' },
     { src = 'https://github.com/numToStr/Comment.nvim' },
     { src = 'https://github.com/neovim/nvim-lspconfig' },
-    { src = 'https://github.com/nvim-mini/mini.pairs' },
     { src = 'https://github.com/nvim-tree/nvim-tree.lua' },
     { src = 'https://github.com/sphamba/smear-cursor.nvim' },
     { src = gh('saghen/blink.cmp'),                        version = vim.version.range('<2.*') },
     { src = gh('brianhuster/live-preview.nvim') },
+    { src = gh('windwp/nvim-autopairs') },
 })
 
-require('mini.pairs').setup()
 require('nvim-tree').setup()
 require('Comment').setup()
 require('smear_cursor').setup({})
@@ -99,6 +98,7 @@ require('blink.cmp').setup({
 })
 
 require('live-preview').setup()
+require('nvim-autopairs').setup()
 
 vim.cmd('colorscheme catppuccin')
 
