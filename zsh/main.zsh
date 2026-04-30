@@ -38,9 +38,10 @@ alias ssho='eval $(ssh-agent) ; ssh-add ~/.ssh/github-new'
 alias blk='feh -F ~/Images/Pictures/black.png &'
 # aliases
 
-export SUDOEDITOR="nvim"
-export EDITOR="nvim"
-export MANPAGER="nvim +Man!"
+export MANPAGER='nvim +Man!'
+#export PAGER='nvim'
+export EDITOR='nvim'
+export SUDO_EDITOR='nvim'
 
 function hi {
     emulate -L zsh
@@ -77,6 +78,14 @@ function split {
     local str=(${(@s:/:)animdir})
     echo $str
 }
+
+function mkcdir {
+    mkdir $1
+    cd $1
+}
+
+# bindkey "^[[1;5C" forward-word
+# bindkey "^[[1;5D" backward-word
 
 # function wn -a type name season episode
 #     if test -z $type
