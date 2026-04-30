@@ -27,6 +27,23 @@ vim.keymap.set('n', '<C-l>', '<C-w>l')
 vim.keymap.set('n', '<C-Up>', '<C-w>-')
 vim.keymap.set('n', '<C-Down>', '<C-w>+')
 
+-- Leader Keybinds
+vim.keymap.set('n', '<leader>o', '<CMD>update<CR><CMD>source<CR>')
+vim.keymap.set('n', '<leader>w', '<CMD>write<CR>')
+vim.keymap.set('n', '<leader>q', '<CMD>quit<CR>')
+vim.keymap.set('n', '<leader>x', '<CMD>bdelete<CR>', { silent = true })
+vim.keymap.set('n', '<leader>u', function() vim.pack.update() end)
+vim.keymap.set('n', '<leader>bf', vim.lsp.buf.format)
+vim.keymap.set('n', '<leader>i', 'gg=G``zz')
+vim.keymap.set('n', '<leader>p', '<CMD>!python %<CR>')
+vim.keymap.set('n', '<leader>l', '<CMD>let @/ = ""<CR>')
+
+-- this is a test comment
+
+-- Custom Functions
+vim.api.nvim_create_user_command("EditVim", function ()
+    vim.cmd('tabedit ~/.config/nvim/init.lua')
+end, {})
 -- Enter to enter an empty line below
 vim.keymap.set('n', '<Enter>', function()
     if vim.v.count == 0 then
@@ -52,14 +69,6 @@ vim.keymap.set('n', '<C-z>', function()
     print(('penis'))
 end)
 
--- Leader Keybinds
-vim.keymap.set('n', '<leader>o', ':update<CR> :source<CR>')
-vim.keymap.set('n', '<leader>w', ':write<CR>')
-vim.keymap.set('n', '<leader>q', ':quit<CR>')
-vim.keymap.set('n', '<leader>x', ':bdelete<CR>', { silent = true })
-vim.keymap.set('n', '<leader>u', function() vim.pack.update() end)
-vim.keymap.set('n', '<leader>bf', vim.lsp.buf.format)
-
 -- nvim tree
 vim.keymap.set('n', '<C-N>', ':NvimTreeToggle<CR>', { silent = true })
 
@@ -73,18 +82,20 @@ vim.keymap.set('i', '<TAB>', '<C-y>')
 local gh = function(x) return 'https://github.com/' .. x end
 
 vim.pack.add({
-    { src = 'https://github.com/catppuccin/nvim' },
-    { src = 'https://github.com/numToStr/Comment.nvim' },
-    { src = 'https://github.com/neovim/nvim-lspconfig' },
-    { src = 'https://github.com/nvim-tree/nvim-tree.lua' },
-    { src = 'https://github.com/sphamba/smear-cursor.nvim' },
-    { src = gh('saghen/blink.cmp'),                        version = vim.version.range('<2.*') },
+    { src = gh('catppuccin/nvim') },
+    { src = gh('numToStr/Comment.nvim') },
+    { src = gh('neovim/nvim-lspconfig') },
+    { src = gh('nvim-tree/nvim-tree.lua') },
+    { src = gh('sphamba/smear-cursor.nvim') },
+    { src = gh('saghen/blink.cmp'), version = vim.version.range('<2.*') },
     { src = gh('brianhuster/live-preview.nvim') },
     { src = gh('windwp/nvim-autopairs') },
+    { src = gh('kylechui/nvim-surround') },
+    { src = gh('stevearc/oil.nvim') },
 })
 
 require('nvim-tree').setup()
-require('Comment').setup()
+-- require('Comment').setup()
 require('smear_cursor').setup({})
 require('blink.cmp').setup({
     keymap = {
@@ -96,9 +107,9 @@ require('blink.cmp').setup({
         documentation = { auto_show = true }
     },
 })
-
 require('live-preview').setup()
 require('nvim-autopairs').setup()
+require('nvim-surround').setup()
 
 vim.cmd('colorscheme catppuccin')
 
@@ -107,19 +118,19 @@ vim.cmd('colorscheme catppuccin')
 -- LSP BRUHHHHH
 
 -- vim.lsp.config('roslyn_ls', {
---     cmd = {
---         'dotnet',
---         '/home/turt/source/roslyn/lib/net10.0/Microsoft.CodeAnalysis.LanguageServer.dll',
---         '--logLevel', -- this property is required by the server
---         'Information',
---         '--extensionLogDirectory', -- this property is required by the server
---         vim.fs.joinpath(vim.uv.os_tmpdir(), 'roslyn_ls/logs'),
---         '--stdio',
---     },
--- })
+    --     cmd = {
+        --         'dotnet',
+        --         '/home/turt/source/roslyn/lib/net10.0/Microsoft.CodeAnalysis.LanguageServer.dll',
+        --         '--logLevel', -- this property is required by the server
+        --         'Information',
+        --         '--extensionLogDirectory', -- this property is required by the server
+        --         vim.fs.joinpath(vim.uv.os_tmpdir(), 'roslyn_ls/logs'),
+        --         '--stdio',
+        --     },
+        -- })
 
-vim.lsp.enable({ 'lua_ls', 'html', 'cssls', 'roslyn_ls', 'ts_ls' })
-vim.diagnostic.config({ virtual_text = true })
+        vim.lsp.enable({ 'lua_ls', 'html', 'cssls', 'roslyn_ls', 'ts_ls', 'pyright' })
+        vim.diagnostic.config({ virtual_text = true })
 
--- Below text inline hints
--- vim.diagnostic.config({ virtual_lines = true })
+        -- Below text inline hints
+        -- vim.diagnostic.config({ virtual_lines = true })
