@@ -27,9 +27,13 @@ zle -N run-editzshrc
 function run-editmpv { nvim ~/.config/mpv }
 zle -N run-editmpv
 
+function run-editnvim { nvim ~/.config/nvim/init.lua }
+zle -N run-editnvim
+
 bindkey "^F"  run-editzshrc
 bindkey "^."  run-editzshrc
 bindkey "^Xm" run-editmpv
+bindkey "^Xn" run-editnvim
 
 unsetopt correct_all
 
@@ -44,8 +48,12 @@ alias svim="sudo -E nvim "
 alias spac="sudo pacman "
 alias todo="nvim ~/todo.md"
 alias py="python "
+# python source
 alias psrc="source $pyenvdir/bin/activate"
-alias gca='git add . ; git commit --all --verbose --message'
+# git add commit all
+alias gaca='git add . ; git commit --all --verbose --message'
+# ssh: OPEN
+alias ssho='eval $(ssh-agent) ; ssh-add ~/.ssh/github-new'
 
 export SUDOEDITOR="nvim"
 export EDITOR="nvim"
