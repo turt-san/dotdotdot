@@ -54,6 +54,8 @@ alias psrc="source $pyenvdir/bin/activate"
 alias gaca='git add . ; git commit --all --verbose --message'
 # ssh: OPEN
 alias ssho='eval $(ssh-agent) ; ssh-add ~/.ssh/github-new'
+alias blk='feh -F ~/Images/Pictures/black.png &'
+# aliases
 
 export SUDOEDITOR="nvim"
 export EDITOR="nvim"
@@ -79,10 +81,15 @@ function wn {
 animdir="/data/torrents/shows/Parasyte - The Maxim/"
 function ren {
     emulate -L zsh
-    for i in $@; do
-        local new="$(echo $i | grep -Po "S01E..")"
-        echo $new
+    for i in $(seq 1 24); do
+        local new="$(echo $@[$i] | grep -Po '(.+)(?=.mkv)')"
+        local old="$@[(( $i + 25 ))]"
+        echo "Old: $old"
+        echo "Moving $@[(( $i + 25 ))] to $new.srt"
+        mv -v $old $new.srt
+        echo "New: $new.srt"
     done
+    echo "-1 is $@[-1]"
 }
 
 function split {
