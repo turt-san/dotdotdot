@@ -2,8 +2,10 @@ local red='\033[4;31m'
 local reset='\033[0m'
 local white='\033[1;4;33m'
 local sred='\x1b[38;2;255;0;0m'
-local syellow='\x1b[38;2;255;255;0m\033[4m'
-echo "hi, today is "$sred"Week $(date +'%V')"$reset"$syellow"
+local syellow='\x1b[38;2;255;255;0m'
+local underscore='\033[4m'
+echo "hi, today is ${sred}Week $(date +'%V')${reset}"
+echo -n "$syellow"
 if [[ -f ~/motd.md ]]; then
     cat ~/motd.md
 fi
@@ -54,7 +56,8 @@ alias psrc="source $pyenvdir/bin/activate"
 alias gaca='git add . ; git commit --all --verbose --message'
 # ssh: OPEN
 alias ssho='eval $(ssh-agent) ; ssh-add ~/.ssh/github-new'
-alias blk='feh -F ~/Images/Pictures/black.png &'
+alias blk='feh --fullscreen --hide-pointer ~/Images/Pictures/black.png &; disown; exit'
+alias goodnight='shutdown -h +0'
 # aliases
 
 export SUDOEDITOR="nvim"
@@ -92,9 +95,44 @@ function ren {
     echo "-1 is $@[-1]"
 }
 
+function reni {
+    emulate -L zsh
+    for i in $@; do
+        echo $i
+        local new="$(echo $i | grep -Po '(.+)(?=.srt)')".default.en.forced.srt
+        echo $new
+        sudo mv $i $new
+    done
+}
+
+function remmm {
+    emulate -L zsh
+    for i in $@; do
+        echo $i
+        local new="$(echo $i | sed -z 's/\[.*] //')"
+        echo $new
+        sudo mv $i $new
+    done
+}
+
 function split {
     local str=(${(@s:/:)animdir})
     echo $str
+}
+
+function lsls {
+    emulate -LR zsh
+    ls; ls
+}
+
+function lslsls {
+    emulate -LR zsh
+    ls;ls;ls
+}
+
+function lsls {
+    emulate -LR zsh
+    ls;ls;ls
 }
 
 # function wn -a type name season episode

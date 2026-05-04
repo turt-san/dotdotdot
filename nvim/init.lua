@@ -113,9 +113,11 @@ require('nvim-surround').setup()
 
 vim.cmd('colorscheme catppuccin')
 
--- vim.cmd('hi statusline guibg=NONE')
-
 -- LSP BRUHHHHH
+vim.lsp.enable({ 'lua_ls', 'html', 'cssls', 'roslyn_ls', 'ts_ls', 'pyright', 'clangd' })
+vim.diagnostic.config({ virtual_text = true })
+
+-- vim.cmd('hi statusline guibg=NONE')
 
 -- vim.lsp.config('roslyn_ls', {
     --     cmd = {
@@ -129,8 +131,6 @@ vim.cmd('colorscheme catppuccin')
         --     },
         -- })
 
-        vim.lsp.enable({ 'lua_ls', 'html', 'cssls', 'roslyn_ls', 'ts_ls', 'pyright' })
-        vim.diagnostic.config({ virtual_text = true })
 
         -- Below text inline hints
         -- vim.diagnostic.config({ virtual_lines = true })
