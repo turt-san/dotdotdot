@@ -20,7 +20,6 @@ source /usr/share/cachyos-zsh-config/cachyos-config.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-<<<<<<< HEAD
 
 bindkey -A viins main
 
@@ -131,9 +130,9 @@ function lslsls {
     ls;ls;ls
 }
 
-function lsls {
+function lslslsls {
     emulate -LR zsh
-    ls;ls;ls
+    ls;ls;ls;ls
 }
 
 # function wn -a type name season episode
@@ -223,5 +222,3 @@ function lsls {
 
 #activate then source python:
 #python -m venv $pyenvdir
-=======
->>>>>>> 2095942a302d08b2e4c042bc579dd751f0278555
