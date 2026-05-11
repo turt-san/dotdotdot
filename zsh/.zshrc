@@ -57,7 +57,7 @@ alias gaca='git add . ; git commit --all --verbose --message'
 # ssh: OPEN
 alias ssho='eval $(ssh-agent) ; ssh-add ~/.ssh/github-new'
 alias blk='feh --fullscreen --hide-pointer ~/Images/Pictures/black.png &; disown; exit'
-alias goodnight='shutdown -h +0'
+alias upd='cachy-update'
 # aliases
 
 export SUDOEDITOR="nvim"
@@ -65,25 +65,26 @@ export EDITOR="nvim"
 export MANPAGER="nvim +Man!"
 
 function hi {
-    emulate -L zsh
+    emulate -LR zsh
     echo hi
     ls -la | tail -2
 }
 
 function wnl {
+    emulate -LR zsh
     local dir="/data/media"
     local dirs="$(command ls -1 $dir)"
     echo $dirs
 }
 
 function wn {
-    fish -c wn; exit
+    emulate -LR zsh
+    fish -c "wn $1 $2 $3 $4"; exit
 }
 
 # mf
-animdir="/data/torrents/shows/Parasyte - The Maxim/"
 function ren {
-    emulate -L zsh
+    emulate -LR zsh
     for i in $(seq 1 24); do
         local new="$(echo $@[$i] | grep -Po '(.+)(?=.mkv)')"
         local old="$@[(( $i + 25 ))]"
@@ -96,7 +97,7 @@ function ren {
 }
 
 function reni {
-    emulate -L zsh
+    emulate -LR zsh
     for i in $@; do
         echo $i
         local new="$(echo $i | grep -Po '(.+)(?=.srt)')".default.en.forced.srt
@@ -106,7 +107,7 @@ function reni {
 }
 
 function remmm {
-    emulate -L zsh
+    emulate -LR zsh
     for i in $@; do
         echo $i
         local new="$(echo $i | sed -z 's/\[.*] //')"
@@ -116,6 +117,7 @@ function remmm {
 }
 
 function split {
+    emulate -LR zsh
     local str=(${(@s:/:)animdir})
     echo $str
 }
@@ -133,6 +135,12 @@ function lslsls {
 function lslslsls {
     emulate -LR zsh
     ls;ls;ls;ls
+}
+
+function goodnight {
+    emulate -LR zsh
+    killall -15 brave
+    shutdown -h +0
 }
 
 # function wn -a type name season episode
@@ -222,3 +230,17 @@ function lslslsls {
 
 #activate then source python:
 #python -m venv $pyenvdir
+
+function tung {
+    emulate -LR zsh
+    if [[ "$#" -lt 2 ]]; then
+        if [[ "$1" = "tung" ]]; then
+            echo "not enough tungs little man."
+        else
+            echo "..."
+        fi
+    fi
+    if [[ "$2" = "tung" ]]; then
+        echo "SAHUR!"
+    fi
+}

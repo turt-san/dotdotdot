@@ -9,6 +9,7 @@
     // Choose the order of the modules
     "modules-left": [
         "custom/kill",
+        "custom/edit",
         "hyprland/workspaces",
         "hyprland/submap",
         "sway/scratchpad",
@@ -107,7 +108,7 @@
     },
     "tray": {
         // "icon-size": 21,
-        "spacing": 10,
+        "spacing": 10
         // "icons": {
         //   "blueman": "bluetooth",
         //   "TelegramDesktop": "$HOME/.local/share/icons/hicolor/16x16/apps/telegram.png"
@@ -207,16 +208,19 @@
         "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
     },
+    "custom/edit": {
+        "format": "",
+        "tooltip-format": "Edit with neovim",
+        "on-click":"alacritty -e nvim $HOME/.config/waybar/config.jsonc $HOME/.config/waybar/style.css"
+    },
     "custom/restart": {
-        "format": "⏻",
-        "tooltip": true,
-        //"tooltip-format": "<p>penis</p>",
+        "format": "⟳",
+        "tooltip-format": "Re-re-re-restart.",
         "on-click":"killall -SIGUSR2 waybar"
     },
     "custom/kill": {
-        "format": "3 ⏻ 0",
-        "tooltip": true,
-        //"tooltip-format": "<p>penis</p>",
+        "format": "⏻",
+        "tooltip": false,
         "on-click":"killall waybar"
     },
     "custom/power": {
