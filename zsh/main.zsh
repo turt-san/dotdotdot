@@ -1,4 +1,5 @@
 bindkey -v
+source cachyos-config.zsh
 # Gutted in favor of former
 #bindkey -A viins main
 
