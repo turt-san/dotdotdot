@@ -1,1 +1,5 @@
-source $HOME/dotdotdot/zsh/rest.zsh
+source "$HOME/.config/zsh/motd.zsh"
+source "$HOME/.config/zsh/rest.zsh"
+#source "$HOME/.config/zsh/cachyos-config.zsh"
+source "$HOME/.config/zsh/alias.zsh"
+source "$HOME/.config/zsh/ps1.zsh"
