@@ -1,0 +1,45 @@
+{
+  "plugins": {
+    "Comment.nvim": {
+      "rev": "e30b7f2008e52442154b66f7c519bfd2f1e32acb",
+      "src": "https://github.com/numToStr/Comment.nvim"
+    },
+    "blink.cmp": {
+      "rev": "78336bc89ee5365633bcf754d93df01678b5c08f",
+      "src": "https://github.com/saghen/blink.cmp",
+      "version": "0.0.0 - 2.0.0"
+    },
+    "live-preview.nvim": {
+      "rev": "c1fcf75c5f9c9c01dd392852de44204b60f1b5b1",
+      "src": "https://github.com/brianhuster/live-preview.nvim"
+    },
+    "nvim": {
+      "rev": "426dbebe06b5c69fd846ceb17b42e12f890aedf1",
+      "src": "https://github.com/catppuccin/nvim"
+    },
+    "nvim-autopairs": {
+      "rev": "7b9923abad60b903ece7c52940e1321d39eccc79",
+      "src": "https://github.com/windwp/nvim-autopairs"
+    },
+    "nvim-lspconfig": {
+      "rev": "dfbada1a311c4bf3369f8d5421369c9b6e8b888f",
+      "src": "https://github.com/neovim/nvim-lspconfig"
+    },
+    "nvim-surround": {
+      "rev": "2e93e154de9ff326def6480a4358bfc149d5da2c",
+      "src": "https://github.com/kylechui/nvim-surround"
+    },
+    "nvim-tree.lua": {
+      "rev": "07f541fcaa4a5ae019598240362449ab7e9812b3",
+      "src": "https://github.com/nvim-tree/nvim-tree.lua"
+    },
+    "oil.nvim": {
+      "rev": "0fcc83805ad11cf714a949c98c605ed717e0b83e",
+      "src": "https://github.com/stevearc/oil.nvim"
+    },
+    "smear-cursor.nvim": {
+      "rev": "9e9378d6ee34bb3782e0e8c63d9ec8ca618b479b",
+      "src": "https://github.com/sphamba/smear-cursor.nvim"
+    }
+  }
+}
