@@ -8,8 +8,6 @@ alias todo="nvim ~/todo.md"
 alias py="python "
 # python source
 alias psrc="source $pyenvdir/bin/activate"
-# git add commit all
-alias gaca='git add . ; git commit --all --verbose --message'
 # ssh: OPEN
 alias ssho='eval $(ssh-agent) ; ssh-add ~/.ssh/keys/*'
 alias blk='feh --fullscreen --hide-pointer ~/Images/Pictures/black.png &; disown; exit'
