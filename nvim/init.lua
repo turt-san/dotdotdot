@@ -36,7 +36,8 @@ vim.keymap.set('n', '<leader>u', function() vim.pack.update() end)
 vim.keymap.set('n', '<leader>bf', vim.lsp.buf.format)
 vim.keymap.set('n', '<leader>i', 'gg=G``zz')
 vim.keymap.set('n', '<leader>p', '<CMD>!python %<CR>')
-vim.keymap.set('n', '<leader>l', '<CMD>let @/ = ""<CR>')
+vim.keymap.set('n', '<leader>h', '<CMD>let @/ = ""<CR>')
+vim.keymap.set('n', '<leader>c', '<CMD>!gcc -Wall -o out.c %<CR>')
 
 -- this is a test comment
 

@@ -1,7 +1,12 @@
 #!/bin/bash
 IFS=""
 
-if ! [[ -d $HOME/.config ]]; then
+CONFS=("nvim" "alacritty" "zsh")
+if [[ $# -ne 0 ]]; then
+    CONFS=($@)
+fi
+
+if [[ ! -d $HOME/.config ]]; then
     echo -n "$HOME/.config does not exist, create it? y/n: "
     read ans
     pns=$(expr "$ans" : '^[yY]')
@@ -13,10 +18,17 @@ if ! [[ -d $HOME/.config ]]; then
     fi
 fi
 
-CONFS=("nvim" "alacritty" "zsh")
 for i in ${CONFS[@]}; do
-    echo {{$i}}
-    ls "./$i"
+    echo {{$i}}:
+    ls -1 "./$i"
+    echo
+    if [[ -d "$HOME/.config/$i" ]]; then
+        echo "$HOME/.config/$i already exists, skipping..."
+        continue
+    fi
     ln -s "$PWD/$i" "$HOME/.config/$i"
 done
-echo "source ./.config/zsh/main.zsh" >> "$HOME/.zshrc"
+
+if [[ ! -f "$HOME/.zshrc" ]]; then
+    echo "source ./.config/zsh/main.zsh" >> "$HOME/.zshrc"
+fi
