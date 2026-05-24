@@ -30,5 +30,5 @@ for i in ${CONFS[@]}; do
 done
 
 if [[ ! -f "$HOME/.zshrc" ]]; then
-    echo "source ./.config/zsh/main.zsh" >> "$HOME/.zshrc"
+    cp "./zsh/.zshrc" "$HOME/"
 fi
