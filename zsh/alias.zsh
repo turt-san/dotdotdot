@@ -10,5 +10,5 @@ alias py="python "
 alias psrc="source $pyenvdir/bin/activate"
 # ssh: OPEN
 alias ssho='eval $(ssh-agent) ; ssh-add ~/.ssh/keys/*'
-alias blk='feh --fullscreen --hide-pointer ~/Images/Pictures/black.png &; disown; exit'
+alias blk='feh --fullscreen --hide-pointer ~/Images/Other/black.png &; disown; exit'
 alias upd='cachy-update'
