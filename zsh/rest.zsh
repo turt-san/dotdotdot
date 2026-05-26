@@ -23,6 +23,8 @@ bindkey "^F"  run-editzshrc
 bindkey "^."  run-editzshrc
 bindkey "^Xm" run-editmpv
 bindkey "^Xn" run-editnvim
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
 
 unsetopt correct_all
 
