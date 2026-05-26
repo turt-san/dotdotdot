@@ -39,7 +39,12 @@ vim.keymap.set('n', '<leader>p', '<CMD>!python %<CR>')
 vim.keymap.set('n', '<leader>h', '<CMD>let @/ = ""<CR>')
 vim.keymap.set('n', '<leader>c', '<CMD>!gcc -Wall -o out.c %<CR>')
 
--- this is a test comment
+-- qol keybinds
+vim.keymap.set({ 'n', 'v' }, '<C-_>', function()
+    vim.cmd.norm('gcc')
+end, { remap = true })
+vim.keymap.set('i', 'jk', '<ESC>')
+vim.keymap.set('i', '<TAB>', '<C-y>')
 
 -- Custom Functions
 vim.api.nvim_create_user_command("EditVim", function ()
@@ -72,13 +77,6 @@ end)
 
 -- nvim tree
 vim.keymap.set('n', '<C-N>', ':NvimTreeToggle<CR>', { silent = true })
-
--- qol keybinds
-vim.keymap.set({ 'n', 'v' }, '<C-/>', function()
-    vim.cmd.norm('gcc')
-end, { remap = true })
-vim.keymap.set('i', 'jk', '<ESC>')
-vim.keymap.set('i', '<TAB>', '<C-y>')
 
 local gh = function(x) return 'https://github.com/' .. x end
 

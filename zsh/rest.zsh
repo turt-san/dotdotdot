@@ -26,8 +26,6 @@ bindkey "^Xn" run-editnvim
 
 unsetopt correct_all
 
-pyenvdir='~/Documents/pythonvenv/DEFAULT/'
-
 export SUDOEDITOR="nvim"
 export EDITOR="nvim"
 export MANPAGER="nvim +Man!"
