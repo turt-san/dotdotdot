@@ -14,10 +14,12 @@ alias ssho='eval $(ssh-agent) ; ssh-add ~/.ssh/keys/*'
 alias blk='feh --fullscreen --hide-pointer ~/Images/Other/black.png &; disown ; exit'
 alias upd='cachy-update'
 
+lsargs="-AXgl --time-style=+\"|\" --color=auto"
+lfargs="-l --color=auto"
 if [[ -n $(command -v eza) ]]; then
-    alias ls="eza -a1 --color=auto"
-    alias ll="eza -la --color=auto"
+    # alias ls="eza $lsargs"
+    # alias lf="eza $lfargs"
 else
-    alias lls="ls -a1 --color=auto"
-    alias ll="ls -la --color=auto"
+    alias ls="ls $lsargs"
+    alias lf="ls $lfargs"
 fi

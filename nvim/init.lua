@@ -85,7 +85,7 @@ vim.pack.add({
     { src = gh('numToStr/Comment.nvim') },
     { src = gh('neovim/nvim-lspconfig') },
     { src = gh('nvim-tree/nvim-tree.lua') },
-    { src = gh('sphamba/smear-cursor.nvim') },
+    -- { src = gh('sphamba/smear-cursor.nvim') },
     { src = gh('saghen/blink.cmp'), version = vim.version.range('<2.*') },
     { src = gh('brianhuster/live-preview.nvim') },
     { src = gh('windwp/nvim-autopairs') },
@@ -95,7 +95,7 @@ vim.pack.add({
 
 require('nvim-tree').setup()
 -- require('Comment').setup()
-require('smear_cursor').setup({})
+-- require('smear_cursor').setup({})
 require('blink.cmp').setup({
     keymap = {
         preset = 'default',

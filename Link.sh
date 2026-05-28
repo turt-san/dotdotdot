@@ -1,7 +1,5 @@
 #!/bin/bash
-IFS=""
-
-CONFS=("nvim" "alacritty" "zsh")
+CONFS=("nvim" "alacritty" "zsh" "waybar")
 if [[ $# -ne 0 ]]; then
     CONFS=($@)
 fi
@@ -22,10 +20,12 @@ for i in ${CONFS[@]}; do
     echo {{$i}}:
     ls -1 "./$i"
     echo
-    if [[ -d "$HOME/.config/$i" ]]; then
-        echo "$HOME/.config/$i already exists, skipping..."
+    cfgDir="$HOME/.config/$i"
+    if [[ -d "$cfgDir" ]]; then
+        echo "$cfgDir already exists, deleting..."
         continue
     fi
+    rm -rf "$cfgDir"
     ln -s "$PWD/$i" "$HOME/.config/$i"
 done
 
