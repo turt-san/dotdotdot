@@ -6,7 +6,7 @@ mkcdir() {
 # ssh: OPEN
 ssho() {
     eval $(ssh-agent)
-    ssh-add "~/.ssh/keys/*"
+    ssh-add ~/.ssh/keys/*
 }
 
 # git add commit all
