@@ -9,17 +9,15 @@ alias todo="nvim ~/todo.md"
 alias py="python "
 # python source
 alias pysrc="source $pyenvdir/bin/activate"
-# ssh: OPEN
-alias ssho='eval $(ssh-agent) ; ssh-add ~/.ssh/keys/*'
-alias blk='feh --fullscreen --hide-pointer ~/Images/Other/black.png &; disown ; exit'
+alias blk='feh --fullscreen --hide-pointer ~/Images/Other/black.png &; disown; exit'
 alias upd='cachy-update'
 
 lsargs="-AXgl --time-style=+\"|\" --color=auto"
-lfargs="-l --color=auto"
+llargs="-al --color=auto"
 if [[ -n $(command -v eza) ]]; then
-    # alias ls="eza $lsargs"
-    # alias lf="eza $lfargs"
+    alias ls="command eza $lsargs"
+    alias ll="command eza $llargs"
 else
-    alias ls="ls $lsargs"
-    alias lf="ls $lfargs"
+    alias ls="command ls $lsargs"
+    alias ll="command ls $llargs"
 fi
