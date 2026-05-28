@@ -17,18 +17,23 @@ if [[ ! -d $HOME/.config ]]; then
 fi
 
 for i in ${CONFS[@]}; do
-    echo {{$i}}:
-    ls -1 "./$i"
-    echo
     cfgDir="$HOME/.config/$i"
-    if [[ -d "$cfgDir" ]]; then
-        echo "$cfgDir already exists, deleting..."
+
+    echo {{${i^^}}}:
+    ls -1 "./$i"
+    if [[ -d "$cfgDir" || -f "$cfgDir"]]; then
+        echo -e "$cfgDir already exists, deleting...\n"
+        rm -rf "$cfgDir"
         continue
     fi
-    rm -rf "$cfgDir"
-    ln -s "$PWD/$i" "$HOME/.config/$i"
+
+    echo ""
+    ln -v -s "$PWD/$i" "$HOME/.config/$i"
 done
 
 if [[ ! -f "$HOME/.zshrc" ]]; then
     cp "./zsh/.zshrc" "$HOME/"
+fi
+if [[ ! -f "$HOME/.tmux.conf" ]]; then
+    cp "./tmux/.tmux.conf" "$HOME/"
 fi

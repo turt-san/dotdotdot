@@ -11,13 +11,12 @@ alias py="python "
 alias pysrc="source $pyenvdir/bin/activate"
 alias blk='feh --fullscreen --hide-pointer ~/Images/Other/black.png &; disown; exit'
 alias upd='cachy-update'
+alias alph="echo {a..z}"
 
-lsargs="-AXgl --time-style=+\"|\" --color=auto"
-llargs="-al --color=auto"
 if [[ -n $(command -v eza) ]]; then
-    alias ls="command eza $lsargs"
-    alias ll="command eza $llargs"
+    alias ls="command eza -al --time-style=+\"|\" --sort=Extension --color=auto"
+    alias ll="command eza -aagl --color=auto"
 else
-    alias ls="command ls $lsargs"
-    alias ll="command ls $llargs"
+    alias ls="command ls -AXGl --time-style=+\"|\" --color=auto"
+    alias ll="command ls -al --color=auto"
 fi
