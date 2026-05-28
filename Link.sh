@@ -21,13 +21,11 @@ for i in ${CONFS[@]}; do
 
     echo {{${i^^}}}:
     ls -1 "./$i"
-    if [[ -d "$cfgDir" || -f "$cfgDir"]]; then
+    if [[ -d "$cfgDir" || -f "$cfgDir" ]]; then
         echo -e "$cfgDir already exists, deleting...\n"
         rm -rf "$cfgDir"
-        continue
     fi
 
-    echo ""
     ln -v -s "$PWD/$i" "$HOME/.config/$i"
 done
 
