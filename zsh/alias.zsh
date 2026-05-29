@@ -6,7 +6,7 @@ alias rw="killall -SIGUSR2 waybar"
 alias svim="sudo -E nvim "
 alias spac="sudo pacman "
 alias todo="nvim ~/todo.md"
-alias py="python "
+alias py="python3 "
 # python source
 alias pysrc="source $pyenvdir/bin/activate"
 alias blk='feh --fullscreen --hide-pointer ~/Images/Other/black.png &; disown; exit'

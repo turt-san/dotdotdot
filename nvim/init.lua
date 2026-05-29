@@ -44,9 +44,8 @@ vim.keymap.set('n', '<leader>p', '<CMD>!python %<CR>')
 vim.keymap.set('n', '<leader>c', '<CMD>!gcc -Wall -o out.c %<CR>')
 
 -- QOL keybinds
-vim.keymap.set({ 'n', 'v' }, '<C-_>', function()
-    vim.cmd.norm('gcc')
-end, { remap = true })
+vim.keymap.set({ 'n', 'v' }, '<C-/>', function() vim.cmd.norm('gcc') end, { remap = true })
+vim.keymap.set({ 'n', 'v' }, '<C-_>', function() vim.cmd.norm('gcc') end, { remap = true })
 vim.keymap.set('i', 'jk', '<ESC>')
 vim.keymap.set('i', '<TAB>', '<C-y>')
 
@@ -54,8 +53,9 @@ vim.keymap.set('i', '<TAB>', '<C-y>')
 vim.api.nvim_create_user_command("EditVim", function ()
     vim.cmd('tabedit ~/.config/nvim/init.lua')
 end, {})
+
 -- Enter to enter an empty line below
-vim.keymap.set('n', '<Enter>', function()
+vim.keymap.set('n', '<leader>[', function()
     if vim.v.count == 0 then
         vim.cmd.norm('o')
     end
@@ -64,8 +64,8 @@ vim.keymap.set('n', '<Enter>', function()
     end
 end)
 
--- Enter to enter an empty line above
-vim.keymap.set('n', '<S-Enter>', function()
+-- Enter to enter an empty line above <]>
+vim.keymap.set('n', '<leader>]', function()
     if vim.v.count == 0 then
         vim.cmd.norm('O')
     end
@@ -87,10 +87,11 @@ local gh = function(x) return 'https://github.com/' .. x end
 vim.pack.add({
     { src = gh('catppuccin/nvim') },
     { src = gh('navarasu/onedark.nvim') },
+    { src = gh('mfussenegger/nvim-lint') },
     { src = gh('numToStr/Comment.nvim') },
     { src = gh('neovim/nvim-lspconfig') },
     { src = gh('nvim-tree/nvim-tree.lua') },
-    -- { src = gh('sphamba/smear-cursor.nvim') },
+    { src = gh('sphamba/smear-cursor.nvim') },
     { src = gh('saghen/blink.cmp'), version = vim.version.range('<2.*') },
     { src = gh('brianhuster/live-preview.nvim') },
     { src = gh('windwp/nvim-autopairs') },
@@ -100,7 +101,7 @@ vim.pack.add({
 
 require('nvim-tree').setup()
 require('oil').setup()
--- require('Comment').setup()
+require('Comment').setup()
 -- require('smear_cursor').setup({})
 require('blink.cmp').setup({
     keymap = {
@@ -120,8 +121,27 @@ require('nvim-surround').setup()
 require('onedark').setup({ style = 'darker' })
 require('onedark').load()
 
+-- LINTING BRUHHHHH
+require('lint').linters_by_ft = {
+    python = {'ruff'},
+}
+
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+    callback = function()
+        require('lint').try_lint()
+    end
+})
+
 -- LSP BRUHHHHH
-vim.lsp.enable({ 'lua_ls', 'html', 'cssls', 'roslyn_ls', 'ts_ls', 'pyright', 'clangd' })
+vim.lsp.enable({
+    'lua_ls',
+    'html',
+    'cssls',
+    'roslyn_ls',
+    'ts_ls',
+    'pyright',
+    'clangd',
+})
 vim.diagnostic.config({ virtual_text = true })
 
 -- vim.cmd('hi statusline guibg=NONE')
