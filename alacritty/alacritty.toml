@@ -160,12 +160,9 @@ key = "Key0"
 mods = "Control"
 action = "ResetFontSize"
 
+[bell]
+duration = 100
+
 [general]
 live_config_reload = true
 working_directory = "None"
-
-# [terminal]
-# shell = {
-#     program = "/bin/zsh",
-#     args = ["-i", "/home/turt/scripts/Greetings.sh"]
-# }

@@ -1,3 +1,4 @@
+-- help text-object-define
 local vim = vim
 
 vim.opt.number = true
@@ -27,7 +28,7 @@ vim.keymap.set('n', '<C-l>', '<C-w>l')
 vim.keymap.set('n', '<C-Up>', '<C-w>-')
 vim.keymap.set('n', '<C-Down>', '<C-w>+')
 
--- Leader Keybinds
+-- Leader QOL
 vim.keymap.set('n', '<leader>o', '<CMD>update<CR><CMD>source<CR>')
 vim.keymap.set('n', '<leader>w', '<CMD>write<CR>')
 vim.keymap.set('n', '<leader>q', '<CMD>quit<CR>')
@@ -35,11 +36,14 @@ vim.keymap.set('n', '<leader>x', '<CMD>bdelete<CR>', { silent = true })
 vim.keymap.set('n', '<leader>u', function() vim.pack.update() end)
 vim.keymap.set('n', '<leader>bf', vim.lsp.buf.format)
 vim.keymap.set('n', '<leader>i', 'gg=G``zz')
-vim.keymap.set('n', '<leader>p', '<CMD>!python %<CR>')
 vim.keymap.set('n', '<leader>h', '<CMD>let @/ = ""<CR>')
+vim.keymap.set('n', '<leader>n', '<CMD>bn<CR>')
+
+-- Leader Make
+vim.keymap.set('n', '<leader>p', '<CMD>!python %<CR>')
 vim.keymap.set('n', '<leader>c', '<CMD>!gcc -Wall -o out.c %<CR>')
 
--- qol keybinds
+-- QOL keybinds
 vim.keymap.set({ 'n', 'v' }, '<C-_>', function()
     vim.cmd.norm('gcc')
 end, { remap = true })
@@ -82,6 +86,7 @@ local gh = function(x) return 'https://github.com/' .. x end
 
 vim.pack.add({
     { src = gh('catppuccin/nvim') },
+    { src = gh('navarasu/onedark.nvim') },
     { src = gh('numToStr/Comment.nvim') },
     { src = gh('neovim/nvim-lspconfig') },
     { src = gh('nvim-tree/nvim-tree.lua') },
@@ -94,6 +99,7 @@ vim.pack.add({
 })
 
 require('nvim-tree').setup()
+require('oil').setup()
 -- require('Comment').setup()
 -- require('smear_cursor').setup({})
 require('blink.cmp').setup({
@@ -110,7 +116,9 @@ require('live-preview').setup()
 require('nvim-autopairs').setup()
 require('nvim-surround').setup()
 
-vim.cmd('colorscheme catppuccin')
+--vim.cmd('colorscheme catppuccin')
+require('onedark').setup({ style = 'darker' })
+require('onedark').load()
 
 -- LSP BRUHHHHH
 vim.lsp.enable({ 'lua_ls', 'html', 'cssls', 'roslyn_ls', 'ts_ls', 'pyright', 'clangd' })

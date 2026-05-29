@@ -50,30 +50,6 @@ function wn {
     fish -c "wn $1 $2 $3 $4"; exit
 }
 
-# mf
-function ren {
-    emulate -LR zsh
-    for i in $(seq 1 24); do
-        local new="$(echo $@[$i] | grep -Po '(.+)(?=.mkv)')"
-        local old="$@[(( $i + 25 ))]"
-        echo "Old: $old"
-        echo "Moving $@[(( $i + 25 ))] to $new.srt"
-        mv -v $old $new.srt
-        echo "New: $new.srt"
-    done
-    echo "-1 is $@[-1]"
-}
-
-function reni {
-    emulate -LR zsh
-    for i in $@; do
-        echo $i
-        local new="$(echo $i | grep -Po '(.+)(?=.srt)')".default.en.forced.srt
-        echo $new
-        sudo mv $i $new
-    done
-}
-
 function remmm {
     emulate -LR zsh
     for i in $@; do
@@ -88,27 +64,6 @@ function split {
     emulate -LR zsh
     local str=(${(@s:/:)animdir})
     echo $str
-}
-
-function lsls {
-    emulate -LR zsh
-    ls; ls
-}
-
-function lslsls {
-    emulate -LR zsh
-    ls;ls;ls
-}
-
-function lslslsls {
-    emulate -LR zsh
-    ls;ls;ls;ls
-}
-
-function goodnight {
-    emulate -LR zsh
-    killall -15 brave
-    shutdown -h +0
 }
 
 # function wn -a type name season episode
