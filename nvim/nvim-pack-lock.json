@@ -13,10 +13,6 @@
       "rev": "c1fcf75c5f9c9c01dd392852de44204b60f1b5b1",
       "src": "https://github.com/brianhuster/live-preview.nvim"
     },
-    "mini.pairs": {
-      "rev": "30cf2f01c4aaa2033db67376b9924fa2442c05d6",
-      "src": "https://github.com/nvim-mini/mini.pairs"
-    },
     "nvim": {
       "rev": "0303a7208dba448c459767486a38a6ec05c4216b",
       "src": "https://github.com/catppuccin/nvim"
@@ -41,6 +37,10 @@
       "rev": "07f541fcaa4a5ae019598240362449ab7e9812b3",
       "src": "https://github.com/nvim-tree/nvim-tree.lua"
     },
+    "nvim-treesitter": {
+      "rev": "4916d6592ede8c07973490d9322f187e07dfefac",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter"
+    },
     "oil.nvim": {
       "rev": "0fcc83805ad11cf714a949c98c605ed717e0b83e",
       "src": "https://github.com/stevearc/oil.nvim"
@@ -49,9 +49,17 @@
       "rev": "df4792accde9db0043121f32628bcf8e645d9aea",
       "src": "https://github.com/navarasu/onedark.nvim"
     },
+    "plenary.nvim": {
+      "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
+      "src": "https://github.com/nvim-lua/plenary.nvim"
+    },
     "smear-cursor.nvim": {
       "rev": "9e9378d6ee34bb3782e0e8c63d9ec8ca618b479b",
       "src": "https://github.com/sphamba/smear-cursor.nvim"
+    },
+    "telescope.nvim": {
+      "rev": "7d324792b7943e4aa16ad007212e6acc6f9fe335",
+      "src": "https://github.com/nvim-telescope/telescope.nvim"
     }
   }
 }
