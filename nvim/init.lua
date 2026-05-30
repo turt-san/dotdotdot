@@ -2,6 +2,7 @@
 =============================   Hello   =============================
 --]]
 -- help text-object-define
+-- help makeprg
 
 --[[
 =============================   OPTIONS   =============================
@@ -237,8 +238,9 @@ vim.api.nvim_create_autocmd({ "BufWritePost", "InsertLeave" }, {
 --     },
 -- })
 
-
--- LSP BRUHHHHH
+--[[
+=============================   LSP   =============================
+--]]
 vim.lsp.enable({
     'lua_ls',
     'html',
@@ -247,6 +249,7 @@ vim.lsp.enable({
     'ts_ls',
     'pyright',
     'clangd',
+    'rust-analzyer',
 })
 -- Below text inline hints
 -- vim.diagnostic.config({ virtual_lines = true })
