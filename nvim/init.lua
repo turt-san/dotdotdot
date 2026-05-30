@@ -8,11 +8,11 @@ vim.opt.signcolumn = 'yes'
 vim.g.mapleader = ' '
 
 local indent_width = 4
-local chars = { trail = '', space = '·', tab = '-->'}
+local chars = { trail = '', space = '·', tab = '-->' }
 vim.opt.shiftwidth = indent_width
 vim.opt.tabstop = indent_width
 vim.opt.softtabstop = indent_width
-vim.opt.expandtab = false
+vim.opt.expandtab = true
 vim.opt.listchars = chars
 vim.opt.fillchars = { eob = ' ' }
 -- vim.opt.listchars = { space = '_', eol = '¬', tab = '<->', trail='·' }
@@ -52,32 +52,32 @@ vim.keymap.set('i', '<TAB>', '<C-y>')
 
 -- Custom Functions
 vim.api.nvim_create_user_command("EditVim", function()
-	vim.cmd('tabedit ~/.config/nvim/init.lua')
+    vim.cmd('tabedit ~/.config/nvim/init.lua')
 end, {})
 
 -- Enter to enter an empty line below
 vim.keymap.set('n', '<leader>]', function()
-	if vim.v.count == 0 then
-		vim.cmd.norm('o')
-	end
-	for i=1,vim.v.count do
-		vim.cmd.norm('o')
-	end
+    if vim.v.count == 0 then
+        vim.cmd.norm('o')
+    end
+    for i = 1, vim.v.count do
+        vim.cmd.norm('o')
+    end
 end)
 
 -- Enter to enter an empty line above <]>
 vim.keymap.set('n', '<leader>[', function()
-	if vim.v.count == 0 then
-		vim.cmd.norm('O')
-	end
-	for i = 1, vim.v.count do
-		vim.cmd.norm('O')
-	end
+    if vim.v.count == 0 then
+        vim.cmd.norm('O')
+    end
+    for i = 1, vim.v.count do
+        vim.cmd.norm('O')
+    end
 end)
 
 -- test area
 vim.keymap.set('n', '<C-z>', function()
-	print(('penis'))
+    print(('penis'))
 end)
 
 -- nvim tree
@@ -87,21 +87,21 @@ local gh = function(x) return 'https://github.com/' .. x end
 -- local function gh(repo) return 'https://github.com/' .. repo end
 
 vim.pack.add({
-	{ src = gh 'catppuccin/nvim' },
-	{ src = gh 'navarasu/onedark.nvim' },
-	{ src = gh 'numToStr/Comment.nvim' },
-	{ src = gh 'neovim/nvim-lspconfig' },
-	{ src = gh 'nvim-tree/nvim-tree.lua' },
-	{ src = gh 'sphamba/smear-cursor.nvim' },
-	{ src = gh 'saghen/blink.cmp',               version = vim.version.range '<2.*' },
-	{ src = gh 'brianhuster/live-preview.nvim' },
-	{ src = gh 'windwp/nvim-autopairs' },
-	{ src = gh 'kylechui/nvim-surround' },
-	{ src = gh 'mfussenegger/nvim-lint' },
-	{ src = gh 'stevearc/oil.nvim' },
-	{ src = gh 'nvim-lua/plenary.nvim' },
-	{ src = gh 'nvim-telescope/telescope.nvim' },
-	{ src = gh 'nvim-treesitter/nvim-treesitter' },
+    { src = gh 'catppuccin/nvim' },
+    { src = gh 'navarasu/onedark.nvim' },
+    { src = gh 'numToStr/Comment.nvim' },
+    { src = gh 'neovim/nvim-lspconfig' },
+    { src = gh 'nvim-tree/nvim-tree.lua' },
+    { src = gh 'sphamba/smear-cursor.nvim' },
+    { src = gh 'saghen/blink.cmp',               version = vim.version.range '<2.*' },
+    { src = gh 'brianhuster/live-preview.nvim' },
+    { src = gh 'windwp/nvim-autopairs' },
+    { src = gh 'kylechui/nvim-surround' },
+    { src = gh 'mfussenegger/nvim-lint' },
+    { src = gh 'stevearc/oil.nvim' },
+    { src = gh 'nvim-lua/plenary.nvim' },
+    { src = gh 'nvim-telescope/telescope.nvim' },
+    { src = gh 'nvim-treesitter/nvim-treesitter' },
 })
 
 require('nvim-tree').setup()
@@ -110,13 +110,13 @@ require('oil').setup()
 require('Comment').setup()
 -- require('smear_cursor').setup({})
 require('blink.cmp').setup({
-	keymap = {
-		preset = 'default',
-		['<TAB>'] = { 'select_and_accept' },
-	},
-	completion = {
-		documentation = { auto_show = true }
-	},
+    keymap = {
+        preset = 'default',
+        ['<TAB>'] = { 'select_and_accept' },
+    },
+    completion = {
+        documentation = { auto_show = true }
+    },
 })
 require('live-preview').setup()
 require('nvim-autopairs').setup()
@@ -133,11 +133,11 @@ require('onedark').load()
 
 -- PARSING BRUHHHHHHHHHHHHHH
 local parsers = {
-	'rust',
-	'bash',
-	'c',
-	'python',
-	'lua'
+    'rust',
+    'bash',
+    'c',
+    'python',
+    'lua'
 }
 require('nvim-treesitter').install({ parsers })
 
@@ -145,53 +145,53 @@ require('nvim-treesitter').install({ parsers })
 ---@param buf integer
 ---@param language string
 local function treesitter_try_attach(buf, language)
-	-- Check if a parser exists and load it
-	if not vim.treesitter.language.add(language) then return end
-	-- Enable syntax highlighting and other treesitter features
-	vim.treesitter.start(buf, language)
+    -- Check if a parser exists and load it
+    if not vim.treesitter.language.add(language) then return end
+    -- Enable syntax highlighting and other treesitter features
+    vim.treesitter.start(buf, language)
 
-	-- Enable treesitter based folds
-	-- For more info on folds see `:help folds`
-	-- vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-	-- vim.wo.foldmethod = 'expr'
+    -- Enable treesitter based folds
+    -- For more info on folds see `:help folds`
+    -- vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+    -- vim.wo.foldmethod = 'expr'
 
-	-- Check if treesitter indentation is available for this language, and if so enable it
-	-- in case there is no indent query, the indentexpr will fallback to the vim's built in one
-	local has_indent_query = vim.treesitter.query.get(language, 'indents') ~= nil
+    -- Check if treesitter indentation is available for this language, and if so enable it
+    -- in case there is no indent query, the indentexpr will fallback to the vim's built in one
+    local has_indent_query = vim.treesitter.query.get(language, 'indents') ~= nil
 
-	-- Enable treesitter based indentation
-	if has_indent_query then vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()" end
+    -- Enable treesitter based indentation
+    if has_indent_query then vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()" end
 end
 
 local available_parsers = require('nvim-treesitter').get_available()
 vim.api.nvim_create_autocmd('FileType', {
-	callback = function(args)
-		local buf, filetype = args.buf, args.match
+    callback = function(args)
+        local buf, filetype = args.buf, args.match
 
-		local language = vim.treesitter.language.get_lang(filetype)
-		if not language then return end
+        local language = vim.treesitter.language.get_lang(filetype)
+        if not language then return end
 
-		local installed_parsers = require('nvim-treesitter').get_installed 'parsers'
+        local installed_parsers = require('nvim-treesitter').get_installed 'parsers'
 
-		if vim.tbl_contains(installed_parsers, language) then
-			-- Enable the parser if it is already installed
-			treesitter_try_attach(buf, language)
-		elseif vim.tbl_contains(available_parsers, language) then
-			-- If a parser is available in `nvim-treesitter`, auto-install it and enable it after the installation is done
-			require('nvim-treesitter').install(language):await(function() treesitter_try_attach(buf, language) end)
-		else
-			-- Try to enable treesitter features in case the parser exists but is not available from `nvim-treesitter`
-			treesitter_try_attach(buf, language)
-		end
-	end,
+        if vim.tbl_contains(installed_parsers, language) then
+            -- Enable the parser if it is already installed
+            treesitter_try_attach(buf, language)
+        elseif vim.tbl_contains(available_parsers, language) then
+            -- If a parser is available in `nvim-treesitter`, auto-install it and enable it after the installation is done
+            require('nvim-treesitter').install(language):await(function() treesitter_try_attach(buf, language) end)
+        else
+            -- Try to enable treesitter features in case the parser exists but is not available from `nvim-treesitter`
+            treesitter_try_attach(buf, language)
+        end
+    end,
 })
 
 vim.api.nvim_create_autocmd('FileType', {
-	callback = function(args)
-		for i, arg in pairs(args) do
-			print(i, arg)
-		end
-	end,
+    callback = function(args)
+        for i, arg in pairs(args) do
+            print(i, arg)
+        end
+    end,
 })
 
 --[[
@@ -199,13 +199,13 @@ vim.api.nvim_create_autocmd('FileType', {
 --]]
 
 require('lint').linters_by_ft = {
-	python = { 'ruff' },
+    python = { 'ruff' },
 }
 
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-	callback = function()
-		require('lint').try_lint()
-	end
+    callback = function()
+        require('lint').try_lint()
+    end
 })
 
 -- vim.cmd('hi statusline guibg=NONE')
@@ -225,13 +225,13 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 
 -- LSP BRUHHHHH
 vim.lsp.enable({
-	'lua_ls',
-	'html',
-	'cssls',
-	'roslyn_ls',
-	'ts_ls',
-	'pyright',
-	'clangd',
+    'lua_ls',
+    'html',
+    'cssls',
+    'roslyn_ls',
+    'ts_ls',
+    'pyright',
+    'clangd',
 })
 -- Below text inline hints
 -- vim.diagnostic.config({ virtual_lines = true })
