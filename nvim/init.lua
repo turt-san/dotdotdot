@@ -52,8 +52,9 @@ vim.keymap.set('n', '<leader>h', '<CMD>let @/ = ""<CR>')
 vim.keymap.set('n', '<leader>n', '<CMD>bn<CR>')
 
 -- Leader Make
-vim.keymap.set('n', '<leader>p', '<CMD>!python %<CR>')
-vim.keymap.set('n', '<leader>c', '<CMD>!gcc -Wall -o out.c %<CR>')
+vim.keymap.set('n', '<leader>p', '<CMD>make c<CR>')
+-- vim.keymap.set('n', '<leader>p', '<CMD>!python %<CR>')
+-- vim.keymap.set('n', '<leader>c', '<CMD>!gcc -Wall -o out.c %<CR>')
 
 -- QOL keybinds
 vim.keymap.set({ 'n', 'v' }, '<C-/>', function() vim.cmd.norm('gcc') end, { remap = true })
