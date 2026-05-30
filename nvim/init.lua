@@ -1,4 +1,11 @@
+--[[
+=============================   Hello   =============================
+--]]
 -- help text-object-define
+
+--[[
+=============================   OPTIONS   =============================
+--]]
 local vim = vim
 
 vim.opt.number = true
@@ -19,6 +26,9 @@ vim.opt.fillchars = { eob = ' ' }
 -- print(' •·_¬')
 vim.opt.list = true
 
+--[[
+=============================   Hello   =============================
+--]]
 -- Jump between windows
 vim.keymap.set('n', '<C-h>', '<C-w>h')
 vim.keymap.set('n', '<C-j>', '<C-w>j')
@@ -75,40 +85,58 @@ vim.keymap.set('n', '<leader>[', function()
     end
 end)
 
--- test area
-vim.keymap.set('n', '<C-z>', function()
-    print(('penis'))
-end)
-
 -- nvim tree
 vim.keymap.set('n', '<C-N>', ':NvimTreeToggle<CR>', { silent = true })
 
-local gh = function(x) return 'https://github.com/' .. x end
+local gh = function(repo) return 'https://github.com/' .. repo end
 -- local function gh(repo) return 'https://github.com/' .. repo end
 
+-- Main plugins
 vim.pack.add({
-    { src = gh 'catppuccin/nvim' },
-    { src = gh 'navarasu/onedark.nvim' },
     { src = gh 'numToStr/Comment.nvim' },
-    { src = gh 'neovim/nvim-lspconfig' },
     { src = gh 'nvim-tree/nvim-tree.lua' },
-    { src = gh 'sphamba/smear-cursor.nvim' },
-    { src = gh 'saghen/blink.cmp',               version = vim.version.range '<2.*' },
-    { src = gh 'brianhuster/live-preview.nvim' },
     { src = gh 'windwp/nvim-autopairs' },
     { src = gh 'kylechui/nvim-surround' },
-    { src = gh 'mfussenegger/nvim-lint' },
-    { src = gh 'stevearc/oil.nvim' },
     { src = gh 'nvim-lua/plenary.nvim' },
     { src = gh 'nvim-telescope/telescope.nvim' },
-    { src = gh 'nvim-treesitter/nvim-treesitter' },
+    { src = gh 'stevearc/oil.nvim' },
+    { src = gh 'brianhuster/live-preview.nvim' },
 })
 
 require('nvim-tree').setup()
 require('oil').setup()
 -- require('telescope').setup()
 require('Comment').setup()
+require('live-preview').setup()
+require('nvim-autopairs').setup()
+require('nvim-surround').setup()
+
+--[[
+=============================   VISUAL   =============================
+--]]
+vim.pack.add({
+    { src = gh 'sphamba/smear-cursor.nvim' },
+    { src = gh 'catppuccin/nvim' },
+    { src = gh 'navarasu/onedark.nvim' },
+    { src = gh 'sainnhe/gruvbox-material' },
+})
+
 -- require('smear_cursor').setup({})
+
+require('onedark').setup({ style = 'darker' })
+vim.cmd('colorscheme gruvbox-material')
+-- vim.cmd('hi statusline guibg=NONE')
+
+--[[
+=============================   LANGUAGE   =============================
+--]]
+vim.pack.add({
+    { src = gh 'nvim-treesitter/nvim-treesitter' },
+    { src = gh 'mfussenegger/nvim-lint' },
+    { src = gh 'neovim/nvim-lspconfig' },
+    { src = gh 'saghen/blink.cmp',               version = vim.version.range '<2.*' },
+})
+
 require('blink.cmp').setup({
     keymap = {
         preset = 'default',
@@ -118,19 +146,6 @@ require('blink.cmp').setup({
         documentation = { auto_show = true }
     },
 })
-require('live-preview').setup()
-require('nvim-autopairs').setup()
-require('nvim-surround').setup()
-
---[[
-VISUAL
---]]
-
--- vim.cmd('hi statusline guibg=NONE')
--- vim.cmd('colorscheme catppuccin')
-require('onedark').setup({ style = 'darker' })
-require('onedark').load()
-
 -- PARSING BRUHHHHHHHHHHHHHH
 local parsers = {
     'rust',
