@@ -186,13 +186,13 @@ vim.api.nvim_create_autocmd('FileType', {
     end,
 })
 
-vim.api.nvim_create_autocmd('FileType', {
-    callback = function(args)
-        for i, arg in pairs(args) do
-            print(i, arg)
-        end
-    end,
-})
+-- vim.api.nvim_create_autocmd('FileType', {
+--     callback = function(args)
+--         for i, arg in pairs(args) do
+--             print(i, arg)
+--         end
+--     end,
+-- })
 
 --[[
                                 LINTING YOOOOOOOOOO
@@ -202,7 +202,7 @@ require('lint').linters_by_ft = {
     python = { 'ruff' },
 }
 
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+vim.api.nvim_create_autocmd({ "BufWritePost", "InsertLeave" }, {
     callback = function()
         require('lint').try_lint()
     end
