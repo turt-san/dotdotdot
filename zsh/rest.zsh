@@ -10,24 +10,6 @@ fi
 
 #bindkey -A viins main
 
-function run-editzshrc { nvim ~/.zshrc }
-zle -N run-editzshrc
-
-function run-editmpv { nvim ~/.config/mpv }
-zle -N run-editmpv
-
-function run-editnvim { nvim ~/.config/nvim/init.lua }
-zle -N run-editnvim
-
-bindkey "^F"  run-editzshrc
-bindkey "^."  run-editzshrc
-bindkey "^Xm" run-editmpv
-bindkey "^Xn" run-editnvim
-bindkey "^[[1;5C" forward-word
-bindkey "^[[1;5D" backward-word
-bindkey "^[[H" beginning-of-line
-bindkey "^[[F" end-of-line
-
 unsetopt correct_all
 
 export SUDOEDITOR="nvim"
