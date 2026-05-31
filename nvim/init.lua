@@ -69,7 +69,7 @@ vim.keymap.set('n', '<leader>n', '<Cmd>bn<CR>')
 -- QOL keybinds
 vim.keymap.set({ 'n', 'v' }, '<C-/>', function() vim.cmd.norm('gcc') end, { remap = false })
 vim.keymap.set({ 'n', 'v' }, '<C-_>', function() vim.cmd.norm('gcc') end, { remap = false })
-vim.keymap.set('i', 'jk', '<ESC>')
+vim.keymap.set('i', 'jk', '<Esc>')
 -- vim.keymap.set('i', '<TAB>', '<C-y>')
 
 -- Enter to enter an empty line below

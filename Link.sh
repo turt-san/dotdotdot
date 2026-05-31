@@ -1,7 +1,7 @@
 #!/bin/bash
-CONFS=("nvim" "alacritty" "zsh" "waybar")
+confs=("nvim" "alacritty" "zsh" "waybar")
 if [[ $# -ne 0 ]]; then
-    CONFS=($@)
+    confs=($@)
 fi
 
 if [[ ! -d $HOME/.config ]]; then
@@ -16,7 +16,7 @@ if [[ ! -d $HOME/.config ]]; then
     fi
 fi
 
-for i in ${CONFS[@]}; do
+for i in ${confs[@]}; do
     cfgDir="$HOME/.config/$i"
 
     echo {{${i^^}}}:
@@ -29,9 +29,14 @@ for i in ${CONFS[@]}; do
     ln -v -s "$PWD/$i" "$HOME/.config/$i"
 done
 
-if [[ ! -f "$HOME/.zshrc" ]]; then
-    cp "./zsh/.zshrc" "$HOME/"
+if [[ -f "$HOME/.zshrc" ]]; then
+    echo "Backing up .zshrc..."
+    mv -v "$HOME/.zshrc" "$HOME/.zshrc.old"
 fi
-if [[ ! -f "$HOME/.tmux.conf" ]]; then
-    cp "./tmux/.tmux.conf" "$HOME/"
+ln -v -s "$PWD/zsh/.zshrc" "$HOME/"
+
+if [[ -f "$HOME/.tmux.conf" ]]; then
+    echo "Backing up .tmux.conf..."
+    mv -v "$HOME/.tmux.conf" "$HOME/.tmux.conf.old"
 fi
+ln -v -s "$PWD/tmux/.tmux.conf" "$HOME/"
