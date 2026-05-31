@@ -1,12 +1,15 @@
 --[[
-=============================   Hello   =============================
+len: 80
+mid: 42
+=====================================================================================
+==================================   HELLO   ========================================
+=====================================================================================
+help text-object-define
 --]]
--- help text-object-define
--- help makeprg
-
 --[[
 =============================   OPTIONS   =============================
 --]]
+-- so lsp will shut up
 local vim = vim
 
 vim.opt.number = true
@@ -16,19 +19,31 @@ vim.opt.signcolumn = 'yes'
 vim.g.mapleader = ' '
 
 local indent_width = 4
-local chars = { trail = '', space = '·', tab = '-->' }
+local chars = {
+    trail = '',
+    space = '·',
+    tab = '-->',
+    -- eol = '¬',
+}
+-- alt options
+local chars_alt = {
+    '',
+    '•',
+    '·',
+    '_',
+    '¬',
+}
+
 vim.opt.shiftwidth = indent_width
 vim.opt.tabstop = indent_width
 vim.opt.softtabstop = indent_width
 vim.opt.expandtab = true
 vim.opt.listchars = chars
 vim.opt.fillchars = { eob = ' ' }
--- vim.opt.listchars = { space = '_', eol = '¬', tab = '<->', trail='·' }
--- print(' •·_¬')
 vim.opt.list = true
 
 --[[
-=============================   Hello   =============================
+=============================   Keybinds   =============================
 --]]
 -- Jump between windows
 vim.keymap.set('n', '<C-h>', '<C-w>h')
@@ -40,35 +55,25 @@ vim.keymap.set('n', '<C-l>', '<C-w>l')
 vim.keymap.set('n', '<C-Up>', '<C-w>-')
 vim.keymap.set('n', '<C-Down>', '<C-w>+')
 
--- Leader QOL
-vim.keymap.set('n', '<leader>o', '<CMD>update<CR><CMD>source<CR>')
-vim.keymap.set('n', '<leader>w', '<CMD>write<CR>')
-vim.keymap.set('n', '<leader>q', '<CMD>quit<CR>')
-vim.keymap.set('n', '<leader>x', '<CMD>bdelete<CR>', { silent = true })
+-- -- Leader QOL
+vim.keymap.set('n', '<leader>o', '<Cmd>update<CR><Cmd>source<CR>')
+vim.keymap.set('n', '<leader>w', '<Cmd>write<CR>')
+vim.keymap.set('n', '<leader>q', '<Cmd>quit<CR>')
+vim.keymap.set('n', '<leader>x', '<Cmd>bdelete<CR>', { silent = true })
 vim.keymap.set('n', '<leader>u', function() vim.pack.update() end)
 vim.keymap.set('n', '<leader>bf', vim.lsp.buf.format)
 vim.keymap.set('n', '<leader>i', 'gg=G``zz')
-vim.keymap.set('n', '<leader>h', '<CMD>let @/ = ""<CR>')
-vim.keymap.set('n', '<leader>n', '<CMD>bn<CR>')
-
--- Leader Make
-vim.keymap.set('n', '<leader>p', '<CMD>make c<CR>')
--- vim.keymap.set('n', '<leader>p', '<CMD>!python %<CR>')
--- vim.keymap.set('n', '<leader>c', '<CMD>!gcc -Wall -o out.c %<CR>')
+vim.keymap.set('n', '<leader>h', '<Cmd>let @/ = ""<CR>')
+vim.keymap.set('n', '<leader>n', '<Cmd>bn<CR>')
 
 -- QOL keybinds
-vim.keymap.set({ 'n', 'v' }, '<C-/>', function() vim.cmd.norm('gcc') end, { remap = true })
-vim.keymap.set({ 'n', 'v' }, '<C-_>', function() vim.cmd.norm('gcc') end, { remap = true })
+vim.keymap.set({ 'n', 'v' }, '<C-/>', function() vim.cmd.norm('gcc') end, { remap = false })
+vim.keymap.set({ 'n', 'v' }, '<C-_>', function() vim.cmd.norm('gcc') end, { remap = false })
 vim.keymap.set('i', 'jk', '<ESC>')
-vim.keymap.set('i', '<TAB>', '<C-y>')
-
--- Custom Functions
-vim.api.nvim_create_user_command("EditVim", function()
-    vim.cmd('tabedit ~/.config/nvim/init.lua')
-end, {})
+-- vim.keymap.set('i', '<TAB>', '<C-y>')
 
 -- Enter to enter an empty line below
-vim.keymap.set('n', '<leader>]', function()
+vim.keymap.set('n', '<CR>', function()
     if vim.v.count == 0 then
         vim.cmd.norm('o')
     end
@@ -77,8 +82,8 @@ vim.keymap.set('n', '<leader>]', function()
     end
 end)
 
--- Enter to enter an empty line above <]>
-vim.keymap.set('n', '<leader>[', function()
+-- Enter to enter an empty line above
+vim.keymap.set('n', '<S-CR>', function()
     if vim.v.count == 0 then
         vim.cmd.norm('O')
     end
@@ -90,15 +95,45 @@ end)
 -- nvim tree
 vim.keymap.set('n', '<C-N>', ':NvimTreeToggle<CR>', { silent = true })
 
+--[[
+=============================   Make   =============================
+--]]
+
+vim.keymap.set('n', '<leader>p', '<Cmd>make<CR>')
+
+local makeprg = {
+    rust = "cargo run",
+    python = "python %",
+    c = "gcc -Wall -o out.c %",
+}
+
+-- autocmd that checks current file type and sets the makeprg accordingly
+vim.api.nvim_create_autocmd('FileType', {
+    callback = function(args)
+        local lang = args.match
+        if makeprg[lang] ~= nil then
+            vim.o.makeprg = makeprg[lang]
+        end
+    end
+})
+
+
+-- Custom Functions
+vim.api.nvim_create_user_command("EditVim", function()
+    vim.cmd('tabedit ~/.config/nvim/init.lua')
+end, {})
+
+--[[
+================================================================================
+=============================   PLUGINS   =============================
+================================================================================
+--]]
 local gh = function(repo) return 'https://github.com/' .. repo end
 -- local function gh(repo) return 'https://github.com/' .. repo end
+local listing = {}
 
--- Main plugins
 vim.pack.add({
-    { src = gh 'numToStr/Comment.nvim' },
     { src = gh 'nvim-tree/nvim-tree.lua' },
-    { src = gh 'windwp/nvim-autopairs' },
-    { src = gh 'kylechui/nvim-surround' },
     { src = gh 'nvim-lua/plenary.nvim' },
     { src = gh 'nvim-telescope/telescope.nvim' },
     { src = gh 'stevearc/oil.nvim' },
@@ -108,14 +143,12 @@ vim.pack.add({
 require('nvim-tree').setup()
 require('oil').setup()
 -- require('telescope').setup()
-require('Comment').setup()
 require('live-preview').setup()
-require('nvim-autopairs').setup()
-require('nvim-surround').setup()
 
 --[[
 =============================   VISUAL   =============================
 --]]
+
 vim.pack.add({
     { src = gh 'sphamba/smear-cursor.nvim' },
     { src = gh 'catppuccin/nvim' },
@@ -132,13 +165,21 @@ vim.cmd('colorscheme gruvbox-material')
 --[[
 =============================   LANGUAGE   =============================
 --]]
+
 vim.pack.add({
+    { src = gh 'numToStr/Comment.nvim' },
+    { src = gh 'jiangmiao/auto-pairs' }, -- NOT LUA
+    { src = gh 'windwp/nvim-autopairs' },
+    { src = gh 'kylechui/nvim-surround' },
     { src = gh 'nvim-treesitter/nvim-treesitter' },
     { src = gh 'mfussenegger/nvim-lint' },
     { src = gh 'neovim/nvim-lspconfig' },
     { src = gh 'saghen/blink.cmp',               version = vim.version.range '<2.*' },
 })
 
+require('Comment').setup()
+-- require('nvim-autopairs').setup({ map_cr = true })
+require('nvim-surround').setup()
 require('blink.cmp').setup({
     keymap = {
         preset = 'default',
@@ -148,7 +189,9 @@ require('blink.cmp').setup({
         documentation = { auto_show = true }
     },
 })
--- PARSING BRUHHHHHHHHHHHHHH
+
+-- PARSING BRUHHHHHHHHHHHHHH==========================================
+
 local parsers = {
     'rust',
     'bash',
@@ -156,6 +199,7 @@ local parsers = {
     'python',
     'lua'
 }
+
 require('nvim-treesitter').install({ parsers })
 
 -- STOLEN CODE
@@ -181,6 +225,7 @@ local function treesitter_try_attach(buf, language)
 end
 
 local available_parsers = require('nvim-treesitter').get_available()
+
 vim.api.nvim_create_autocmd('FileType', {
     callback = function(args)
         local buf, filetype = args.buf, args.match
@@ -212,8 +257,8 @@ vim.api.nvim_create_autocmd('FileType', {
 -- })
 
 --[[
-                                LINTING YOOOOOOOOOO
---]]
+        LINTING YOOOOOOOOOO
+        --]]
 
 require('lint').linters_by_ft = {
     python = { 'ruff' },
@@ -240,8 +285,8 @@ vim.api.nvim_create_autocmd({ "BufWritePost", "InsertLeave" }, {
 -- })
 
 --[[
-=============================   LSP   =============================
---]]
+                =============================   LSP   =============================
+                --]]
 vim.lsp.enable({
     'lua_ls',
     'html',

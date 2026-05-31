@@ -30,6 +30,14 @@ goodnight() {
     fi
 }
 
+..() {
+    cd ..
+}
+
+alias ...="cd ../.."
+alias ....="cd ../../.."
+
+
 # function wn -a type name season episode
 #     if test -z $type
 #         set c 0

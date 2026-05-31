@@ -4,6 +4,10 @@
       "rev": "e30b7f2008e52442154b66f7c519bfd2f1e32acb",
       "src": "https://github.com/numToStr/Comment.nvim"
     },
+    "auto-pairs": {
+      "rev": "39f06b873a8449af8ff6a3eee716d3da14d63a76",
+      "src": "https://github.com/jiangmiao/auto-pairs"
+    },
     "blink.cmp": {
       "rev": "78336bc89ee5365633bcf754d93df01678b5c08f",
       "src": "https://github.com/saghen/blink.cmp",
