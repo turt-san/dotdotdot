@@ -30,9 +30,14 @@ goodnight() {
     fi
 }
 
-..() {
-    cd ..
+go() {
+    cd ../$1
 }
+
+autoload -U compinit
+compinit
+compdef '_files -g "*.log"' '-redirect-,2>,-default-'
+# compdef '_files -g "*.log"' cd
 
 alias ...="cd ../.."
 alias ....="cd ../../.."
