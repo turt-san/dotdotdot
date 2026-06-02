@@ -2,8 +2,8 @@ bindkey -r "^["
 
 bindkey "^[[1;5c" forward-word
 bindkey "^[[1;5d" backward-word
-bindkey "^[[h" beginning-of-line
-bindkey "^[[f" end-of-line
+bindkey "^[[H" beginning-of-line
+bindkey "^[[F" end-of-line
 
 function run-editzshrc { nvim ~/.config/zsh }
 zle -N run-editzshrc

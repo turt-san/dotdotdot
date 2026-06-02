@@ -49,7 +49,7 @@ tmuxweb() {
     tmux split-window -c "$dir" -vd -l 50% -t web:main.2
     # tmux split-window -v -d -t code:nvim.1 top
     # tmux split-window -h -d -t code:1.2 top
-    tmux attach -t code
+    tmux attach -t web
 }
 
 autoload -U compinit
