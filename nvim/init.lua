@@ -67,30 +67,12 @@ vim.keymap.set('n', '<leader>h', '<Cmd>let @/ = ""<CR>')
 vim.keymap.set('n', '<leader>n', '<Cmd>bn<CR>')
 
 -- QOL keybinds
-vim.keymap.set({ 'n', 'v' }, '<C-/>', function() vim.cmd.norm('gcc') end, { remap = false })
-vim.keymap.set({ 'n', 'v' }, '<C-_>', function() vim.cmd.norm('gcc') end, { remap = false })
+vim.keymap.set('n', '<CR>', 'o<Esc>')
+vim.keymap.set('n', '<M-CR>', 'O<Esc>')
+vim.keymap.set({ 'n', 'v' }, '<C-/>', '<Cmd>norm gcc<CR>')
+vim.keymap.set({ 'n', 'v' }, '<C-_>', '<Cmd>norm gcc<CR>')
 vim.keymap.set('i', 'jk', '<Esc>')
 -- vim.keymap.set('i', '<TAB>', '<C-y>')
-
--- Enter to enter an empty line below
-vim.keymap.set('n', '<CR>', function()
-    if vim.v.count == 0 then
-        vim.cmd.norm('o')
-    end
-    for i = 1, vim.v.count do
-        vim.cmd.norm('o')
-    end
-end)
-
--- Enter to enter an empty line above
-vim.keymap.set('n', '<S-CR>', function()
-    if vim.v.count == 0 then
-        vim.cmd.norm('O')
-    end
-    for i = 1, vim.v.count do
-        vim.cmd.norm('O')
-    end
-end)
 
 -- nvim tree
 vim.keymap.set('n', '<C-N>', ':NvimTreeToggle<CR>', { silent = true })
@@ -292,7 +274,7 @@ vim.api.nvim_create_autocmd({ "BufWritePost", "InsertLeave" }, {
 
 --[[
                 =============================   LSP   =============================
-                --]]
+--]]
 vim.lsp.enable({
     'lua_ls',
     'html',
@@ -301,7 +283,7 @@ vim.lsp.enable({
     'ts_ls',
     'pyright',
     'clangd',
-    'rust-analzyer',
+    'rust-analyzer',
 })
 -- Below text inline hints
 -- vim.diagnostic.config({ virtual_lines = true })

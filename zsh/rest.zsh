@@ -29,11 +29,6 @@ function wnl {
     echo $dirs
 }
 
-function wn {
-    emulate -LR zsh
-    fish -c "wn $1 $2 $3 $4"; exit
-}
-
 function remmm {
     emulate -LR zsh
     for i in $@; do

@@ -31,12 +31,22 @@ goodnight() {
 }
 
 ..() {
-    cd ../$1
+    cd ../$1$1
 }
 
 tmuxc() {
-    tmux new-session -c "$HOME/Sandbox/" -s code -d -n nvim
+    tmux new-session -c "$HOME/Sandbox/$1" -s code -d -n nvim
     tmux split-window -hd -l 20% -t code:nvim.1 ''
+    # tmux split-window -v -d -t code:nvim.1 top
+    # tmux split-window -h -d -t code:1.2 top
+    tmux attach -t web
+}
+
+tmuxweb() {
+    dir="$HOME/Sandbox/JAVASCRIPT/$1"
+    tmux new-session -c "$dir" -s web -d -n main
+    tmux split-window -c "$dir" -hd -l 40% -t web:main.1
+    tmux split-window -c "$dir" -vd -l 50% -t web:main.2
     # tmux split-window -v -d -t code:nvim.1 top
     # tmux split-window -h -d -t code:1.2 top
     tmux attach -t code
@@ -45,94 +55,75 @@ tmuxc() {
 autoload -U compinit
 compinit
 compdef '_files -g "*.log"' '-redirect-,2>,-default-'
+compdef '_files -g "~/Sandbox/*"' tmuxc
 # compdef '_files -g "*.log"' cd
 
-alias ...="cd ../.."
-alias ....="cd ../../.."
+wn() {
+    dir="/data/media"
+    dirs=($dir/*)
+    type="$1"
+    content="$2"
+    season="$3"
+    episode="$4"
 
+    yo() {
+        if [[ -z ${(P)1} ]]; then
+            c=0
+            for i in $dirs; do
+                ((c++))
+                echo "[$c] ${i##*/}"
+            done
+            echo -n "Which $1: "
+            read $1
+            if [[ -z "${(P)1}" ]]; then
+                echo "wn: ur ass picked nothing"
+                return 1
+            fi
+        fi
+        echo "${1} chosen: ${dirs[${(P)1}]##*/}"
+        return 0
+    }
+nextdir() {
+    dir="${dirs[${(P)1}]}"
+    dirs=($dir/*)
+    echo $dir
+    eval ${1}=\"${dir##*/}\"
+}
+yo type
+nextdir type
+if [[ $type = movies ]]; then
+    mpv $dir & disown; exit
+fi
+yo content
+nextdir content
+yo season
+nextdir season
+yo episode
 
-# function wn -a type name season episode
-#     if test -z $type
-#         set c 0
-#         for i in $dirs
-#             set c (math "$c + 1")
-#             echo "$i [$c]"
-#         end
-#
-#         read -P "Which type: " type
-#     end
-#     if test -z $type
-#         return 1
-#     end
-#     set aType $dirs[$type]
-#     set dir $dir/$dirs[$type]
-#     set dirs (command ls -1 $dir)
-#     if test -z $name
-#         set c 0
-#         for i in $dirs
-#             set c (math "$c + 1")
-#             echo "$i [$c]"
-#         end
-#         read -P "Which $aType: " name
-#     end
-#     if test -z $name
-#         return 1
-#     end
-#     set aName $dirs[$name]
-#     set dir $dir/$dirs[$name]
-#     if test $aType = movies
-#         mpv $dir &; disown ; exit
-#     end
-#     set dirs (command ls -1 $dir)
-#     if test -z $season
-#         set c 0
-#         for i in $dirs
-#             set c (math "$c + 1")
-#             echo "$i [$c]"
-#         end
-#         read -P "Which season: " season
-#     end
-#     if test -z $season
-#         return 1
-#     end
-#     set aSeason $dirs[$season]
-#     set dir $dir/$dirs[$season]
-#     set dirs (command ls -1 $dir)
-#     if test -z $episode
-#         set c 0
-#         for i in $dirs
-#             set c (math "$c + 1")
-#             echo "$i [$c]"
-#         end
-#         read -P "Which episode: " episode
-#     end
-#     if test -z $episode
-#         return 1
-#     end
-#     set dir $dir/$dirs[$episode]
-#     set cmd "$(command ls -1 $dir)"
-#     set profile $aName/$aSeason
-#     set profile_opt "--profile=$profile"
-#     set opts --terminal=no --input-ipc-server=/tmp/mpvscriptsocket
-#     switch $aType
-#         case "anime"
-#             if mpv --profile=help | grep -q $profile
-#                 mpv $profile_opt $opts $cmd &; disown
-#                 pidwait -n mpv
-#                 echo hi | socat - /tmp/mpvscriptsocket
-#             else
-#                 echo \n[$profile]\nprofile=anime >> ~/.config/mpv/profiles.conf
-#                 mpv $profile_opt $opts $cmd &; disown
-#                 echo show-text \"Made a profile for $profile\" 5000 | socat - /tmp/mpvscriptsocket
-#             end
-#         case "movies"
-#             mpv $cmd &; disown
-#         case "shows"
-#             mpv $cmd &; disown
-#         case '*'
-#             echo "$aType is not a type, aborting"
-#             return 1
-#     end
-#     exit
-# end
-#
+vidpath="$dirs[$episode]"
+profile="$content/$season"
+profile_opt="--profile=$profile"
+opts=("--terminal=no" "--input-ipc-server=/tmp/mpvscriptsocket")
+
+case "$type" in
+    "anime")
+        if $(mpv --profile=help | grep -q $profile); then
+            echo yup
+            mpv $profile_opt $opts $vidpath & disown
+            pidwait -n mpv
+            echo hi | socat - /tmp/mpvscriptsocket
+            exit
+        else
+            echo nop
+            echo -e "\n[$profile]\nprofile=anime" >> ~/.config/mpv/profiles.conf
+            mpv $profile_opt $opts $vidpath & disown
+            sleep 0.3
+            echo show-text \"Made a profile for $profile\" 5000 | socat - /tmp/mpvscriptsocket
+            exit
+        fi
+        ;;
+    *)
+        echo tf is that
+        ;;
+esac
+}
