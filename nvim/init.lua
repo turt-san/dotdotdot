@@ -99,12 +99,18 @@ vim.keymap.set('n', '<C-N>', ':NvimTreeToggle<CR>', { silent = true })
 =============================   Make   =============================
 --]]
 
-vim.keymap.set('n', '<leader>p', '<Cmd>make<CR>')
+vim.keymap.set('n', '<leader>p', '<Cmd>silent! make<CR>', { silent = true })
+
+local tmux = vim.env.TMUX
+if tmux ~= nil then
+    vim.o.shellpipe = "2>&1|tmux display-message -t code:nvim.2 -I|tee"
+    vim.o.makeef = ""
+end
 
 local makeprg = {
-    rust = "cargo run",
+    rust   = "cargo run",
     python = "python %",
-    c = "gcc -Wall -o out.c %",
+    c      = "gcc -Wall -o out.c %",
 }
 
 -- autocmd that checks current file type and sets the makeprg accordingly

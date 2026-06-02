@@ -30,8 +30,16 @@ goodnight() {
     fi
 }
 
-go() {
+..() {
     cd ../$1
+}
+
+tmuxc() {
+    tmux new-session -c "$HOME/Sandbox/" -s code -d -n nvim
+    tmux split-window -hd -l 20% -t code:nvim.1 ''
+    # tmux split-window -v -d -t code:nvim.1 top
+    # tmux split-window -h -d -t code:1.2 top
+    tmux attach -t code
 }
 
 autoload -U compinit

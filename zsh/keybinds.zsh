@@ -5,7 +5,7 @@ bindkey "^[[1;5d" backward-word
 bindkey "^[[h" beginning-of-line
 bindkey "^[[f" end-of-line
 
-function run-editzshrc { nvim ~/.zshrc }
+function run-editzshrc { nvim ~/.config/zsh }
 zle -N run-editzshrc
 
 function run-editmpv { nvim ~/.config/mpv }
