@@ -52,12 +52,6 @@ tmuxweb() {
     tmux attach -t web
 }
 
-autoload -U compinit
-compinit
-compdef '_files -g "*.log"' '-redirect-,2>,-default-'
-compdef '_files -g "~/Sandbox/*"' tmuxc
-# compdef '_files -g "*.log"' cd
-
 wn() {
     dir="/data/media"
     dirs=($dir/*)
@@ -91,11 +85,11 @@ nextdir() {
 }
 yo type
 nextdir type
+yo content
+nextdir content
 if [[ $type = movies ]]; then
     mpv $dir & disown; exit
 fi
-yo content
-nextdir content
 yo season
 nextdir season
 yo episode
