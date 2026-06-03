@@ -20,20 +20,23 @@ for i in ${confs[@]}; do
     cfgDir="$HOME/.config/$i"
 
     echo {{${i^^}}}:
-    ls -1 "./$i"
+    # ls -1 "./$i"
     if [[ -d "$cfgDir" || -f "$cfgDir" ]]; then
-        echo -e "$cfgDir already exists, deleting...\n"
-        rm -rf "$cfgDir"
+        echo -e "$cfgDir already exists, backing up...\n"
+        mv -i "$cfgDir" "$cfgDir.old"
     fi
 
-    ln -v -s "$PWD/$i" "$HOME/.config/$i"
+    # ln -v -s "$PWD/$i" "$HOME/.config/$i"
 done
 
 if [[ -f "$HOME/.zshrc" ]]; then
-    echo "Backing up .zshrc..."
-    mv -v "$HOME/.zshrc" "$HOME/.zshrc.old"
+    echo "Warning: this file won't be used, due to .zshenv"
 fi
-ln -v -s "$PWD/zsh/.zshrc" "$HOME/"
+if [[ -f "$HOME/.zshenv" ]]; then
+    echo "Backing up .zshenv..."
+    mv -v "$HOME/.zshenv" "$HOME/.zshenv.old"
+fi
+ln -v -s "$PWD/zsh/.zshenv" "$HOME/"
 
 if [[ -f "$HOME/.tmux.conf" ]]; then
     echo "Backing up .tmux.conf..."
