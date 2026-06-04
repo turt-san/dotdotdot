@@ -1,5 +1,6 @@
 autoload -U compinit
 compinit
+
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/.zcompcache"
 # compdef '_files -g "*.log"' '-redirect-,2>,-default-'
@@ -11,7 +12,6 @@ zstyle ':completion:*:*:*:*:descriptions' format '%F{green}-- %d --%f'
 # zstyle ':completion:*:descriptions' format '%U%K{yellow} %F{green}-- %F{red} %BNICE!1! %b%f %d --%f%k%u'
 zstyle ':completion:*:*:*:*:corrections' format '%F{yellow}!- %d (errors: %e) -!%f'
 zstyle ':completion:*' completer _extensions _complete _approximate
-zstyle ':completion:*:*:tmuxweb:*' completer
 zstyle ':completion:*' group-name ''
 
 # zstyle ':completion:*:*:-command-:*:*' group-order alias builtins functions commands
@@ -21,3 +21,7 @@ LS_COLORS="rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:c
 
 zstyle ':completion:*' file-list all
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*:*:here:*:*' completers # dont work???
+
+# zstyle ':completion:*:*:tmuxweb:*:*' completer '_files' # file-patterns '*(-/):directories'
+compdef '_path_files -W /home/turt/Sandbox/JAVASCRIPT/ -g "*"' tmuxweb

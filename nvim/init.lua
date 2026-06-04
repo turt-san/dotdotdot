@@ -45,11 +45,16 @@ vim.opt.list = true
 --[[
 =============================   Keybinds   =============================
 --]]
+
 -- Jump between windows
 vim.keymap.set('n', '<C-h>', '<C-w>h')
 vim.keymap.set('n', '<C-j>', '<C-w>j')
 vim.keymap.set('n', '<C-k>', '<C-w>k')
 vim.keymap.set('n', '<C-l>', '<C-w>l')
+
+vim.keymap.set('n', '<leader>1', '1<C-w>w')
+vim.keymap.set('n', '<leader>2', '2<C-w>w')
+vim.keymap.set('n', '<leader>3', '3<C-w>w')
 
 -- Resize windows
 vim.keymap.set('n', '<C-Up>', '<C-w>-')
