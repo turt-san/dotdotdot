@@ -14,6 +14,6 @@ zle -N run-editmpv
 function run-editnvim { nvim ~/.config/nvim/init.lua }
 zle -N run-editnvim
 
-bindkey "^f"  run-editzshrc
-bindkey "^xm" run-editmpv
-bindkey "^xn" run-editnvim
+bindkey "^fz"  run-editzshrc
+bindkey "^fm" run-editmpv
+bindkey "^fn" run-editnvim

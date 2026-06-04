@@ -65,7 +65,7 @@ vim.keymap.set('n', '<leader>o', '<Cmd>update<CR><Cmd>source<CR>')
 vim.keymap.set('n', '<leader>w', '<Cmd>write<CR>')
 vim.keymap.set('n', '<leader>q', '<Cmd>quit<CR>')
 vim.keymap.set('n', '<leader>x', '<Cmd>bdelete<CR>', { silent = true })
-vim.keymap.set('n', '<leader>u', function() vim.pack.update() end)
+vim.keymap.set('n', '<leader>u', vim.pack.update)
 vim.keymap.set('n', '<leader>bf', vim.lsp.buf.format)
 vim.keymap.set('n', '<leader>i', 'gg=G``zz')
 vim.keymap.set('n', '<leader>h', '<Cmd>let @/ = ""<CR>')
@@ -81,6 +81,9 @@ vim.keymap.set('i', 'jk', '<Esc>')
 
 -- nvim tree
 vim.keymap.set('n', '<C-N>', ':NvimTreeToggle<CR>', { silent = true })
+
+-- LSP
+vim.keymap.set('n', '<leader>gr', vim.lsp.buf.rename)
 
 --[[
 =============================   Make   =============================

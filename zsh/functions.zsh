@@ -61,6 +61,7 @@ tmuxweb() {
 
     dir="$HOME/Sandbox/JAVASCRIPT/$1"
     tmux new-session -c "$dir" -s web -d -n main nvim "js/main.js" "+rightbelow ${h}vsplit style.css" "+split index.html" "+1wincmd w"
+    tmux new-window -d -t main -n server python -m http.server
     # tmux split-window -c "$dir" -hd -l 40% -t web:main.1
     # tmux split-window -c "$dir" -vd -l 50% -t web:main.2
     tmux attach -t web
