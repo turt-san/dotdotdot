@@ -20,21 +20,16 @@ gaca() {
     git push
 }
 
-goodnight() {
-    killall -15 brave
-    if [[ "$1" = "-r" ]]; then
-        echo restarting
-        shutdown -r "+0"
-    else
-        shutdown -h "+0"
-    fi
-}
-
 ..() {
     cd ../$1$1
 }
 
+goodnight() {
+    ~/scripts/Startup/doom23.sh $argv[@]
+}
+
 tmuxc() {
+    Z_TMUX_CODE=true
     tmux new-session -c "$HOME/Sandbox/$1" -s code -d -n nvim
     tmux split-window -hd -l 20% -t code:nvim.1 ''
     # tmux split-window -v -d -t code:nvim.1 top
@@ -61,7 +56,7 @@ tmuxweb() {
 
     dir="$HOME/Sandbox/JAVASCRIPT/$1"
     tmux new-session -c "$dir" -s web -d -n main nvim "js/main.js" "+rightbelow ${h}vsplit style.css" "+split index.html" "+1wincmd w"
-    tmux new-window -d -t main -n server python -m http.server
+    tmux new-window -c "$dir" -d -t web:2 -n server python -m http.server
     # tmux split-window -c "$dir" -hd -l 40% -t web:main.1
     # tmux split-window -c "$dir" -vd -l 50% -t web:main.2
     tmux attach -t web
@@ -136,4 +131,5 @@ case "$type" in
         echo tf is that
         ;;
 esac
+exit
 }

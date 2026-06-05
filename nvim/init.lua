@@ -74,8 +74,9 @@ vim.keymap.set('n', '<leader>n', '<Cmd>bn<CR>')
 -- QOL keybinds
 vim.keymap.set('n', '<CR>', 'o<Esc>')
 vim.keymap.set('n', '<M-CR>', 'O<Esc>')
-vim.keymap.set({ 'n', 'v' }, '<C-/>', '<Cmd>norm gcc<CR>')
-vim.keymap.set({ 'n', 'v' }, '<C-_>', '<Cmd>norm gcc<CR>')
+local commentcmd = '<Cmd>execute "norm" v:count .. "gcc"<CR>'
+vim.keymap.set({ 'n', 'v' }, '<C-/>', commentcmd)
+vim.keymap.set({ 'n', 'v' }, '<C-_>', commentcmd)
 vim.keymap.set('i', 'jk', '<Esc>')
 -- vim.keymap.set('i', '<TAB>', '<C-y>')
 
@@ -89,12 +90,14 @@ vim.keymap.set('n', '<leader>gr', vim.lsp.buf.rename)
 =============================   Make   =============================
 --]]
 
-vim.keymap.set('n', '<leader>p', '<Cmd>silent! make<CR>', { silent = true })
 
-local tmux = vim.env.TMUX
+local tmux = vim.env.Z_TMUX_CODE
 if tmux ~= nil then
+    vim.keymap.set('n', '<leader>p', '<Cmd>silent! make<CR>', { silent = true })
     vim.o.shellpipe = "2>&1|tmux display-message -t code:nvim.2 -I|tee"
     vim.o.makeef = ""
+else
+    vim.keymap.set('n', '<leader>p', '<Cmd>make<CR>', { silent = true })
 end
 
 local makeprg = {
