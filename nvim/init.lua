@@ -70,6 +70,7 @@ vim.keymap.set('n', '<leader>bf', vim.lsp.buf.format)
 vim.keymap.set('n', '<leader>i', 'gg=G``zz')
 vim.keymap.set('n', '<leader>h', '<Cmd>let @/ = ""<CR>')
 vim.keymap.set('n', '<leader>n', '<Cmd>bn<CR>')
+vim.keymap.set('n', '<leader>yy', '<Cmd>1,$y+\"<CR>')
 
 -- QOL keybinds
 vim.keymap.set('n', '<CR>', 'o<Esc>')
@@ -101,7 +102,7 @@ else
 end
 
 local makeprg = {
-    rust   = "cargo run",
+    rust   = "cargo run -q",
     python = "python %",
     c      = "gcc -Wall -o out.c %",
 }
@@ -326,7 +327,7 @@ vim.lsp.enable({
     'ts_ls',
     'pyright',
     'clangd',
-    'rust-analyzer',
+    'rust_analyzer',
 })
 -- Below text inline hints
 -- vim.diagnostic.config({ virtual_lines = true })

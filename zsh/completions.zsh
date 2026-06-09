@@ -24,4 +24,5 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*:*:here:*:*' completers # dont work???
 
 # zstyle ':completion:*:*:tmuxweb:*:*' completer '_files' # file-patterns '*(-/):directories'
+compdef '_path_files -W /home/turt/Sandbox/ -g "*"' tmuxc
 compdef '_path_files -W /home/turt/Sandbox/JAVASCRIPT/ -g "*"' tmuxweb

@@ -29,8 +29,7 @@ goodnight() {
 }
 
 tmuxc() {
-    Z_TMUX_CODE=true
-    tmux new-session -c "$HOME/Sandbox/$1" -s code -d -n nvim
+    tmux new-session -c "$HOME/Sandbox/$1" -e Z_TMUX_CODE=true -s code -d -n nvim
     tmux split-window -hd -l 20% -t code:nvim.1 ''
     # tmux split-window -v -d -t code:nvim.1 top
     # tmux split-window -h -d -t code:1.2 top
@@ -39,7 +38,6 @@ tmuxc() {
 
 # ==============================   CONVERT TO NVIM SPLIT x3
 tmuxweb() {
-    Z_TMUX_WEB=true
     if [[ -n "$TMUX" ]]; then
         echo "tmux is running, don't do that bro."
         return 1
@@ -55,7 +53,7 @@ tmuxweb() {
     fi
 
     dir="$HOME/Sandbox/JAVASCRIPT/$1"
-    tmux new-session -c "$dir" -s web -d -n main nvim "js/main.js" "+rightbelow ${h}vsplit style.css" "+split index.html" "+1wincmd w"
+    tmux new-session -c "$dir" -e Z_TMUX_WEB=true  -s web -d -n main nvim "js/main.js" "+rightbelow ${h}vsplit style.css" "+split index.html" "+1wincmd w"
     tmux new-window -c "$dir" -d -t web:2 -n server python -m http.server
     # tmux split-window -c "$dir" -hd -l 40% -t web:main.1
     # tmux split-window -c "$dir" -vd -l 50% -t web:main.2
@@ -111,7 +109,7 @@ profile_opt="--profile=$profile"
 opts=("--terminal=no" "--input-ipc-server=/tmp/mpvscriptsocket")
 
 case "$type" in
-    "anime")
+    *)
         if $(mpv --profile=help | grep -q $profile); then
             echo yup
             mpv $profile_opt $opts $vidpath & disown
