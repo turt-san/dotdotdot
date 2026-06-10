@@ -114,13 +114,13 @@ case "$type" in
             echo yup
             mpv $profile_opt $opts $vidpath & disown
             pidwait -n mpv
-            echo hi | socat - /tmp/mpvscriptsocket
+            echo show-text \"Hi chat\" | socat - /tmp/mpvscriptsocket
             exit
         else
             echo nop
             echo -e "\n[$profile]\nprofile=anime" >> ~/.config/mpv/profiles.conf
             mpv $profile_opt $opts $vidpath & disown
-            sleep 0.3
+            pidwait -n mpv
             echo show-text \"Made a profile for $profile\" 5000 | socat - /tmp/mpvscriptsocket
             exit
         fi
