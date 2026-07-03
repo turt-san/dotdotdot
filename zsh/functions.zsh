@@ -29,7 +29,13 @@ goodnight() {
 }
 
 tmuxc() {
-    tmux new-session -c "$HOME/Sandbox/$1" -e Z_TMUX_CODE=true -s code -d -n nvim
+    if [[ -n "$TMUX" ]]; then
+        echo "tmux is running, don't do that bro."
+        return 1
+    fi
+    dir="$HOME/Sandbox/$1"
+    tmux new-session -c "$dir" -e Z_TMUX_CODE=true -s code -d -n nvim
+    tmux new-window -c "$dir" -d -t code:2 -n alt
     tmux split-window -hd -l 20% -t code:nvim.1 ''
     # tmux split-window -v -d -t code:nvim.1 top
     # tmux split-window -h -d -t code:1.2 top
@@ -42,7 +48,6 @@ tmuxweb() {
         echo "tmux is running, don't do that bro."
         return 1
     fi
-
     size=($(stty size))
     hpre=$(("${size[2]}" * 400 / 100))
     if [[ "${#hpre}" -lt 2 ]]; then
