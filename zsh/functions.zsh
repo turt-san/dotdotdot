@@ -110,29 +110,28 @@ yo episode
 
 vidpath="$dirs[$episode]"
 profile="$content/$season"
-profile_opt="--profile=$profile"
-opts=("--terminal=no" "--input-ipc-server=/tmp/mpvscriptsocket")
+profileopt="--profile=${profile//,/\\,}"
+opts=("--terminal=yes" "--input-ipc-server=/tmp/mpvscriptsocket")
 
 case "$type" in
     *)
         if $(mpv --profile=help | grep -q $profile); then
             echo yup
-            mpv $profile_opt $opts $vidpath & disown
+            mpv $profileopt $opts $vidpath
+            # disown
             sleep 0.5
             echo show-text \"Hi chat\" | socat - /tmp/mpvscriptsocket
-            exit
         else
             echo nop
             echo -e "\n[$profile]\nprofile=anime" >> ~/.config/mpv/profiles.conf
-            mpv $profile_opt $opts $vidpath & disown
+            mpv $profileopt $opts $vidpath & disown
             sleep 0.5
             echo show-text \"Made a profile for $profile\" 5000 | socat - /tmp/mpvscriptsocket
-            exit
         fi
         ;;
     *)
         echo tf is that
         ;;
 esac
-exit
+# exit
 }
