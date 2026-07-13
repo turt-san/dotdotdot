@@ -117,8 +117,7 @@ case "$type" in
     *)
         if $(mpv --profile=help | grep -q $profile); then
             echo yup
-            mpv $profileopt $opts $vidpath
-            # disown
+            mpv $profileopt $opts $vidpath & disown
             sleep 0.5
             echo show-text \"Hi chat\" | socat - /tmp/mpvscriptsocket
         else
