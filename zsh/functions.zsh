@@ -132,5 +132,5 @@ case "$type" in
         echo tf is that
         ;;
 esac
-# exit
+exit
 }
