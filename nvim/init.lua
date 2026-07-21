@@ -328,6 +328,7 @@ vim.lsp.enable({
     'pyright',
     'clangd',
     'rust_analyzer',
+    'svelte',
 })
 -- Below text inline hints
 -- vim.diagnostic.config({ virtual_lines = true })
