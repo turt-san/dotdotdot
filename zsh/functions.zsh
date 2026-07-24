@@ -20,10 +20,6 @@ gaca() {
     git push
 }
 
-..() {
-    cd ../$1$1
-}
-
 goodnight() {
     ~/scripts/Startup/doom23.sh $argv[@]
 }

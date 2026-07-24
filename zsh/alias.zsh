@@ -12,6 +12,10 @@ alias pysrc="source $pyenvdir/bin/activate"
 alias blk='feh --fullscreen --hide-pointer ~/Images/Other/black.png &; disown; exit'
 alias upd='cachy-update'
 alias alph="echo {a..z}"
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
 
 if [[ -n $(command -v eza) ]]; then
     alias ls="command eza -al --time-style=+\"|\" --sort=Extension --color=auto"
