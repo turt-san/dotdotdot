@@ -12,6 +12,8 @@ alias pysrc="source $pyenvdir/bin/activate"
 alias blk='feh --fullscreen --hide-pointer ~/Images/Other/black.png &; disown; exit'
 alias upd='cachy-update'
 alias alph="echo {a..z}"
+
+# cd ..'es
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
