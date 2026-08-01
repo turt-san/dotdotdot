@@ -12,6 +12,7 @@ help text-object-define
 --]]
 
 -- so lsp will shut up
+require("penis")
 local vim = vim
 
 vim.opt.number = true
