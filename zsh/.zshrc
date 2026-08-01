@@ -6,5 +6,4 @@ source "$HOME/.config/zsh/functions.zsh"
 source "$HOME/.config/zsh/keybinds.zsh"
 source "$HOME/.config/zsh/completions.zsh"
 source "$HOME/.config/zsh/ps1.zsh"
-path+=("/home/turt/.cargo/bin")
-export PATH
+source "./paths.zsh"
