@@ -1,9 +1,11 @@
-if [[ -z $TMUX ]]; then source "$HOME/.config/zsh/motd.zsh"; fi
-source "$HOME/.config/zsh/rest.zsh"
-#source "$HOME/.config/zsh/cachyos-config.zsh"
-source "$HOME/.config/zsh/alias.zsh"
-source "$HOME/.config/zsh/functions.zsh"
-source "$HOME/.config/zsh/keybinds.zsh"
-source "$HOME/.config/zsh/completions.zsh"
-source "$HOME/.config/zsh/ps1.zsh"
-source "./paths.zsh"
+CFG_DIR="$HOME/.config/zsh"
+
+if [[ -z $TMUX ]]; then source "$CFG_DIR/motd.zsh"; fi
+source "$CFG_DIR/rest.zsh"
+#source "$CFG_DIR/cachyos-config.zsh"
+source "$CFG_DIR/alias.zsh"
+source "$CFG_DIR/functions.zsh"
+source "$CFG_DIR/keybinds.zsh"
+source "$CFG_DIR/completions.zsh"
+source "$CFG_DIR/ps1.zsh"
+source "$CFG_DIR/paths.zsh"
