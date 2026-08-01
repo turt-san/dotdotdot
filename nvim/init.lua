@@ -6,9 +6,11 @@ mid: 42
 =====================================================================================
 help text-object-define
 --]]
+
 --[[
 =============================   OPTIONS   =============================
 --]]
+
 -- so lsp will shut up
 local vim = vim
 
@@ -52,6 +54,7 @@ vim.keymap.set('n', '<C-j>', '<C-w>j')
 vim.keymap.set('n', '<C-k>', '<C-w>k')
 vim.keymap.set('n', '<C-l>', '<C-w>l')
 
+-- Jump between windows (numbered)
 vim.keymap.set('n', '<leader>1', '1<C-w>w')
 vim.keymap.set('n', '<leader>2', '2<C-w>w')
 vim.keymap.set('n', '<leader>3', '3<C-w>w')
@@ -60,7 +63,7 @@ vim.keymap.set('n', '<leader>3', '3<C-w>w')
 vim.keymap.set('n', '<C-Up>', '<C-w>-')
 vim.keymap.set('n', '<C-Down>', '<C-w>+')
 
--- -- Leader QOL
+-- Leader QOL
 vim.keymap.set('n', '<leader>o', '<Cmd>update<CR><Cmd>source<CR>')
 vim.keymap.set('n', '<leader>w', '<Cmd>write<CR>')
 vim.keymap.set('n', '<leader>q', '<Cmd>quit<CR>')
@@ -84,14 +87,14 @@ vim.keymap.set('i', 'jk', '<Esc>')
 -- nvim tree
 vim.keymap.set('n', '<C-N>', ':NvimTreeToggle<CR>', { silent = true })
 
--- LSP
+-- LSP binds
 vim.keymap.set('n', '<leader>gr', vim.lsp.buf.rename)
 
 --[[
 =============================   Make   =============================
 --]]
 
-
+-- custom tmux session support
 local tmux = vim.env.Z_TMUX_CODE
 if tmux ~= nil then
     vim.keymap.set('n', '<leader>p', '<Cmd>silent! make<CR>', { silent = true })
@@ -118,7 +121,7 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 
--- Custom Functions
+-- Custom functions
 vim.api.nvim_create_user_command("EditVim", function()
     vim.cmd('tabedit ~/.config/nvim/init.lua')
 end, {})
@@ -321,6 +324,7 @@ vim.api.nvim_create_autocmd({ "BufWritePost", "InsertLeave" }, {
 --]]
 vim.lsp.enable({
     'lua_ls',
+    'luau_lsp',
     'html',
     'cssls',
     'roslyn_ls',
