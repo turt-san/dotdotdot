@@ -53,7 +53,7 @@ tmuxweb() {
         echo "$hpre -> $h"
     fi
 
-    dir="$HOME/Sandbox/JAVASCRIPT/$1"
+    dir="$HOME/Sandbox/WEB/$1"
     tmux new-session -c "$dir" -e Z_TMUX_WEB=true  -s web -d -n main nvim "js/main.js" "+rightbelow ${h}vsplit style.css" "+split index.html" "+1wincmd w"
     tmux new-window -c "$dir" -d -t web:2 -n server python -m http.server
     # tmux split-window -c "$dir" -hd -l 40% -t web:main.1
