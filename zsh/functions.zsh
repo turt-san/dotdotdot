@@ -62,7 +62,7 @@ tmuxweb() {
 }
 
 
-rbnew() {
+rbn() {
     type=""
     case "$2" in
         "s")
