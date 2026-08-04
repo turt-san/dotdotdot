@@ -1,3 +1,7 @@
+vim.lsp.config('luau_lsp', {
+    cmd = { 'luau-lsp', 'lsp', '--definitions:@roblox=/home/turt/Documents/Misc/globalTypes.d.luau' }
+})
+
 vim.lsp.enable({
     'lua_ls',
     'luau_lsp',
@@ -10,6 +14,7 @@ vim.lsp.enable({
     'rust_analyzer',
     'svelte',
 })
+
 -- Below text inline hints
 -- vim.diagnostic.config({ virtual_lines = true })
 vim.diagnostic.config({ virtual_text = true })

@@ -12,6 +12,7 @@ alias pysrc="source $pyenvdir/bin/activate"
 alias blk='feh --fullscreen --hide-pointer ~/Images/Other/black.png &; disown; exit'
 alias upd='cachy-update'
 alias alph="echo {a..z}"
+alias rojomap="rojo sourcemap --watch default.project.json --output sourcemap.json"
 
 # cd ..'es
 alias ..="cd .."

@@ -61,6 +61,24 @@ tmuxweb() {
     tmux attach -t web
 }
 
+
+rbnew() {
+    type=""
+    case "$2" in
+        "s")
+            type=".server.luau"
+            ;;
+        "i")
+            type=".client.luau"
+            ;;
+        *)
+            type=".luau"
+            ;;
+    esac
+    touch "$1$type"
+}
+
+
 # ==============================   WN
 wn() {
     dir="/data/media"
