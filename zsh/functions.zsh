@@ -24,6 +24,13 @@ goodnight() {
     ~/scripts/Startup/doom23.sh $argv[@]
 }
 
+rojomap() {
+    if [[ "${1:l}" = "tmux" ]]; then
+        tmux split-window -hd rojo sourcemap --watch default.project.json --output sourcemap.json
+        rojo serve
+    fi
+}
+
 tmuxc() {
     if [[ -n "$TMUX" ]]; then
         echo "tmux is running, don't do that bro."
@@ -61,7 +68,6 @@ tmuxweb() {
     tmux attach -t web
 }
 
-
 rbn() {
     type=""
     case "$2" in
@@ -77,7 +83,6 @@ rbn() {
     esac
     touch "$1$type"
 }
-
 
 # ==============================   WN
 wn() {
@@ -105,12 +110,14 @@ wn() {
         echo "${1} chosen: ${dirs[${(P)1}]##*/}"
         return 0
     }
+
 nextdir() {
     dir="${dirs[${(P)1}]}"
     dirs=($dir/*)
     echo $dir
     eval ${1}=\"${dir##*/}\"
 }
+
 yo type
 nextdir type
 yo content
