@@ -68,20 +68,25 @@ tmuxweb() {
     tmux attach -t web
 }
 
-rbn() {
+rbxnew() {
     type=""
-    case "$2" in
+    content=""
+    case "${1}" in
+        "e")
+            type=".model.json"
+            content="{\n    \"ClassName\": \"RemoteEvent\"\n}"
+            ;;
         "s")
             type=".server.luau"
             ;;
-        "i")
+        "c")
             type=".client.luau"
             ;;
         *)
             type=".luau"
             ;;
     esac
-    touch "$1$type"
+    echo "${content}" > "${2}${type}"
 }
 
 # ==============================   WN
