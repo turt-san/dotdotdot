@@ -21,7 +21,7 @@ gaca() {
 }
 
 goodnight() {
-    ~/scripts/Startup/doom23.sh $argv[@]
+    ~/scripts/Startup/goodnight.sh $argv[@]
 }
 
 rojomap() {
