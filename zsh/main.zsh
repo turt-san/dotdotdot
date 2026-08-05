@@ -28,7 +28,6 @@ alias rw="killall -SIGUSR2 waybar"
 alias ls="ls -la --color=auto"
 alias svim="sudo -E nvim "
 alias spac="sudo pacman "
-alias todo="nvim ~/todo.md"
 alias py="python "
 # python source
 alias psrc="source $pyenvdir/bin/activate"
