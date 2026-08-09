@@ -25,10 +25,10 @@ goodnight() {
 }
 
 rojomap() {
-    if [[ "${1:l}" = "tmux" ]]; then
-        tmux split-window -hd rojo sourcemap --watch default.project.json --output sourcemap.json
-        rojo serve
-    fi
+    tmux split-window -hd rojo sourcemap --watch default.project.json --output sourcemap.json
+    rojo serve
+    # if [[ "${1:l}" = "tmux" ]]; then
+    # fi
 }
 
 tmuxc() {
