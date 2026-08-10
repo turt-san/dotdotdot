@@ -6,6 +6,8 @@ require("options")
 require("mappings")
 require("lsp")
 
+vim.cmd("set keymap=dvorak")
+
 -- custom tmux session support
 local tmux = vim.env.Z_TMUX_CODE
 if tmux ~= nil then
