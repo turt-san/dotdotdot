@@ -53,6 +53,8 @@ vim.pack.add({
     { src = gh 'nvim-telescope/telescope.nvim' },
     { src = gh 'stevearc/oil.nvim' },
     { src = gh 'brianhuster/live-preview.nvim' },
+    { src = gh 'nvim-tree/nvim-web-devicons' },
+    { src = gh 'nvim-lualine/lualine.nvim' },
 })
 
 require('nvim-tree').setup()
@@ -60,6 +62,11 @@ require('oil').setup({
     view_options = {
         show_hidden = true,
     },
+})
+require('lualine').setup({
+    sections = {
+        lualine_c = {'buffers'}
+    }
 })
 --
 -- require("oil").setup({
@@ -89,8 +96,13 @@ require('oil').setup({
 -- })
 
 -- vim.notify("PENIS", 3)
--- require('telescope').setup()
+require('telescope').setup()
 require('live-preview').setup()
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
+vim.keymap.set('n', '<leader>b', builtin.buffers, { desc = 'Telescope buffers' })
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
 
 --[[
 =============================   VISUAL   =============================
