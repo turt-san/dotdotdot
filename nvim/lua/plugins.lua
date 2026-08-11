@@ -96,7 +96,6 @@ vim.pack.add({
     { src = gh 'mfussenegger/nvim-lint' },
     { src = gh 'neovim/nvim-lspconfig' },
     { src = gh 'saghen/blink.cmp',               version = vim.version.range('<2.*') },
-    { src = gh 'lopi-py/luau-lsp.nvim' }
 })
 
 require('Comment').setup()
@@ -111,22 +110,3 @@ require('blink.cmp').setup({
         documentation = { auto_show = true }
     },
 })
-
-require("luau-lsp").setup({
-    types = {
-        definition_files = {
-            ["@roblox"] = '/home/turt/Documents/Misc/globalTypes.d.luau'
-        },
-    },
-    sourcemap = {
-        enabled = true,
-        autogenerate = true, -- automatic generation when the server is initialized
-        rojo_project_file = "default.project.json",
-        sourcemap_file = "sourcemap.json",
-    },
-    plugin = {
-        enabled = true,
-        port = 3667,
-    },
-})
-

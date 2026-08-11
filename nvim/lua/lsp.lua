@@ -1,3 +1,11 @@
+vim.pack.add {
+    { src = 'https://github.com/lopi-py/luau-lsp.nvim' }
+}
+
+-- Below text inline hints
+-- vim.diagnostic.config({ virtual_lines = true })
+vim.diagnostic.config({ virtual_text = true })
+
 vim.lsp.enable({
     'lua_ls',
     'html',
@@ -10,9 +18,30 @@ vim.lsp.enable({
     'svelte',
 })
 
--- Below text inline hints
--- vim.diagnostic.config({ virtual_lines = true })
-vim.diagnostic.config({ virtual_text = true })
+require("luau-lsp").setup({
+    types = {
+        definition_files = {
+            ["@roblox"] = '/home/turt/Documents/Misc/globalTypes.d.luau'
+        },
+    },
+    sourcemap = {
+        enabled = true,
+        autogenerate = true, -- automatic generation when the server is initialized
+        rojo_project_file = "default.project.json",
+        sourcemap_file = "sourcemap.json",
+    },
+    plugin = {
+        enabled = true,
+        port = 3667,
+    },
+    fflags = {
+        enable_new_solver = true, -- enables the fflags required for luau's new type solver
+        sync = true, -- sync currently enabled fflags with roblox's published fflags
+        override = { -- override fflags passed to luau
+            LuauTableTypeMaximumStringifierLength = "100",
+        },
+    },
+})
 
 -- vim.lsp.config('roslyn_ls', {
 --     cmd = {
