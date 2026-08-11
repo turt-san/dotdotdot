@@ -1,3 +1,4 @@
+-- use :map to see bindings
 -- Jump between windows
 vim.keymap.set('n', '<C-h>', '<C-w>h')
 vim.keymap.set('n', '<C-j>', '<C-w>j')
@@ -40,4 +41,3 @@ vim.keymap.set('n', '<C-N>', ':NvimTreeToggle<CR>', { silent = true })
 
 -- LSP binds
 vim.keymap.set('n', '<leader>gr', vim.lsp.buf.rename)
-

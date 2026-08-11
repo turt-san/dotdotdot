@@ -35,7 +35,7 @@ require('telescope').setup()
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
-vim.keymap.set('n', '<leader>b', builtin.buffers, { desc = 'Telescope buffers' })
+vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
 
 -- require("oil").setup({
@@ -74,6 +74,8 @@ vim.pack.add({
     { src = gh 'sainnhe/gruvbox-material' },
     { src = gh 'vim-airline/vim-airline',  type = "opt" },
 })
+
+-- :packadd vim-airline to activate an opt/ional plugin
 
 -- require('smear_cursor').setup({})
 
