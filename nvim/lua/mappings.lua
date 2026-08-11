@@ -24,6 +24,7 @@ vim.keymap.set('n', '<leader>i', 'gg=G``zz')
 vim.keymap.set('n', '<leader>h', '<Cmd>let @/ = ""<CR>')
 vim.keymap.set('n', '<leader>n', '<Cmd>bn<CR>')
 vim.keymap.set('n', '<leader>yy', '<Cmd>1,$y+\"<CR>')
+vim.keymap.set('n', '<leader>d', 'dd', { silent = true })
 
 -- QOL keybinds
 vim.keymap.set('n', '<CR>', 'o<Esc>')

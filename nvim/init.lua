@@ -6,7 +6,7 @@ require("options")
 require("mappings")
 require("lsp")
 
-vim.cmd("set keymap=dvorak")
+-- vim.cmd("set keymap=dvorak")
 
 -- custom tmux session support
 local tmux = vim.env.Z_TMUX_CODE
@@ -67,10 +67,10 @@ require('oil').setup({
 })
 require('lualine').setup({
     sections = {
-        lualine_c = {'buffers'}
+        lualine_c = { 'buffers' }
     }
 })
---
+
 -- require("oil").setup({
 --     default_file_explorer = true,
 --     delete_to_trash = true,
@@ -98,8 +98,9 @@ require('lualine').setup({
 -- })
 
 -- vim.notify("PENIS", 3)
-require('telescope').setup()
 require('live-preview').setup()
+require('telescope').setup()
+
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
@@ -115,6 +116,7 @@ vim.pack.add({
     { src = gh 'catppuccin/nvim' },
     { src = gh 'navarasu/onedark.nvim' },
     { src = gh 'sainnhe/gruvbox-material' },
+    { src = gh 'vim-airline/vim-airline',  type = "opt" },
 })
 
 -- require('smear_cursor').setup({})
@@ -135,7 +137,8 @@ vim.pack.add({
     { src = gh 'nvim-treesitter/nvim-treesitter' },
     { src = gh 'mfussenegger/nvim-lint' },
     { src = gh 'neovim/nvim-lspconfig' },
-    { src = gh 'saghen/blink.cmp',               version = vim.version.range '<2.*' },
+    { src = gh 'saghen/blink.cmp',               version = vim.version.range('<2.*') },
+    { src = gh 'lopi-py/luau-lsp.nvim' }
 })
 
 require('Comment').setup()
@@ -148,6 +151,24 @@ require('blink.cmp').setup({
     },
     completion = {
         documentation = { auto_show = true }
+    },
+})
+
+require("luau-lsp").setup({
+    types = {
+        definition_files = {
+            ["@roblox"] = '/home/turt/Documents/Misc/globalTypes.d.luau'
+        },
+    },
+    sourcemap = {
+        enabled = true,
+        autogenerate = true, -- automatic generation when the server is initialized
+        rojo_project_file = "default.project.json",
+        sourcemap_file = "sourcemap.json",
+    },
+    plugin = {
+        enabled = true,
+        port = 3667,
     },
 })
 

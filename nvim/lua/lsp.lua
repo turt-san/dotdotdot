@@ -1,10 +1,5 @@
-vim.lsp.config('luau_lsp', {
-    cmd = { 'luau-lsp', 'lsp', '--definitions:@roblox=/home/turt/Documents/Misc/globalTypes.d.luau' }
-})
-
 vim.lsp.enable({
     'lua_ls',
-    'luau_lsp',
     'html',
     'cssls',
     'roslyn_ls',
