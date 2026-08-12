@@ -16,6 +16,7 @@ vim.lsp.enable({
     'clangd',
     'rust_analyzer',
     'svelte',
+    'pyright',
 })
 
 require("luau-lsp").setup({
