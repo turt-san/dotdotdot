@@ -1,11 +1,13 @@
 --[[
 help text-object-define
+to restart a buffer:
+:bufdo e
 --]]
 
 require("options")
 require("mappings")
-require("lsp")
 require("plugins")
+require("lsp")
 
 -- vim.cmd("set keymap=dvorak")
 

@@ -13,7 +13,6 @@ vim.pack.add({
     { src = gh 'stevearc/oil.nvim' },
     { src = gh 'brianhuster/live-preview.nvim' },
     { src = gh 'nvim-tree/nvim-web-devicons' },
-    { src = gh 'nvim-lualine/lualine.nvim' },
     { src = gh 'nemanjamalesija/smart-paste.nvim' },
 })
 
@@ -22,11 +21,6 @@ require('oil').setup({
     view_options = {
         show_hidden = true,
     },
-})
-require('lualine').setup({
-    sections = {
-        lualine_c = { 'buffers' }
-    }
 })
 require('smart-paste').setup()
 require('live-preview').setup()
@@ -72,10 +66,21 @@ vim.pack.add({
     { src = gh 'catppuccin/nvim' },
     { src = gh 'navarasu/onedark.nvim' },
     { src = gh 'sainnhe/gruvbox-material' },
+    { src = gh 'nvim-lualine/lualine.nvim' },
     { src = gh 'vim-airline/vim-airline',  type = "opt" },
 })
 
--- :packadd vim-airline to activate an opt/ional plugin
+-- print(vim.api.nvim_buf_get_name(0))
+
+-- require('lualine').setup({
+--     sections = {
+--         lualine_c = { 'buffers' }
+--     }
+-- })
+
+-- to activate an opt/ional plugin
+-- :packadd vim-airline
+vim.cmd('let g:airline#extensions#tabline#enabled = 1')
 
 -- require('smear_cursor').setup({})
 
