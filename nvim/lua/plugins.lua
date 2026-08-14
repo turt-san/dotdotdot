@@ -77,8 +77,8 @@ vim.pack.add({
 
 -- to activate an opt/ional plugin
 -- :packadd vim-airline
-vim.cmd("let g:airline#extensions#tabline#enabled = 1")
-vim.cmd("let g:airline#extensions#tabline#formatter = 'unique_tail_improved'")
+vim.cmd [[let g:airline#extensions#tabline#enabled = 1]]
+vim.cmd [[let g:airline#extensions#tabline#formatter = 'unique_tail_improved']]
 
 -- require('smear_cursor').setup({})
 
@@ -86,13 +86,21 @@ vim.pack.add({
     { src = gh 'catppuccin/nvim' },
     { src = gh 'navarasu/onedark.nvim' },
     { src = gh 'sainnhe/gruvbox-material' },
+    { src = gh 'tiagovla/tokyodark.nvim' },
 })
 
 require('onedark').setup(
     { style = 'warm' }
 )
-require('onedark').load()
--- vim.cmd('colorscheme gruvbox-material')
+
+local colorschemes = {
+    'gruvbox-material',
+    'onedark',
+    'tokyodark',
+    'catppuccin',
+}
+
+vim.cmd('colorscheme ' .. colorschemes[2])
 -- vim.cmd('hi statusline guibg=NONE')
 
 --[[
