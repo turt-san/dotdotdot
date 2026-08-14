@@ -112,7 +112,27 @@ require('blink.cmp').setup({
         preset = 'default',
         ['<TAB>'] = { 'select_and_accept' },
     },
+    -- cmdline = {
+    --     enabled = true,
+    --     sources = function()
+    --         local type = vim.fn.getcmdtype()
+    --         -- Search forward and backward (/ and ?)
+    --         if type == '/' or type == '?' then return { 'buffer' } end
+    --         -- Commands (:)
+    --         if type == ':' then return { 'cmdline', 'path' } end
+    --         return {}
+    --     end
+    -- },
     completion = {
         documentation = { auto_show = true }
     },
+    sources = {
+        providers = {
+            path = {
+                opts = {
+                    show_hidden_files_by_default = true,
+                }
+            }
+        }
+    }
 })

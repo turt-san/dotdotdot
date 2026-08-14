@@ -10,6 +10,7 @@ vim.opt.relativenumber = true
 vim.opt.wrap = false
 vim.opt.signcolumn = 'yes'
 vim.g.mapleader = ' '
+vim.opt.ignorecase = true
 
 local indent_width = 4
 local chars = {
@@ -34,4 +35,3 @@ vim.opt.expandtab = true
 vim.opt.listchars = chars
 vim.opt.fillchars = { eob = ' ' }
 vim.opt.list = true
-
