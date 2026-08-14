@@ -57,15 +57,12 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help ta
 --         ["q"] = "actions.close",
 --     },
 -- })
+
 --[[
 =============================   VISUAL   =============================
 --]]
-
 vim.pack.add({
     { src = gh 'sphamba/smear-cursor.nvim' },
-    { src = gh 'catppuccin/nvim' },
-    { src = gh 'navarasu/onedark.nvim' },
-    { src = gh 'sainnhe/gruvbox-material' },
     { src = gh 'nvim-lualine/lualine.nvim' },
     { src = gh 'vim-airline/vim-airline',  type = "opt" },
 })
@@ -85,8 +82,17 @@ vim.cmd("let g:airline#extensions#tabline#formatter = 'unique_tail_improved'")
 
 -- require('smear_cursor').setup({})
 
-require('onedark').setup({ style = 'darker' })
-vim.cmd('colorscheme gruvbox-material')
+vim.pack.add({
+    { src = gh 'catppuccin/nvim' },
+    { src = gh 'navarasu/onedark.nvim' },
+    { src = gh 'sainnhe/gruvbox-material' },
+})
+
+require('onedark').setup(
+    { style = 'warm' }
+)
+require('onedark').load()
+-- vim.cmd('colorscheme gruvbox-material')
 -- vim.cmd('hi statusline guibg=NONE')
 
 --[[
