@@ -16,8 +16,8 @@ source /usr/share/nvm/init-nvm.sh
 
 unsetopt correct_all
 
-export SUDOEDITOR="nvim"
 export EDITOR="nvim"
+export SUDOEDITOR="nvim"
 export MANPAGER="nvim +Man!"
 
 function hi {

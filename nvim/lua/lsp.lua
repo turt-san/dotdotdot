@@ -25,6 +25,9 @@ require("luau-lsp").setup({
             ["@roblox"] = '/home/turt/Documents/Misc/globalTypes.d.luau'
         },
     },
+    platform = {
+        type = "roblox",
+    },
     sourcemap = {
         enabled = true,
         autogenerate = true, -- automatic generation when the server is initialized

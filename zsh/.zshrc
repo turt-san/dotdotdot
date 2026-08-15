@@ -3,6 +3,11 @@ CFG_DIR="$HOME/.config/zsh"
 if [[ -z $TMUX ]]; then source "$CFG_DIR/motd.zsh"; fi
 # source "$CFG_DIR/rest.zsh"
 # source "$CFG_DIR/cachyos-config.zsh"
+
+export EDITOR="nvim"
+export SUDOEDITOR="nvim"
+export MANPAGER="nvim +Man!"
+
 source "$CFG_DIR/alias.zsh"
 source "$CFG_DIR/functions.zsh"
 source "$CFG_DIR/tmux.zsh"
