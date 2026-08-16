@@ -8,6 +8,9 @@ export EDITOR="nvim"
 export SUDOEDITOR="nvim"
 export MANPAGER="nvim +Man!"
 
+# disables Ctrl-S and Ctrl-Q to freeze and unfreeze the screen
+stty -ixon
+
 source "$CFG_DIR/alias.zsh"
 source "$CFG_DIR/functions.zsh"
 source "$CFG_DIR/tmux.zsh"

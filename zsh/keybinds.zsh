@@ -4,6 +4,12 @@ bindkey "^[[1;5c" forward-word
 bindkey "^[[1;5d" backward-word
 bindkey "^[[H" beginning-of-line
 bindkey "^[[F" end-of-line
+bindkey "^A" beginning-of-line
+bindkey "^S" end-of-line
+bindkey "^K" vi-kill-line
+
+# default
+bindkey "^U" vi-kill-line
 
 function run-editzshrc { nvim ~/.config/zsh }
 zle -N run-editzshrc
