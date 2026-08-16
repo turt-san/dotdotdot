@@ -36,6 +36,11 @@ vim.keymap.set({ 'n', 'v' }, '<C-_>', commentcmd)
 vim.keymap.set('i', 'jk', '<Esc>')
 -- vim.keymap.set('i', '<TAB>', '<C-y>')
 
+
+-- PLUGINS
+vim.keymap.set('n', '<leader>O', '<Cmd>Oil<CR>')
+
+
 -- nvim tree
 vim.keymap.set('n', '<C-N>', ':NvimTreeToggle<CR>', { silent = true })
 
