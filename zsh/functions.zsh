@@ -21,7 +21,7 @@ gaca() {
 }
 
 goodnight() {
-    ~/scripts/Startup/goodnight.sh $argv[@]
+    /usr/local/bin/custom/goodnight.sh $argv[@]
 }
 
 rojomap() {
