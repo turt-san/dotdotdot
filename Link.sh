@@ -1,6 +1,6 @@
 #!/bin/env bash
 
-confs=("nvim" "alacritty" "zsh" "waybar")
+confs=("nvim" "alacritty" "zsh" "waybar" "local")
 if [[ $# -ne 0 ]]; then
     confs=($@)
 fi
@@ -12,6 +12,7 @@ if [[ ! -d $HOME/.config ]]; then
         echo "Creating directory $HOME/.config..."
         mkdir "$HOME/.config"
     else
+        echo "Cannot proceed without .config"
         exit 1
     fi
 fi
@@ -22,23 +23,20 @@ for i in ${confs[@]}; do
     echo {{${i^^}}}:
     # ls -1 "./$i"
     if [[ -d "$cfgDir" || -f "$cfgDir" ]]; then
-        echo "$cfgDir already exists..."
-        echo "Back up?"
-
-        read ans
-        case $ans in
-            [Yy]*)
-                echo Yes, you are
-                mv -i "$cfgDir" "$cfgDir.old"
-                ;;
-
-            *)
-                echo "Response not read"
-                ;;
-        esac
+        echo -e "$cfgDir already exists\nBack up ${cfgDir}?"
+        mv -iv "$cfgDir" "$cfgDir.old"
+        # read ans
+        # case $ans in
+        #     [Yy]*)
+        #         ;;
+        #
+        #     *)
+        #         echo "Skipping..."
+        #         ;;
+        # esac
     fi
 
-    # ln -v -s "$PWD/$i" "$HOME/.config/$i"
+    ln -v -s "$PWD/$i" "$HOME/.config/$i"
 done
 
 if [[ -f "$HOME/.zshrc" ]]; then

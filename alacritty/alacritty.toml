@@ -49,9 +49,6 @@ magenta = "0xB48EAD"
 cyan = "0x8FBCBB"
 white = "0xECEFF4"
 
-[font]
-size = 12
-
 [font.normal]
 # family = "MesloLGM Nerd Font Mono"
 family = "DejaVuSansM Nerd Font Mono"
@@ -86,6 +83,7 @@ duration = 100
 [general]
 live_config_reload = true
 working_directory = "None"
+import = ["./font.toml",]
 
 [mouse]
 hide_when_typing = false
