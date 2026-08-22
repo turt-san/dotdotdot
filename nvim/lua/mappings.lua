@@ -6,11 +6,31 @@ vim.keymap.set('n', '<C-k>', '<C-w>k')
 vim.keymap.set('n', '<C-l>', '<C-w>l')
 
 -- Jump between windows (numbered)
-vim.keymap.set('n', '<leader>1', '1<C-w>w')
-vim.keymap.set('n', '<leader>2', '2<C-w>w')
-vim.keymap.set('n', '<leader>3', '3<C-w>w')
+-- vim.keymap.set('n', '<leader>1', '1<C-w>w')
+-- vim.keymap.set('n', '<leader>2', '2<C-w>w')
+-- vim.keymap.set('n', '<leader>3', '3<C-w>w')
+-- Jump between buffers
+local function jump_to_nth_buffer(n)
+    local all = vim.api.nvim_list_bufs()
+    local real = {}
+    for _, bufnr in ipairs(all) do
+        if vim.api.nvim_buf_is_loaded(bufnr) and vim.bo[bufnr].buflisted then
+            table.insert(real, bufnr)
+        end
+    end
+    n = math.min(n, #real)
+    print("Jumping to buffer", n)
+    vim.api.nvim_set_current_buf(real[n])
+end
 
--- Resize windows
+for i=1,9 do
+    vim.keymap.set('n', '<leader>' .. i, function()
+        jump_to_nth_buffer(i)
+    end)
+end
+
+
+    -- Resize windows
 vim.keymap.set('n', '<C-Up>', '<C-w>-')
 vim.keymap.set('n', '<C-Down>', '<C-w>+')
 
