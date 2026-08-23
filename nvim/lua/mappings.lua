@@ -23,7 +23,8 @@ local function jump_to_nth_buffer(n)
     vim.api.nvim_set_current_buf(real[n])
 end
 
-for i=1,9 do
+for i=1,10 do
+    i = i % 10
     vim.keymap.set('n', '<leader>' .. i, function()
         jump_to_nth_buffer(i)
     end)
