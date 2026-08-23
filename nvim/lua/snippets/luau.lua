@@ -31,6 +31,19 @@ local function file_to_event(format)
     return lines
 end
 
+local function filename_to_module()
+    local name = vim.fn.expand('%:t:r')
+
+    local lines = {
+        "--!strict",
+        "local " .. name .. " = {}",
+        "",
+        "return " .. name,
+    }
+
+    return lines
+end
+
 return {
     s("evt", {
         c(1, {
@@ -38,4 +51,7 @@ return {
             f(function() return file_to_event("%s: RemoteEvent,") end, {}),
         }),
     }),
+    s("mod", {
+        f(filename_to_module)
+    })
 }
