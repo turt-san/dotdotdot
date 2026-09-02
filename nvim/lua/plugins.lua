@@ -25,14 +25,14 @@ ls.setup({
 
 require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/lua/snippets" })
 
-vim.keymap.set({"i"}, "<C-K>", function() ls.expand() end, {silent = true})
-vim.keymap.set({"i", "s"}, "<C-L>", function() ls.jump( 1) end, {silent = true})
-vim.keymap.set({"i", "s"}, "<C-J>", function() ls.jump(-1) end, {silent = true})
+vim.keymap.set({"i"}, "<C-K>", function() ls.expand() end, { silent = true })
+vim.keymap.set({"i", "s"}, "<C-L>", function() ls.jump( 1) end, { silent = true })
+vim.keymap.set({"i", "s"}, "<C-J>", function() ls.jump(-1) end, { silent = true })
 vim.keymap.set({"i", "s"}, "<C-E>", function()
     if ls.choice_active() then
         ls.change_choice(1)
     end
-end, {silent = true})
+end, { silent = true })
 
 require('nvim-tree').setup()
 require('oil').setup({
@@ -128,7 +128,7 @@ vim.cmd('colorscheme ' .. colorschemes[2])
 vim.pack.add({
     { src = gh 'numToStr/Comment.nvim' },
     { src = gh 'jiangmiao/auto-pairs' }, -- NOT LUA
-    { src = gh 'windwp/nvim-autopairs' },
+    -- { src = gh 'windwp/nvim-autopairs' },
     { src = gh 'kylechui/nvim-surround' },
     { src = gh 'nvim-treesitter/nvim-treesitter' },
     { src = gh 'mfussenegger/nvim-lint' },

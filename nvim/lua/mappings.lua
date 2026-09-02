@@ -30,7 +30,6 @@ for i=1,10 do
     end)
 end
 
-
     -- Resize windows
 vim.keymap.set('n', '<C-Up>', '<C-w>-')
 vim.keymap.set('n', '<C-Down>', '<C-w>+')
@@ -56,6 +55,8 @@ vim.keymap.set({ 'n', 'v' }, '<C-/>', commentcmd)
 vim.keymap.set({ 'n', 'v' }, '<C-_>', commentcmd)
 vim.keymap.set('i', 'jk', '<Esc>')
 -- vim.keymap.set('i', '<TAB>', '<C-y>')
+
+vim.keymap.set('s', '<BS>', '<C-O>c', { silent = true, desc = 'Delete placeholder safely' })
 
 
 -- PLUGINS
