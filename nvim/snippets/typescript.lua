@@ -7,14 +7,21 @@ local c = ls.choice_node
 local fmt = require("luasnip.extras.fmt").fmt
 
 return {
-    s("anon", fmt([[
-    ({}) => {{{}}}
-    ]], {
-            c(1, {
-                i(nil, 'params'),
-                t('')
-            }),
-            i(0),
-        })
-    )
+    s(
+        "anon",
+        fmt(
+            [[
+    ({}) => {{
+        {}
+    }}
+    ]],
+            {
+                c(1, {
+                    t(""),
+                    i(nil, "params"),
+                }),
+                i(0),
+            }
+        )
+    ),
 }
