@@ -177,6 +177,13 @@ return {
                     python = { "black" },
                     go = { "gofmt" },
                 },
+                formatters = {
+                    prettierd = {
+                        env = {
+                            PRETTIERD_DEFAULT_CONFIG = vim.fn.stdpath("config") .. "/prettier-defaults.json",
+                        },
+                    },
+                },
                 format_on_save = {
                     timeout_ms = 500,
                     lsp_fallback = true, -- falls back to vim.lsp.buf.format if no conform formatter defined
