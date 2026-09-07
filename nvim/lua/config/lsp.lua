@@ -9,3 +9,36 @@ vim.keymap.set("n", "gd", function()
     vim.lsp.buf.definition()
     -- { loclist = true }
 end)
+
+local capabilities = require("blink.cmp").get_lsp_capabilities()
+
+vim.lsp.config("svelte", {
+    settings = {
+        svelte = {
+            plugin = {
+                typescript = {
+                    completeFunctionCalls = true,
+                },
+                javascript = {
+                    completeFunctionCalls = true,
+                },
+            },
+        },
+    },
+})
+
+vim.lsp.config("ts_ls", {
+    capabilities = capabilities,
+    settings = {
+        typescript = {
+            suggest = {
+                completeFunctionCalls = true,
+            },
+        },
+        javascript = {
+            suggest = {
+                completeFunctionCalls = true,
+            },
+        },
+    },
+})

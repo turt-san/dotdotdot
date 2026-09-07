@@ -118,6 +118,7 @@ return {
             },
             completion = {
                 documentation = { auto_show = true },
+                accept = { resolve_timeout_ms = 2000 },
             },
             sources = {
                 providers = {
