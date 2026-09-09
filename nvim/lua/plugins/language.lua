@@ -24,22 +24,6 @@ return {
         },
     },
     {
-        "mfussenegger/nvim-lint",
-        lazy = false,
-        config = function()
-            require("lint").linters_by_ft = {
-                python = { "ruff" },
-                typescript = { "eslint_d" },
-            }
-
-            vim.api.nvim_create_autocmd({ "BufWritePost", "InsertLeave" }, {
-                callback = function()
-                    require("lint").try_lint()
-                end,
-            })
-        end,
-    },
-    {
         "saghen/blink.cmp",
         lazy = false,
         priority = 500,
@@ -67,64 +51,22 @@ return {
         end,
     },
     {
-        "L3MON4D3/LuaSnip",
+        "mfussenegger/nvim-lint",
         lazy = false,
         config = function()
-            local ls = require("luasnip")
-            ls.setup({
-                -- Tell LuaSnip to force update dynamic nodes immediately on text changes
-                -- updateevents = "TextChanged,TextChangedI",
-            })
-
-            require("luasnip.loaders.from_lua").lazy_load({ paths = "./snippets" })
-            require("luasnip").filetype_extend("typescript", { "javascript", "svelte" })
-
-            vim.keymap.set({ "i" }, "<C-K>", function()
-                ls.expand()
-            end, { silent = true })
-            vim.keymap.set({ "i", "s" }, "<C-L>", function()
-                ls.jump(1)
-            end, { silent = true })
-            vim.keymap.set({ "i", "s" }, "<C-J>", function()
-                ls.jump(-1)
-            end, { silent = true })
-            vim.keymap.set({ "i", "s" }, "<C-E>", function()
-                if ls.choice_active() then
-                    ls.change_choice(1)
-                end
-            end, { silent = true })
-        end,
-        keys = {},
-        build = "make install_jsregexp",
-    },
-    {
-        "stevearc/conform.nvim",
-        config = function()
-            local prettier = { "prettierd", "prettier", stop_after_first = true }
-            require("conform").setup({
-                formatters_by_ft = {
-                    javascript = prettier,
-                    typescript = prettier,
-                    css = prettier,
-                    lua = { "stylua" },
-                    python = { "black" },
-                    go = { "gofmt" },
-                },
-                formatters = {
-                    prettierd = {
-                        env = {
-                            PRETTIERD_DEFAULT_CONFIG = vim.fn.stdpath("config") .. "/prettier-defaults.json",
-                        },
-                    },
-                },
-                format_on_save = {
-                    timeout_ms = 500,
-                    lsp_fallback = true, -- falls back to vim.lsp.buf.format if no conform formatter defined
-                },
+            require("lint").linters_by_ft = {
+                python = { "ruff" },
+                typescript = { "eslint_d" },
+            }
+            vim.api.nvim_create_autocmd({ "BufWritePost", "InsertLeave" }, {
+                callback = function()
+                    require("lint").try_lint()
+                end,
             })
         end,
     },
 }
+
 -- cmdline = {
 --     enabled = true,
 --     sources = function()
