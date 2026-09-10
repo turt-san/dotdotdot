@@ -23,7 +23,7 @@ return {
                 "lua_ls",
                 "html",
                 "cssls",
-                "ts_ls",
+                "tsc",
                 "pyright",
                 "roslyn_ls",
                 "clangd",

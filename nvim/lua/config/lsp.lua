@@ -26,19 +26,3 @@ vim.lsp.config("svelte", {
         },
     },
 })
-
-vim.lsp.config("ts_ls", {
-    capabilities = capabilities,
-    settings = {
-        typescript = {
-            suggest = {
-                completeFunctionCalls = true,
-            },
-        },
-        javascript = {
-            suggest = {
-                completeFunctionCalls = true,
-            },
-        },
-    },
-})
