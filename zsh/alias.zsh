@@ -1,4 +1,4 @@
-pyenvdir="$PROJECTS_DIR/PYTHON/.venv"
+pyenvdir="$PROJECTS_DIR/py/.venv"
 
 alias cdaa="sudo -E nvim /usr/share/cachyos-zsh-config/cachyos-config.zsh"
 alias re="clear; exec $SHELL"
