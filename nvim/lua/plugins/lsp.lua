@@ -25,7 +25,6 @@ return {
                 "cssls",
                 "tsc",
                 "pyright",
-                "roslyn_ls",
                 "clangd",
                 "rust_analyzer",
                 "svelte",
