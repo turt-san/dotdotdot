@@ -1,3 +1,8 @@
+# Base
+`base`
+`core`
+`etc...`
+
 # Sandboxing
 `firejail`
 `systemd-container`
