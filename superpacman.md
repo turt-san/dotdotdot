@@ -1,13 +1,30 @@
 # Base
 `base`
+`base-devel`
 `core`
-`etc...`
+`linux`
+`linux-firmware`
+
+# CLI
+`alacritty`
+`zsh`
+`btop`
+`yt-dlp`
+
+# Utils
+`btop`
+`feh`
+`xdotool`
+`opentabletdriver`
+`btrfs-assistant`
+`arch-install-scripts`
 
 # Sandboxing
 `firejail`
 `systemd-container`
 
 # Network
+`iwd`
 `networkmanager`
 `nethogs`
 
