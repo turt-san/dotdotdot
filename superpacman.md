@@ -31,3 +31,6 @@
 # Wayland
 ## Utils
 `wl-copy`: easily copies and pastes out of the Wayland clipboard
+
+# Kernel
+`pcie_aspm=force`
