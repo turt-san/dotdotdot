@@ -25,33 +25,6 @@ return {
         },
     },
     {
-        "saghen/blink.cmp",
-        lazy = false,
-        priority = 500,
-        opts = {
-            keymap = {
-                preset = "default",
-                ["<TAB>"] = { "select_and_accept" },
-            },
-            completion = {
-                documentation = { auto_show = true },
-                accept = { resolve_timeout_ms = 2000 },
-            },
-            sources = {
-                providers = {
-                    path = {
-                        opts = {
-                            show_hidden_files_by_default = true,
-                        },
-                    },
-                },
-            },
-        },
-        build = function()
-            require("blink.cmp").build():pwait()
-        end,
-    },
-    {
         "mfussenegger/nvim-lint",
         lazy = false,
         config = function()
