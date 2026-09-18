@@ -10,6 +10,8 @@
 `zsh`
 `btop`
 `yt-dlp`
+`eza`
+- `ls` replacement
 
 # Utils
 `btop`
