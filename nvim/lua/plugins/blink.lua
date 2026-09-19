@@ -8,9 +8,9 @@ return {
             ["<TAB>"] = { "select_and_accept" },
         },
         completion = {
-            enabled = true,
-            max_height = 30,
             menu = {
+                enabled = true,
+                max_height = 30,
                 draw = {
                     gap = 2, -- spacing between columns
                     columns = {
