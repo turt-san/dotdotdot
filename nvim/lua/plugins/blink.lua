@@ -14,10 +14,10 @@ return {
                 draw = {
                     gap = 2, -- spacing between columns
                     columns = {
-                        { "label", "label_description", gap = 1 },
+                        { "label", gap = 1 },
                         { "kind" },
                         { "label_description" },
-                        { "source_name" },
+                        -- { "source_name" },
                     },
                 },
             },
