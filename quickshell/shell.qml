@@ -1,5 +1,5 @@
 import Quickshell // for PanelWindow
 
-Scope {
+ShellRoot {
     Bar {}
 }
