@@ -31,7 +31,16 @@
 `nethogs`
 
 # Wayland
+## Hyprland
+`hyprland`
+`hyprpaper`
+`quickshell`
+`uwsm`
+
 ## Utils
+`grim`
+`swappy`
+`slurp`
 `wl-copy`: easily copies and pastes out of the Wayland clipboard
 
 # Kernel
