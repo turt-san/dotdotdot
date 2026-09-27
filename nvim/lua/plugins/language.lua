@@ -21,7 +21,7 @@ return {
                 "stylua",
                 "prettierd",
                 "black",
-                "qmlls",
+                -- LSPs, most are saved in mason-lspconfig
             },
         },
     },

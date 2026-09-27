@@ -26,3 +26,13 @@ vim.lsp.config("svelte", {
         },
     },
 })
+
+vim.lsp.config("qmlls", {
+    cmd = { "/usr/lib/qt6/bin/qmlls", "-E" },
+    cmd_env = {
+        QML2_IMPORT_PATH = "/usr/lib/qt6/qml",
+        QML_IMPORT_PATH = "/usr/lib/qt6/qml",
+    },
+})
+
+vim.lsp.enable("qmlls")
