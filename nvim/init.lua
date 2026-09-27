@@ -8,7 +8,7 @@ to restart a buffer:
 -- vim.opt.langmap = 'qwertyuiop[]asdfghjkl\\;\'zxcvbnm\\,./QWERTYUIOP{}ASDFGHJKL\\:"ZXCVBNM<>?;\\, .pyfgcrl/=aoeuidhtns-;qjkxbwz\\"<>PYFGCRL?+AOEUIDHTNS__QJKXBWZ'
 -- vim.opt.langmap = 'q\\,w\\.e,pr,yt,fy,gu,ci,ro,lp,/[\\,=],aa,os,ed,uf,ig,dh,hj,tk,nl,s\\;,-,\\;z,qx,jc,kv,xb,bn,mm,w\\,v\\.,z/,[-\\,]=,\\"Q,<W,>E,PR,YT,FY,GU,CI,RO,LP,?{,+\\},AA,OS,ED,UF,IG,DH,HJ,TK,NL,S:,_\\",:Z,QX,JC,KV,XB,BN,MM,W<,V>,Z?'
 -- vim.cmd("set keymap=dvorak")
--- vim.opt.keymap = "dvorak"
+vim.opt.keymap = "dvorak"
 
 require("config.options")
 require("config.lazy")
