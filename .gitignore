@@ -3,4 +3,4 @@
 /nvim/lazy-lock.json
 /local
 /alacritty/font.toml
-# /hypr/conf/wallpaper.lua
+/hypr/conf/monitors.lua
