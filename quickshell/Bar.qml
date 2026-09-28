@@ -67,7 +67,7 @@ Scope {
                 }
 
                 text: Math.round(UPower.displayDevice.percentage * 100) + "%"
-                color: .Charging ? "red" : "green"
+                color: UPower.displayDevice.state == 1 ? "green" : "red"
             }
         }
     }

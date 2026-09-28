@@ -1,4 +1,4 @@
-local mainWallpaper = "~/Shared/Wallpapers/HRsSEghbUAAaE0_.jpeg"
+local mainWallpaper = "~/Images/Wallpapers/feather.png"
 
 if mainWallpaper then
 	hl.on("hyprland.start", function()
