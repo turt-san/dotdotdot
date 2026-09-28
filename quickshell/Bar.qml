@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Hyprland
+import Quickshell.Services.UPower
 
 Scope {
     Variants {
@@ -56,6 +57,17 @@ Scope {
                     centerIn: parent
                 }
                 time: Time.time
+            }
+
+            Text {
+                anchors {
+                    right: parent.right
+                    rightMargin: 6
+                    verticalCenter: parent.verticalCenter
+                }
+
+                text: Math.round(UPower.displayDevice.percentage * 100) + "%"
+                color: .Charging ? "red" : "green"
             }
         }
     }
