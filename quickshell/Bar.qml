@@ -126,11 +126,11 @@ Scope {
                             // }
                         }
 
-                        ToolTip {
-                            visible: mouseArea.containsMouse && (modelData.tooltipTitle !== "" || modelData.tooltipDescription !== "")
-                            text: modelData.tooltipTitle ? modelData.tooltipTitle : modelData.tooltipDescription
-                            delay: 500
-                        }
+                        // ToolTip {
+                        //     visible: mouseArea.containsMouse && (modelData.tooltipTitle !== "" || modelData.tooltipDescription !== "")
+                        //     text: modelData.tooltipTitle ? modelData.tooltipTitle : modelData.tooltipDescription
+                        //     delay: 500
+                        // }
                     }
                 }
             }
