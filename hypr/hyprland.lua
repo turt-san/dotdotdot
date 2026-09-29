@@ -43,8 +43,9 @@ local menu = "hyprlauncher"
 --
 hl.on("hyprland.start", function()
 	hl.exec_cmd("systemctl --user enable --now hyprpolkitagent.service")
-	hl.exec_cmd("hyprpaper")
 	hl.exec_cmd("quickshell")
+	hl.exec_cmd("hyprpaper")
+	hl.exec_cmd("nm-applet")
 	hl.exec_cmd("mako")
 end)
 

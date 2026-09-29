@@ -8,3 +8,8 @@ hyprpaper
 hyprpolkitagent
 mako
 uwsm
+
+pipewire
+pipewire-pulse
+wireplumber
+network-manager-applet

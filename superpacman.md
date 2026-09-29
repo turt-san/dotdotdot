@@ -42,6 +42,7 @@
 `swappy`
 `slurp`
 `wl-copy`: easily copies and pastes out of the Wayland clipboard
+`busctl --user list | grep -i notif`
 
 # Kernel
 `pcie_aspm=force`
