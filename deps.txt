@@ -1,5 +1,10 @@
-nvim
 tmux
+networkmanager
+network-manager-applet
 hyprland
+xdg-desktop-portal-hyprland
+xdg-desktop-portal-gtk
 hyprpaper
+hyprpolkitagent
+mako
 uwsm
