@@ -12,12 +12,15 @@ Scope {
         PanelWindow {
             id: bar
             required property var modelData
-            screen: modelData
+
+            screen: bar.modelData
+
             anchors {
                 top: true
                 left: true
                 right: true
             }
+
             implicitHeight: 36
 
             property var hyprMonitor: Hyprland.monitorFor(screen)
@@ -72,9 +75,9 @@ Scope {
 
                 Repeater {
                     model: SystemTray.items
-                    // model: ["one", "zwankring", "bankai"]
 
                     Item {
+                        id: trayItem
                         required property SystemTrayItem modelData
 
                         implicitWidth: 24
@@ -106,24 +109,25 @@ Scope {
                             id: mouseArea
                             hoverEnabled: true
                             anchors.fill: parent
-                            acceptedButtons: Qt.LeftButton | Qt.RightButton
+                            acceptedButtons: Qt.LeftButton | Qt.MiddleButton | Qt.RightButton
 
                             onClicked: mouse => {
                                 if (mouse.button === Qt.RightButton) {
-                                    // Opens the native app menu if available
-                                    if (modelData.hasMenu) {
-                                        modelData.display(parent, mouse.x, mouse.y);
+                                    if (trayItem.modelData.hasMenu) {
+                                        anchor.open();
                                     }
                                 } else {
-                                    // Triggers primary action (left click)
-                                    modelData.activate();
+                                    trayItem.modelData.activate();
                                 }
                             }
 
-                            // QsMenuAnchor {
-                            //     anchor.window: image
-                            //     menu: modelData.menu
-                            // }
+                            QsMenuAnchor {
+                                id: anchor
+                                anchor {
+                                    item: trayItem
+                                }
+                                menu: trayItem.modelData.menu
+                            }
                         }
 
                         // ToolTip {
@@ -137,13 +141,15 @@ Scope {
 
             Text {
                 id: power
+                visible: UPower.displayDevice.state !== 0
+
                 anchors {
                     right: parent.right
                     rightMargin: 6
                     verticalCenter: parent.verticalCenter
                 }
 
-                text: Math.round(UPower.displayDevice.percentage * 100) + "%"
+                text: Math.round(UPower.displayDevice.percentage * 100) + "%" + UPower.displayDevice.state
                 color: UPower.displayDevice.state == 1 ? "green" : "red"
             }
         }

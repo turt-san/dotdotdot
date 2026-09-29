@@ -33,6 +33,10 @@ vim.lsp.config("qmlls", {
         QML2_IMPORT_PATH = "/usr/lib/qt6/qml",
         QML_IMPORT_PATH = "/usr/lib/qt6/qml",
     },
+    on_attach = function(client, bufnr)
+        -- Target only this buffer when qmlls attaches
+        vim.highlight.priorities.semantic_tokens = 95
+    end,
 })
 
 vim.lsp.enable("qmlls")
