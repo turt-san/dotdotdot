@@ -2,8 +2,6 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Hyprland
-import Quickshell.Services.SystemTray
-import Quickshell.Services.UPower
 
 Scope {
     Variants {
@@ -12,25 +10,22 @@ Scope {
         PanelWindow {
             id: bar
             required property var modelData
+            property var hyprMonitor: Hyprland.monitorFor(screen)
 
             screen: bar.modelData
 
-            anchors {
-                top: true
-                left: true
-                right: true
-            }
+            anchors.top: true
+            anchors.left: true
+            anchors.right: true
 
             implicitHeight: 36
 
-            property var hyprMonitor: Hyprland.monitorFor(screen)
+            color: Colors.bg
 
             RowLayout {
-                anchors {
-                    leftMargin: 6
-                    left: parent.left
-                    verticalCenter: parent.verticalCenter
-                }
+                anchors.leftMargin: 6
+                anchors.left: parent.left
+                anchors.verticalCenter: parent.verticalCenter
                 spacing: 6
 
                 Repeater {
@@ -38,7 +33,7 @@ Scope {
 
                     Rectangle {
                         width: 24
-                        height: 24
+                        height: 24 * 2
                         radius: 4
                         required property var modelData
                         color: modelData.active ? "#89b4fa" : "#313244"
@@ -57,100 +52,50 @@ Scope {
                 }
             }
 
-            Clock {
-                anchors {
-                    centerIn: parent
-                }
+            ClockWidget {
+                anchors.centerIn: parent
                 time: Time.time
             }
 
             RowLayout {
-                anchors {
-                    right: power.left
-                    rightMargin: 10
-                    verticalCenter: parent.verticalCenter
-                }
+                anchors.right: parent.right
+                anchors.rightMargin: 6
+                anchors.verticalCenter: parent.verticalCenter
+                spacing: 6
 
-                spacing: 5
+                Column {
+                    id: col
+                    property int spacingInRow: 2
+                    property int boxSize: 6
+                    spacing: 4
 
-                Repeater {
-                    model: SystemTray.items
-
-                    Item {
-                        id: trayItem
-                        required property SystemTrayItem modelData
-
-                        implicitWidth: 24
-                        implicitHeight: 24
-
-                        property bool isHovered: mouseArea.containsMouse
-
+                    Repeater {
+                        model: 3
                         Rectangle {
-                            anchors.fill: parent
-                            radius: 6
-                            // Replicates the responsive backdrop typical of Caelestia modules
-                            color: parent.isHovered ? "rgba(0, 0, 0, 0.6)" : "red"
-                            // behavior on color {
-                            //     ColorAnimation {
-                            //         duration: 150
-                            //     }
-                            // }
-                        }
+                            color: "red"
+                            implicitWidth: boxRow.implicitWidth + index * 2
+                            implicitHeight: boxRow.implicitHeight
+                            Row {
+                                id: boxRow
+                                spacing: col.spacingInRow
+                                Repeater {
+                                    model: 6
 
-                        Image {
-                            id: iconImage
-                            height: 20
-                            width: 20
-                            anchors.centerIn: parent
-                            source: modelData.icon
-                        }
+                                    Rectangle {
+                                        color: "blue"
 
-                        MouseArea {
-                            id: mouseArea
-                            hoverEnabled: true
-                            anchors.fill: parent
-                            acceptedButtons: Qt.LeftButton | Qt.MiddleButton | Qt.RightButton
-
-                            onClicked: mouse => {
-                                if (mouse.button === Qt.RightButton) {
-                                    if (trayItem.modelData.hasMenu) {
-                                        anchor.open();
+                                        implicitWidth: col.boxSize
+                                        implicitHeight: col.boxSize
                                     }
-                                } else {
-                                    trayItem.modelData.activate();
                                 }
-                            }
-
-                            QsMenuAnchor {
-                                id: anchor
-                                anchor {
-                                    item: trayItem
-                                }
-                                menu: trayItem.modelData.menu
                             }
                         }
-
-                        // ToolTip {
-                        //     visible: mouseArea.containsMouse && (modelData.tooltipTitle !== "" || modelData.tooltipDescription !== "")
-                        //     text: modelData.tooltipTitle ? modelData.tooltipTitle : modelData.tooltipDescription
-                        //     delay: 500
-                        // }
                     }
                 }
-            }
 
-            Text {
-                id: power
-                visible: UPower.displayDevice.state !== 0
+                SystemTrayWidget {}
 
-                anchors {
-                    right: parent.right
-                    rightMargin: 6
-                    verticalCenter: parent.verticalCenter
-                }
-
-                text: Math.round(UPower.displayDevice.percentage * 100) + "%" + UPower.displayDevice.state
-                color: UPower.displayDevice.state == 1 ? "green" : "red"
+                PowerWidget {}
             }
         }
     }

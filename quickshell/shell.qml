@@ -1,5 +1,5 @@
 //@ pragma UseQApplication
-import Quickshell // for PanelWindow
+import Quickshell
 
 ShellRoot {
     Bar {}
