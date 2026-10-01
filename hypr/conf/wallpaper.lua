@@ -1,5 +1,5 @@
 local mainMonitor = "eDP-1"
--- local mainWallpaper = "~/Images/Wallpapers/feather.png"
+local mainWallpaper = "~/Images/Wallpapers/feather.png"
 
 if mainWallpaper then
 	hl.on("hyprland.start", function()
