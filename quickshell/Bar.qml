@@ -72,8 +72,8 @@ Scope {
                     Repeater {
                         model: 3
                         Rectangle {
-                            color: "red"
-                            implicitWidth: boxRow.implicitWidth + index * 2
+                            color: "transparent"
+                            implicitWidth: boxRow.implicitWidth
                             implicitHeight: boxRow.implicitHeight
                             Row {
                                 id: boxRow
@@ -84,7 +84,7 @@ Scope {
                                     Rectangle {
                                         color: "blue"
 
-                                        implicitWidth: col.boxSize
+                                        implicitWidth: col.boxSize * index
                                         implicitHeight: col.boxSize
                                     }
                                 }
