@@ -2,10 +2,8 @@ local mainMonitor = "eDP-1"
 local mainWallpaper = "~/Images/Wallpapers/feather.png"
 
 if mainWallpaper then
-	hl.on("hyprland.start", function()
-		hl.exec_cmd("hyprctl hyprpaper preload " .. mainWallpaper)
-		hl.exec_cmd("hyprctl hyprpaper wallpaper '" .. mainMonitor .. "," .. mainWallpaper .. ",cover'")
-	end)
+	hl.exec_cmd("hyprctl hyprpaper preload " .. mainWallpaper)
+	hl.exec_cmd("hyprctl hyprpaper wallpaper '" .. mainMonitor .. "," .. mainWallpaper .. ",cover'")
 end
 
 -- Examples
