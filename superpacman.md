@@ -5,6 +5,9 @@
 `linux`
 `linux-firmware`
 
+# Fonts
+`noto-fonts-cjk`
+
 # CLI
 `alacritty`
 `zsh`
