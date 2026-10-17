@@ -1,37 +1,36 @@
---[[
-=============================   OPTIONS   =============================
---]]
 local opt = vim.opt
 local o = vim.o
 local g = vim.g
 
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.wrap = false
-vim.opt.signcolumn = 'yes'
-vim.g.mapleader = ' '
-vim.opt.ignorecase = true
-
 local indent_width = 4
 local chars = {
-    trail = '',
-    space = '·',
-    tab = '-->',
+    trail = "",
+    space = "·",
+    tab = "-->",
     -- eol = '¬',
 }
 -- alt options
 local chars_alt = {
-    '',
-    '•',
-    '·',
-    '_',
-    '¬',
+    "",
+    "•",
+    "·",
+    "_",
+    "¬",
 }
 
-vim.opt.shiftwidth = indent_width
-vim.opt.tabstop = indent_width
-vim.opt.softtabstop = indent_width
-vim.opt.expandtab = true
-vim.opt.listchars = chars
-vim.opt.fillchars = { eob = ' ' }
-vim.opt.list = true
+opt.number = true
+opt.gdefault = true
+opt.relativenumber = true
+opt.wrap = false
+opt.signcolumn = "yes"
+opt.ignorecase = true
+
+g.mapleader = " "
+
+opt.shiftwidth = indent_width
+opt.tabstop = indent_width
+opt.softtabstop = indent_width
+opt.expandtab = true
+opt.listchars = chars
+opt.fillchars = { eob = " " }
+opt.list = true
