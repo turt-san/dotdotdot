@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+# git add commit all
+if [[ -z $SSH_AGENT_PID ]]; then
+    ssho
+fi
+git add .
+git commit --all --verbose --message "$*"
+git push

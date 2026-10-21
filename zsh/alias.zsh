@@ -15,7 +15,7 @@ alias alph="echo {a..z}"
 alias wallyfix='wally-package-types --sourcemap sourcemap.json Packages/'
 
 # cd ..'es
-alias ..="cd .."
+# ".." is a function
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."

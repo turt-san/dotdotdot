@@ -10,9 +10,17 @@ export MANPAGER="nvim +Man!"
 
 # disables Ctrl-S and Ctrl-Q to freeze and unfreeze the screen
 stty -ixon
+fpath=("$CFG_DIR/functions" "$CFG_DIR/completions" $fpath)
+autoload -Uz compinit && compinit
 
 source "$CFG_DIR/alias.zsh"
 source "$CFG_DIR/functions.zsh"
+# Functions
+autoload -Uz gaca
+autoload -Uz mkcd
+autoload -Uz cd_backwards
+alias ..='cd_backwards'
+
 source "$CFG_DIR/tmux.zsh"
 source "$CFG_DIR/keybinds.zsh"
 source "$CFG_DIR/completions.zsh"

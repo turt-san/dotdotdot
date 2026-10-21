@@ -1,0 +1,6 @@
+#compdef cd_backwards
+
+_directories -W "${PWD:h}"
+# local -a dirs
+# dirs=(../*(-/N:t))
+# compadd -S/ -a dirs
