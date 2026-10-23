@@ -20,7 +20,7 @@
 
 -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
 require("conf.monitors")
-require("conf.wallpaper")
+local wall = require("conf.wallpaper")
 require("conf.keybinds")
 
 ---------------------
@@ -48,6 +48,8 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("hyprpaper")
 	hl.exec_cmd("nm-applet")
 	hl.exec_cmd("mako")
+	hl.exec_cmd("hyprctl hyprpaper preload " .. wall.wallpaper)
+	hl.exec_cmd("hyprctl hyprpaper wallpaper '" .. wall.monior .. "," .. wall.wallpaper .. ",cover'")
 end)
 
 -------------------------------
