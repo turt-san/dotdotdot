@@ -56,6 +56,9 @@ vim.keymap.set({ "n", "v" }, "<C-/>", commentcmd)
 vim.keymap.set({ "n", "v" }, "<C-_>", commentcmd)
 vim.keymap.set("i", "jk", "<Esc>")
 -- vim.keymap.set('i', '<TAB>', '<C-y>')
+vim.keymap.set("n", "/", "/\\v", { desc = "very magic search" })
+vim.keymap.set("n", "?", "?\\v", { desc = "very magic backward search" })
+vim.keymap.set("v", ":s/", ":s/\\v", { desc = "substitute very magically. dopely even." })
 
 vim.keymap.set("s", "<BS>", "<C-O>c", { silent = true, desc = "Delete placeholder safely" })
 
