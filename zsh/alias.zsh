@@ -13,6 +13,7 @@ alias blk='feh --fullscreen --hide-pointer ~/Images/Other/black.png &; disown; e
 alias upd='cachy-update'
 alias alph="echo {a..z}"
 alias wallyfix='wally-package-types --sourcemap sourcemap.json Packages/'
+alias gpull='ssho && git pull'
 
 # cd ..'es
 # ".." is a function
