@@ -1,5 +1,28 @@
 autoload -Uz vcs_info
-precmd() { vcs_info }
+zmodload zsh/datetime   # provides $EPOCHSECONDS
+
+FETCH_INTERVAL=300      # seconds between background fetches per repo
+
+background_fetch() {
+  local gitdir stamp last=0
+  gitdir=$(git rev-parse --absolute-git-dir 2>/dev/null) || return
+  git rev-parse --abbrev-ref '@{u}' &>/dev/null || return   # no upstream, nothing to compare
+
+  stamp=$gitdir/prompt-last-fetch
+  [[ -e $stamp ]] && last=$(<$stamp)
+  (( EPOCHSECONDS - last < FETCH_INTERVAL )) && return
+
+  print -r -- $EPOCHSECONDS > $stamp   # stamp first, so failures (offline) don't retry every prompt
+
+  GIT_TERMINAL_PROMPT=0 \
+  GIT_SSH_COMMAND="ssh -o BatchMode=yes -o ConnectTimeout=5" \
+    git fetch --quiet --no-tags &>/dev/null &!
+}
+
+precmd() {
+  vcs_info
+  background_fetch
+}
 
 zstyle ':vcs_info:*' enable git
 
