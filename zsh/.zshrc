@@ -18,6 +18,7 @@ source "$CFG_DIR/alias.zsh"
 source "$CFG_DIR/functions.zsh"
 # Functions
 autoload -Uz gaca
+autoload -Uz gita
 autoload -Uz mkcd
 autoload -Uz cd_backwards
 alias ..='cd_backwards'
