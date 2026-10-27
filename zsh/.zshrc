@@ -7,6 +7,7 @@ if [[ -z $TMUX ]]; then source "$CFG_DIR/motd.zsh"; fi
 export EDITOR="nvim"
 export SUDOEDITOR="nvim"
 export MANPAGER="nvim +Man!"
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 # disables Ctrl-S and Ctrl-Q to freeze and unfreeze the screen
 stty -ixon
@@ -24,5 +25,5 @@ alias ..='cd_backwards'
 source "$CFG_DIR/tmux.zsh"
 source "$CFG_DIR/keybinds.zsh"
 source "$CFG_DIR/completions.zsh"
-source "$CFG_DIR/ps1.zsh"
+source "$CFG_DIR/prompt.zsh"
 source "$CFG_DIR/path.zsh"
