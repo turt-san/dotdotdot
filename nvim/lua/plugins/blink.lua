@@ -33,6 +33,13 @@ return {
                 },
             },
         },
+        -- fuzzy = {
+        --     sorts = {
+        --         -- Your custom sorting logic function goes here
+        --         "score",
+        --         "sort_text",
+        --     },
+        -- },
     },
     build = function()
         require("blink.cmp").build():pwait()
