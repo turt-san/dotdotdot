@@ -9,19 +9,18 @@ local fmt = require("luasnip.extras.fmt").fmt
 return {
     s(
         "anon",
-        fmt(
-            [[
-    ({}) => {{
-        {}
-    }}
-    ]],
-            {
-                c(1, {
-                    t(""),
-                    i(nil, "params"),
-                }),
-                i(0),
-            }
-        )
+        fmt([[({}) => {{{}}}]], {
+            i(0),
+            c(1, {
+                t(""),
+                i(nil, "params"),
+            }),
+        })
+    ),
+    s(
+        "cl",
+        fmt([[() {{}}{}]], {
+            i(0),
+        })
     ),
 }

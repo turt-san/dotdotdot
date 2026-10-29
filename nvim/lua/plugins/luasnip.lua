@@ -9,7 +9,9 @@ return {
         })
 
         require("luasnip.loaders.from_lua").lazy_load({ paths = "./snippets" })
-        require("luasnip").filetype_extend("typescript", { "javascript", "svelte" })
+        -- can also extend directly in the files themselves, aka svelte.lua and javascript.lua
+        require("luasnip").filetype_extend("javascript", { "typescript" })
+        require("luasnip").filetype_extend("svelte", { "typescript" })
 
         vim.keymap.set({ "i" }, "<C-K>", function()
             ls.expand()
