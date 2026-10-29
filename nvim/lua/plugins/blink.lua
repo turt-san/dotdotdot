@@ -1,11 +1,11 @@
 return {
-    "saghen/blink.cmp",
+    'saghen/blink.cmp',
     lazy = false,
     priority = 500,
     opts = {
         keymap = {
-            preset = "default",
-            ["<TAB>"] = { "select_and_accept" },
+            preset = 'default',
+            ['<TAB>'] = { 'select_and_accept' },
         },
         completion = {
             menu = {
@@ -14,9 +14,9 @@ return {
                 draw = {
                     gap = 2, -- spacing between columns
                     columns = {
-                        { "label", gap = 1 },
-                        { "kind" },
-                        { "label_description" },
+                        { 'label', gap = 1 },
+                        { 'kind' },
+                        { 'label_description' },
                         -- { "source_name" },
                     },
                 },
@@ -26,6 +26,17 @@ return {
         },
         sources = {
             providers = {
+                default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer' },
+                per_filetype = {
+                    lua = { inherit_defaults = true, 'lazydev' },
+                },
+                providers = {
+                    lazydev = {
+                        name = 'LazyDev',
+                        module = 'lazydev.integrations.blink',
+                        score_offset = 100, -- lazydev items rank first
+                    },
+                },
                 path = {
                     opts = {
                         show_hidden_files_by_default = true,
@@ -42,6 +53,6 @@ return {
         -- },
     },
     build = function()
-        require("blink.cmp").build():pwait()
+        require('blink.cmp').build():pwait()
     end,
 }

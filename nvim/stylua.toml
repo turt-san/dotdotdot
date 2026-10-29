@@ -1,3 +1,6 @@
+column_width = 150
 indent_type = "Spaces"
 indent_width = 4
-quote_style = "AutoPreferDouble"
+quote_style = "AutoPreferSingle"
+call_parentheses = "Always"
+collapse_simple_statement = "ConditionalOnly"
