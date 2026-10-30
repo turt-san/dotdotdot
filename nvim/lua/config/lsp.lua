@@ -16,6 +16,9 @@ vim.lsp.config('lua_ls', {
     settings = {
         Lua = {
             runtime = { version = 'LuaJIT' }, -- Neovim embeds LuaJIT
+            diagnostics = {
+                disable = { 'unused-function' },
+            },
         },
     },
 })
