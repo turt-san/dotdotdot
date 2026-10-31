@@ -53,6 +53,7 @@ return {
         -- },
     },
     build = function()
-        require('blink.cmp').build():pwait()
+        require('blink.cmp').build()
+        -- :pwait()
     end,
 }
