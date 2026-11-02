@@ -26,7 +26,7 @@ else
 end
 
 local makeprg = {
-    typescript = 'deno transpile % 2>/dev/null | wl-copy',
+    typescript = 'deno transpile % 2>/dev/null \\| wl-copy',
     rust = 'cargo run -q',
     python = 'python %',
     c = 'gcc -Wall -o out.c %',
