@@ -4,5 +4,4 @@
   (#match? @_comment "^/\\*\\s*sql\\s*\\*/$")
   .
   (template_string (string_fragment) @injection.content)
-  (#set! injection.language "sql")
-  (#set! injection.combined))
+  (#set! injection.language "sql"))
