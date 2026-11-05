@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
 # git all
 for d in ./*/; do
-  [ -d "$d/.git" ] && echo "== $d" && git -C "$d" status -sb
+  [ -d "$d/.git" ] && echo "== $d" && git -C "$d" fetch && git -C "$d" status -sb
 done
