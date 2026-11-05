@@ -1,3 +1,7 @@
+`xdg-settings get default-web-browser`
+`xdg-settings set default-web-browser brave-browser.desktop`
+
+
 # Base
 `base`
 `base-devel`
