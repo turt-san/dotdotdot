@@ -6,6 +6,7 @@ vim.diagnostic.config({ virtual_text = true })
 
 local capabilities = require('blink.cmp').get_lsp_capabilities()
 
+-- print(vim.inspect(vim.lsp.get_clients({ name = "lua_ls" })[1].server_capabilities.documentFormattingProvider))
 vim.lsp.config('lua_ls', {
     settings = {
         Lua = {
@@ -13,8 +14,16 @@ vim.lsp.config('lua_ls', {
             diagnostics = {
                 disable = { 'unused-function' },
             },
+            format = {
+                enable = false,
+            },
         },
     },
+    on_attach = function(client, bufnr)
+        -- This physically strips the formatting feature out of the server's memory
+        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.documentRangeFormattingProvider = false
+    end,
 })
 
 vim.lsp.config('svelte', {

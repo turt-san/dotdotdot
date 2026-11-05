@@ -17,7 +17,7 @@ for i = 1, 10 do
     i = i % 10
     vim.keymap.set('n', '<leader>' .. i, function()
         jump_to_nth_buffer(i)
-    end)
+    end, { desc = 'Go to buffer ' .. i })
 end
 
 -- use :map to see bindings
@@ -37,7 +37,7 @@ vim.keymap.set('n', '<leader>q', '<Cmd>quit<CR>')
 vim.keymap.set('n', '<leader>r', '<Cmd>lsp restart<CR>')
 vim.keymap.set('n', '<leader>x', '<Cmd>bprevious | bdelete #<CR>', { silent = true })
 vim.keymap.set('n', '<leader>u', '<Cmd>Lazy sync<CR>')
-vim.keymap.set('n', '<leader>i', 'gg=G``')
+vim.keymap.set('n', '<leader>ii', 'gg=G``')
 vim.keymap.set('n', '<leader>h', '<Cmd>let @/ = ""<CR>')
 vim.keymap.set('n', '<leader>n', '<Cmd>bn<CR>')
 vim.keymap.set('n', '<leader>yf', '<Cmd>1,$y+"<CR>', { desc = 'Yank entire file into clipboard' })
@@ -65,10 +65,6 @@ vim.keymap.set('n', '<leader>o', '<Cmd>Oil<CR>')
 -- nvim tree
 vim.keymap.set('n', '<C-N>', ':NvimTreeToggle<CR>', { silent = true })
 
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>sk', function()
-    builtin.keymaps(require('telescope.themes').get_ivy({}))
-end, { desc = 'Search Keymaps' })
-
 -- LSP binds
 require('config.mappings.lsp')
+require('config.mappings.telescope')
