@@ -2,10 +2,13 @@
 
 run() {
     local d="$1"
-    echo "== $d" && git -C "$d" fetch && git -C "$d" status -sb
+    git -C "$d" fetch
+    echo -e "\n== $d"
+    git -C "$d" status -sb
+    return 0
 }
 
 # git all
 for d in ./*/; do
-  [ -d "$d/.git" ] && run "$d" &
+    ( [ -d "$d/.git" ] && run "$d" & ) 2>/dev/null
 done
