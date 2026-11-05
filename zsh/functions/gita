@@ -1,5 +1,11 @@
 #!/usr/bin/env zsh
+
+run() {
+    local d="$1"
+    echo "== $d" && git -C "$d" fetch && git -C "$d" status -sb
+}
+
 # git all
 for d in ./*/; do
-  [ -d "$d/.git" ] && echo "== $d" && git -C "$d" fetch && git -C "$d" status -sb
+  [ -d "$d/.git" ] && run "$d" &
 done
