@@ -2,6 +2,12 @@ return {
     'saghen/blink.cmp',
     lazy = false,
     priority = 500,
+    dependencies = {
+        {
+            'saghen/blink.lib',
+            lazy = true,
+        },
+    },
     opts = {
         keymap = {
             preset = 'default',

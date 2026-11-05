@@ -3,6 +3,12 @@ return {
     version = '*',
     lazy = false,
     opts = {},
+    dependencies = {
+        {
+            'nvim-lua/plenary.nvim',
+            lazy = true,
+        },
+    },
     config = function()
         local builtin = require('telescope.builtin')
         vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })

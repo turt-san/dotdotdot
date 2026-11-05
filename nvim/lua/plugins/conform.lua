@@ -1,22 +1,22 @@
 return {
-    "stevearc/conform.nvim",
+    'stevearc/conform.nvim',
     config = function()
-        local prettier = { "prettierd", "prettier", stop_after_first = true }
-        require("conform").setup({
+        local prettier = { 'prettierd', 'prettier', stop_after_first = true }
+        require('conform').setup({
             log_level = vim.log.levels.DEBUG,
             formatters_by_ft = {
                 javascript = prettier,
                 typescript = prettier,
                 css = prettier,
-                lua = { "stylua" },
-                python = { "black" },
-                go = { "gofmt" },
-                asm = { "asmfmt" },
+                lua = { 'stylua' },
+                python = { 'black' },
+                go = { 'gofmt' },
+                asm = { 'asmfmt' },
             },
             formatters = {
                 prettierd = {
                     env = {
-                        PRETTIERD_DEFAULT_CONFIG = vim.fn.stdpath("config") .. "/prettier-defaults.json",
+                        PRETTIERD_DEFAULT_CONFIG = vim.fn.stdpath('config') .. '/prettier-defaults.json',
                     },
                 },
             },
