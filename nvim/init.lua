@@ -13,7 +13,7 @@ to restart a buffer:
 require('config.options')
 require('config.lazy')
 require('config.lsp')
-require('mappings')
+require('config.mappings')
 
 -- custom tmux session support
 local tmux = vim.env.Z_TMUX_CODE

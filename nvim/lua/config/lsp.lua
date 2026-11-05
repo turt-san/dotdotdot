@@ -2,10 +2,6 @@
 -- vim.diagnostic.config({ virtual_lines = true })
 vim.diagnostic.config({ virtual_text = true })
 
-vim.keymap.set('n', '<leader>gd', function()
-    vim.diagnostic.open_float(0, { scope = 'line' })
-end)
-vim.keymap.set('n', 'gd', require('telescope.builtin').lsp_definitions)
 -- { loclist = true }
 
 local capabilities = require('blink.cmp').get_lsp_capabilities()

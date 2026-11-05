@@ -1,10 +1,3 @@
--- use :map to see bindings
--- Jump between windows
-vim.keymap.set('n', '<C-h>', '<C-w>h')
-vim.keymap.set('n', '<C-j>', '<C-w>j')
-vim.keymap.set('n', '<C-k>', '<C-w>k')
-vim.keymap.set('n', '<C-l>', '<C-w>l')
-
 -- Jump between windows (numbered)
 -- vim.keymap.set('n', '<leader>1', '1<C-w>w')
 -- vim.keymap.set('n', '<leader>2', '2<C-w>w')
@@ -28,19 +21,24 @@ for i = 1, 10 do
     end)
 end
 
+-- use :map to see bindings
+-- Jump between windows
+vim.keymap.set('n', '<C-h>', '<C-w>h')
+vim.keymap.set('n', '<C-j>', '<C-w>j')
+vim.keymap.set('n', '<C-k>', '<C-w>k')
+vim.keymap.set('n', '<C-l>', '<C-w>l')
+
 -- Resize windows
 vim.keymap.set('n', '<C-Up>', '<C-w>-')
 vim.keymap.set('n', '<C-Down>', '<C-w>+')
 
 -- Leader QOL
-vim.keymap.set('n', '<leader>o', '<Cmd>update<CR><Cmd>source<CR>')
 vim.keymap.set('n', '<leader>w', '<Cmd>write<CR>')
 vim.keymap.set('n', '<leader>q', '<Cmd>quit<CR>')
 vim.keymap.set('n', '<leader>r', '<Cmd>lsp restart<CR>')
 vim.keymap.set('n', '<leader>x', '<Cmd>bprevious | bdelete #<CR>', { silent = true })
 vim.keymap.set('n', '<leader>u', '<Cmd>Lazy sync<CR>')
-vim.keymap.set('n', '<leader>bf', vim.lsp.buf.format)
-vim.keymap.set('n', '<leader>i', 'gg=G``zz')
+vim.keymap.set('n', '<leader>i', 'gg=G``')
 vim.keymap.set('n', '<leader>h', '<Cmd>let @/ = ""<CR>')
 vim.keymap.set('n', '<leader>n', '<Cmd>bn<CR>')
 vim.keymap.set('n', '<leader>yy', '<Cmd>1,$y+"<CR>')
@@ -61,10 +59,28 @@ vim.keymap.set('v', ':s/', ':s/\\v', { desc = 'substitute very magically. dopely
 vim.keymap.set('s', '<BS>', '<C-O>c', { silent = true, desc = 'Delete placeholder safely' })
 
 -- PLUGINS
-vim.keymap.set('n', '<leader>O', '<Cmd>Oil<CR>')
+vim.keymap.set('n', '<leader>i', '<Cmd>Oil<CR>')
 
 -- nvim tree
 vim.keymap.set('n', '<C-N>', ':NvimTreeToggle<CR>', { silent = true })
 
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>sk', function()
+    builtin.keymaps(require('telescope.themes').get_ivy({}))
+end, { desc = 'Search Keymaps' })
 -- LSP binds
+vim.keymap.set('n', '<leader>cd', vim.lsp.buf.code_action)
 vim.keymap.set('n', '<leader>gr', vim.lsp.buf.rename)
+vim.keymap.set('n', '<leader>bf', vim.lsp.buf.format)
+vim.keymap.set('n', '<leader>gd', function()
+    vim.diagnostic.open_float(0, { scope = 'line' })
+end)
+
+vim.keymap.set('n', 'gd', builtin.lsp_definitions, { desc = 'Telescope Go to Definition' })
+vim.keymap.set('n', '<leader>fu', builtin.lsp_references, { desc = 'Telescope Show References' })
+vim.keymap.set('n', 'gi', builtin.lsp_implementations, { desc = 'Telescope Go to Implementation' })
+vim.keymap.set('n', 'gt', builtin.lsp_type_definitions, { desc = 'Telescope Type Definition' })
+
+vim.keymap.set('n', '<leader>dg', builtin.diagnostics, { desc = 'Telescope Document Diagnostics' })
+vim.keymap.set('n', '<leader>ds', builtin.lsp_document_symbols, { desc = 'Telescope Document Symbols' })
+vim.keymap.set('n', '<leader>ws', builtin.lsp_dynamic_workspace_symbols, { desc = 'Telescope Workspace Symbols' })
