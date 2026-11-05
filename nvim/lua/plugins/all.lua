@@ -5,15 +5,6 @@ return {
         opts = {},
     },
     {
-        'stevearc/oil.nvim',
-        lazy = false,
-        opts = {
-            view_options = {
-                show_hidden = true,
-            },
-        },
-    },
-    {
         'brianhuster/live-preview.nvim',
         lazy = true,
         opts = {},

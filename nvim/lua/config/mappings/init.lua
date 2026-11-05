@@ -10,8 +10,7 @@ local function jump_to_nth_buffer(n)
         if vim.api.nvim_buf_is_loaded(bufnr) and vim.bo[bufnr].buflisted then table.insert(real, bufnr) end
     end
     n = math.min(n, #real)
-    print('Jumping to buffer', n)
-    vim.api.nvim_set_current_buf(real[n])
+    if real[n] then vim.api.nvim_set_current_buf(real[n]) end
 end
 
 for i = 1, 10 do
@@ -41,8 +40,10 @@ vim.keymap.set('n', '<leader>u', '<Cmd>Lazy sync<CR>')
 vim.keymap.set('n', '<leader>i', 'gg=G``')
 vim.keymap.set('n', '<leader>h', '<Cmd>let @/ = ""<CR>')
 vim.keymap.set('n', '<leader>n', '<Cmd>bn<CR>')
-vim.keymap.set('n', '<leader>yy', '<Cmd>1,$y+"<CR>')
+vim.keymap.set('n', '<leader>yf', '<Cmd>1,$y+"<CR>', { desc = 'Yank entire file into clipboard' })
 vim.keymap.set('n', '<leader>d', 'dd', { silent = true })
+vim.keymap.set('n', '<leader>y', 'yy', { silent = true })
+vim.keymap.set('n', '<leader>O', '<Cmd>update<CR><Cmd>source<CR>')
 
 -- QOL keybinds
 vim.keymap.set('n', '<CR>', 'o<Esc>')
@@ -52,14 +53,14 @@ vim.keymap.set({ 'n', 'v' }, '<C-/>', commentcmd)
 vim.keymap.set({ 'n', 'v' }, '<C-_>', commentcmd)
 vim.keymap.set('i', 'jk', '<Esc>')
 -- vim.keymap.set('i', '<TAB>', '<C-y>')
-vim.keymap.set('n', '/', '/\\v', { desc = 'very magic search' })
-vim.keymap.set('n', '?', '?\\v', { desc = 'very magic backward search' })
-vim.keymap.set('v', ':s/', ':s/\\v', { desc = 'substitute very magically. dopely even.' })
+-- vim.keymap.set('n', '/', '/\\v', { desc = 'very magic search' })
+-- vim.keymap.set('n', '?', '?\\v', { desc = 'very magic backward search' })
+-- vim.keymap.set('v', ':s/', ':s/\\v', { desc = 'substitute very magically. dopely even.' })
 
 vim.keymap.set('s', '<BS>', '<C-O>c', { silent = true, desc = 'Delete placeholder safely' })
 
 -- PLUGINS
-vim.keymap.set('n', '<leader>i', '<Cmd>Oil<CR>')
+vim.keymap.set('n', '<leader>o', '<Cmd>Oil<CR>')
 
 -- nvim tree
 vim.keymap.set('n', '<C-N>', ':NvimTreeToggle<CR>', { silent = true })
@@ -68,19 +69,6 @@ local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>sk', function()
     builtin.keymaps(require('telescope.themes').get_ivy({}))
 end, { desc = 'Search Keymaps' })
+
 -- LSP binds
-vim.keymap.set('n', '<leader>cd', vim.lsp.buf.code_action)
-vim.keymap.set('n', '<leader>gr', vim.lsp.buf.rename)
-vim.keymap.set('n', '<leader>bf', vim.lsp.buf.format)
-vim.keymap.set('n', '<leader>gd', function()
-    vim.diagnostic.open_float(0, { scope = 'line' })
-end)
-
-vim.keymap.set('n', 'gd', builtin.lsp_definitions, { desc = 'Telescope Go to Definition' })
-vim.keymap.set('n', '<leader>fu', builtin.lsp_references, { desc = 'Telescope Show References' })
-vim.keymap.set('n', 'gi', builtin.lsp_implementations, { desc = 'Telescope Go to Implementation' })
-vim.keymap.set('n', 'gt', builtin.lsp_type_definitions, { desc = 'Telescope Type Definition' })
-
-vim.keymap.set('n', '<leader>dg', builtin.diagnostics, { desc = 'Telescope Document Diagnostics' })
-vim.keymap.set('n', '<leader>ds', builtin.lsp_document_symbols, { desc = 'Telescope Document Symbols' })
-vim.keymap.set('n', '<leader>ws', builtin.lsp_dynamic_workspace_symbols, { desc = 'Telescope Workspace Symbols' })
+require('config.mappings.lsp')
