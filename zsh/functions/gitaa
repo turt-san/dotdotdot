@@ -29,7 +29,7 @@ run() {
     printf "%s\n\n" "$output"
 }
 
-printf "===================\n\n"
+printf "%s\n===================\n\n" "$cfg_path"
 for repo_path in "${repo_paths[@]}"; do
     run "$repo_path" &
 done
