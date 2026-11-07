@@ -18,6 +18,14 @@ local chars_alt = {
     '¬',
 }
 
+-- changes the default behaviour from backupcopy = 'auto' (which is usually 'no'), which does the following, assuming writebackup is true:
+-- renames the source file to the vim-specific backup name
+-- writes a new file with the same name as the source file at the same path
+-- this technically creates a new file, with a different inode
+-- which breaks some file watcher setups since they watch the files inode
+-- backupcopy = 'yes' instead copies the source file to the backup file and writes the source file in place
+o.backupcopy = 'yes'
+
 opt.number = true
 opt.gdefault = true
 opt.relativenumber = true
