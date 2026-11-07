@@ -1,14 +1,17 @@
 #!/usr/bin/env zsh
 
+unsetopt MONITOR
+
 run() {
     local d="$1"
-    git -C "$d" fetch
+    git -C "$d" fetch -q
     echo -e "\n== $d"
-    git -C "$d" status -sb
-    return 0
+    git -c color.status=always --no-optional-locks -C "$d" status -sb
 }
 
 # git all
 for d in ./*/; do
-    ( [ -d "$d/.git" ] && run "$d" & ) 2>/dev/null
+    [ -d "$d/.git" ] && run "$d" &
 done
+
+wait

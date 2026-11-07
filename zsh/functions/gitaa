@@ -1,0 +1,37 @@
+#!/usr/bin/env zsh
+
+unsetopt MONITOR
+
+cfg_path="$CFG_DIR/gitaa_targets"
+
+home="$HOME"
+if [[ ! -f "$cfg_path" ]]; then
+    echo ${cfg_path} does not exist. Create it.
+    return 1
+fi
+repo_paths=($(cat "${cfg_path}"))
+if [[ ${#repo_paths[@]} -le 1 ]]; then
+    echo "No repo_paths defined in ${cfg_repo_path}"
+    return 1
+fi
+
+run() {
+    # -q = quiet
+    git -C "${home}${1}" fetch -q
+    output=$(git -c color.status=always --no-optional-locks -C "${home}${1}" status -sb | awk -v dir="$1" '
+    BEGIN {
+        BLUE="\033[34m"
+        RESET="\033[0m"
+        printf "%s~%s\n%s", BLUE, dir, RESET
+    }
+    { print $0 }
+    ')
+    printf "%s\n\n" "$output"
+}
+
+printf "===================\n\n"
+for repo_path in "${repo_paths[@]}"; do
+    run "$repo_path" &
+done
+wait
+printf "===================\n"
