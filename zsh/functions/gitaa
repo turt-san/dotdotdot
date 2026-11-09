@@ -10,8 +10,8 @@ if [[ ! -f "$cfg_path" ]]; then
     return 1
 fi
 repo_paths=($(cat "${cfg_path}"))
-if [[ ${#repo_paths[@]} -le 1 ]]; then
-    echo "No repo_paths defined in ${cfg_repo_path}"
+if [[ ${#repo_paths[@]} -lt 1 ]]; then
+    echo "No repo_paths defined in ${cfg_path}"
     return 1
 fi
 
