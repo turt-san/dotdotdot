@@ -14,6 +14,7 @@ require('config.options')
 require('config.lazy')
 require('config.lsp')
 require('config.mappings')
+require('config.autocmds')
 
 -- custom tmux session support
 local tmux = vim.env.Z_TMUX_CODE
@@ -41,9 +42,13 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 -- Custom functions
-vim.api.nvim_create_user_command('EditVim', function()
-    vim.cmd('tabedit ~/.config/nvim/init.lua')
-end, {})
+vim.api.nvim_create_user_command(
+    'EditVim',
+    function()
+        vim.cmd('tabedit ~/.config/nvim/init.lua')
+    end,
+    {}
+)
 
 -- vim.api.nvim_create_autocmd('FileType', {
 --     callback = function(args)
