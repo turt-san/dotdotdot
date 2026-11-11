@@ -18,10 +18,8 @@ vim.api.nvim_create_autocmd('BufReadPre', {
         -- expr = true is required. it evaluates the return value and executes the string as a keystroke, otherwises it just executes the function directly
         -- bmap({ "n", "v" }, "j", function() return vim.v.count == 0 and "gj" or "j" end, { expr = true })
         -- bmap({ "n", "v" }, "k", function() return vim.v.count == 0 and "gk" or "k" end, { expr = true })
-        bmap({ 'n', 'v' }, 'h', 'gh')
         bmap({ 'n', 'v' }, 'j', 'gj')
         bmap({ 'n', 'v' }, 'k', 'gk')
-        bmap({ 'n', 'v' }, 'l', 'gl')
 
         bmap({ 'n', 'v' }, '$', 'g$')
         bmap({ 'n', 'v' }, '^', 'g^')
