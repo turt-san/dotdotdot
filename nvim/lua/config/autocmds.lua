@@ -6,8 +6,27 @@ vim.api.nvim_create_autocmd('BufReadPre', {
     callback = function(ev)
         vim.o.textwidth = 0
         vim.o.wrapmargin = 0
-        vim.wo.wrap = true
         vim.o.linebreak = true
+        vim.opt_local.wrap = true
+
+        local function bmap(mode, lhs, rhs, opts)
+            opts = opts or {}
+            opts.buffer = true
+            vim.keymap.set(mode, lhs, rhs, opts)
+        end
+
+        -- expr = true is required. it evaluates the return value and executes the string as a keystroke, otherwises it just executes the function directly
+        -- bmap({ "n", "v" }, "j", function() return vim.v.count == 0 and "gj" or "j" end, { expr = true })
+        -- bmap({ "n", "v" }, "k", function() return vim.v.count == 0 and "gk" or "k" end, { expr = true })
+        bmap({ 'n', 'v' }, 'h', 'gh')
+        bmap({ 'n', 'v' }, 'j', 'gj')
+        bmap({ 'n', 'v' }, 'k', 'gk')
+        bmap({ 'n', 'v' }, 'l', 'gl')
+
+        bmap({ 'n', 'v' }, '$', 'g$')
+        bmap({ 'n', 'v' }, '^', 'g^')
+        bmap({ 'n', 'v' }, '0', 'g0')
+
         print('Opened .md file' .. ev.file)
     end,
 })
