@@ -12,3 +12,8 @@ Check current remote
 ```sh
 git remote -v
 ```
+
+Push and set as default upstream
+```sh
+git push -u origin main
+```
