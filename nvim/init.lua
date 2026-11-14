@@ -16,6 +16,20 @@ require('config.lsp')
 require('config.mappings')
 require('config.autocmds')
 
+vim.g.AutoPairs = {
+    ['('] = ')',
+    ['['] = ']',
+    ['{'] = '}',
+    ["'"] = "'",
+    ['"'] = '"',
+    ['`'] = '`',
+    ['```'] = '```',
+    ['"""'] = '"""',
+    ["'''"] = "'''",
+    ['|'] = '|',
+    ['<'] = '>',
+}
+
 -- custom tmux session support
 local tmux = vim.env.Z_TMUX_CODE
 if tmux ~= nil then

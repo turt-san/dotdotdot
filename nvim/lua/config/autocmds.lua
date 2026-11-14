@@ -29,6 +29,25 @@ vim.api.nvim_create_autocmd('BufReadPre', {
     end,
 })
 
+local autopairs_group = vim.api.nvim_create_augroup('CustomAutoPairs', { clear = true })
+
+vim.api.nvim_create_autocmd('FileType', {
+    group = autopairs_group,
+    pattern = 'html',
+    callback = function()
+        vim.b.AutoPairs = vim.fn.AutoPairsDefine({ ['<!--'] = '-->' }, { '{' })
+        if vim.fn.exists('*AutoPairsInit') == 1 then
+            vim.fn.AutoPairsInit()
+        end
+    end,
+})
+
+-- vim.cmd([[
+-- :echo exists('g:AutoPairsLoaded') exists('*AutoPairsInit')
+-- :call AutoPairsInit()
+-- :lua vim.fn.AutoPairsInit()
+-- ]])
+
 -- Automatically soft-wrap text (only visually) at the edge of the window:
 -- set number # (optional - will help to visually verify that it's working)
 -- set textwidth=0
