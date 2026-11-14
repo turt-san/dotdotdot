@@ -1,41 +1,36 @@
 return {
     {
-        "numToStr/Comment.nvim",
+        'numToStr/Comment.nvim',
         lazy = false,
         opts = {},
     },
     {
-        "jiangmiao/auto-pairs",
-        lazy = false,
-        config = function() end,
-    },
-    {
-        "kylechui/nvim-surround",
+        'kylechui/nvim-surround',
         lazy = false,
         opts = {},
     },
     {
-        "WhoIsSethDaniel/mason-tool-installer.nvim",
+        'WhoIsSethDaniel/mason-tool-installer.nvim',
         opts = {
             ensure_installed = {
-                "stylua",
-                "prettierd",
-                "black",
+                'stylua',
+                'prettierd',
+                'black',
                 -- LSPs, most are saved in mason-lspconfig
             },
         },
     },
     {
-        "mfussenegger/nvim-lint",
+        'mfussenegger/nvim-lint',
         lazy = false,
         config = function()
-            require("lint").linters_by_ft = {
-                python = { "ruff" },
-                typescript = { "eslint_d" },
+            require('lint').linters_by_ft = {
+                python = { 'ruff' },
+                typescript = { 'eslint_d' },
             }
-            vim.api.nvim_create_autocmd({ "BufWritePost", "InsertLeave" }, {
+            vim.api.nvim_create_autocmd({ 'BufWritePost', 'InsertLeave' }, {
                 callback = function()
-                    require("lint").try_lint()
+                    require('lint').try_lint()
                 end,
             })
         end,
