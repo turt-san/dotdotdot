@@ -9,6 +9,7 @@ return {
                 typescript = prettier,
                 css = prettier,
                 lua = { 'stylua' },
+                luau = { 'stylua' },
                 python = { 'black' },
                 go = { 'gofmt' },
                 asm = { 'asmfmt' },
@@ -16,7 +17,8 @@ return {
             formatters = {
                 prettierd = {
                     env = {
-                        PRETTIERD_DEFAULT_CONFIG = vim.fn.stdpath('config') .. '/prettier-defaults.json',
+                        PRETTIERD_DEFAULT_CONFIG = vim.fn.stdpath('config')
+                            .. '/prettier-defaults.json',
                     },
                 },
             },
