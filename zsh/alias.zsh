@@ -10,12 +10,11 @@ alias py="python3 "
 # python source
 alias pysrc="source $pyenvdir/bin/activate"
 alias blk='feh --fullscreen --hide-pointer ~/Images/Other/black.png &; disown; exit'
-alias upd='cachy-update'
 alias alph="echo {a..z}"
 alias wallyfix='wally-package-types --sourcemap sourcemap.json Packages/'
 alias gpull='ssho && git pull'
 
-# cd ..'es
+# cd ..
 # ".." is a function
 alias ...="cd ../.."
 alias ....="cd ../../.."
@@ -27,4 +26,12 @@ if [[ -n $(command -v eza) ]]; then
 else
     alias ls="command ls -AXGl --time-style=+\"|\" --color=auto"
     alias ll="command ls -al --color=auto"
+fi
+
+if [[ -n $(command -v cachy-update) ]]; then
+    alias upd="yes $'\n' | cachy-update"
+elif [[ -n $(command -v arch-update) ]]; then
+    alias upd="yes $'\n' | arch-update"
+else
+    alias upd='echo Neither cachy-update or arch-update is installed'
 fi
