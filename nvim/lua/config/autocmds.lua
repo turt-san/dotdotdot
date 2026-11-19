@@ -1,5 +1,6 @@
 local text_file_group = vim.api.nvim_create_augroup('TextFileGroup', { clear = true })
 
+-- doesn't activate on "nvim newfile.md"
 vim.api.nvim_create_autocmd('BufReadPre', {
     group = text_file_group,
     pattern = { '*.md', '*.txt' },
@@ -24,8 +25,6 @@ vim.api.nvim_create_autocmd('BufReadPre', {
         bmap({ 'n', 'v' }, '$', 'g$')
         bmap({ 'n', 'v' }, '^', 'g^')
         bmap({ 'n', 'v' }, '0', 'g0')
-
-        print('Opened .md file' .. ev.file)
     end,
 })
 
