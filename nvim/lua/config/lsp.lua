@@ -1,6 +1,7 @@
 -- Below text inline hints
 -- vim.diagnostic.config({ virtual_lines = true })
 vim.diagnostic.config({ virtual_text = true })
+vim.lsp.inlay_hint.enable(true)
 
 -- { loclist = true }
 
@@ -52,4 +53,17 @@ vim.lsp.config('qmlls', {
         vim.highlight.priorities.semantic_tokens = 95
     end,
 })
+
 vim.lsp.enable('qmlls')
+
+vim.lsp.config('qmlls', {
+    settings = {
+        ['rust-analyzer'] = {
+            inlayHints = {
+                bindingModeHints = { enable = true }, -- shows hidden & / ref in patterns
+                closureCaptureHints = { enable = true }, -- shows what closures capture, and how
+                expressionAdjustmentHints = { enable = 'always' }, -- shows implicit & / * / deref adjustments
+            },
+        },
+    },
+})
