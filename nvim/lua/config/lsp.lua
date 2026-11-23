@@ -67,3 +67,31 @@ vim.lsp.config('qmlls', {
         },
     },
 })
+
+vim.filetype.add({
+    extension = {
+        reds = 'redscript',
+        script = 'redmod',
+    },
+})
+
+vim.treesitter.language.register('swift', { 'redscript', 'redmod' })
+
+-- vim.api.nvim_create_autocmd('FileType', {
+--     group = vim.api.nvim_create_augroup('RedscriptSyntax', { clear = true }),
+--     pattern = 'redscript',
+--     callback = function(args)
+--         vim.bo[args.buf].syntax = 'swift'
+--     end,
+-- })
+
+vim.lsp.config('redscript_ide', {
+    cmd = { '/home/turt/.local/bin/redscript-ide-x86_64-unknown-linux-gnu' },
+    filetypes = { 'redscript', 'redmod' },
+    root_markers = { '.redscript', '.git' },
+    init_options = {
+        game_dir = '/home/turt/.local/share/Steam/steamapps/common/Cyberpunk 2077',
+    },
+})
+
+vim.lsp.enable('redscript_ide')
