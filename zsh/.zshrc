@@ -1,5 +1,11 @@
 CFG_DIR="$HOME/.config/zsh"
 
+HISTFILE=~/.zsh_history
+HISTSIZE=50000
+SAVEHIST=50000
+setopt SHARE_HISTORY        # Write and read history immediately across sessions
+setopt HIST_IGNORE_DUPS     # Don't record duplicate consecutive commands
+
 if [[ -z $TMUX ]]; then source "$CFG_DIR/motd.zsh"; fi
 # source "$CFG_DIR/rest.zsh"
 # source "$CFG_DIR/cachyos-config.zsh"
